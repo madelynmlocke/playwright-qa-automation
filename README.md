@@ -110,7 +110,7 @@ Examples include:
 - API endpoint returns HTTP 200 with valid JSON data
 - Invalid endpoints return appropriate error responses (404)
 
-##Running the Tests
+## Running the Tests
 1. Install dependencies
 2. Install Playwright browsers
 3. Run all tests
@@ -136,7 +136,7 @@ This mirrors real bug tracking systems such as:
 - Azure DevOps
 - Bugzilla
 
-##Future Improvements
+## Future Improvements
 
 Potential enhancements for this project include:
 
@@ -145,7 +145,7 @@ Potential enhancements for this project include:
 - Expanding API test coverage
 - Adding performance or load testing scenarios
 
-##Learning Goals
+## Learning Goals
 
 This project was created to practice and demonstrate:
 

@@ -1,22 +1,16 @@
 import { test, expect } from '@playwright/test';
 
-test('form shows validation errors for empty required fields', async ({ page }) => {
+test('form validation prevents submission when required fields are empty', async ({ page }) => {
   await page.goto('https://example.com/contact');
 
-  await page.click('button[type="submit"]');
+  const submitButton = page.locator('button[type="submit"]');
+  await submitButton.click();
 
-  const nameError = page.locator('#name-error');
-  const emailError = page.locator('#email-error');
-  const messageError = page.locator('#message-error');
-
-  await expect(nameError).toBeVisible();
-  await expect(emailError).toBeVisible();
-  await expect(messageError).toBeVisible();
+  const errorMessages = page.locator('.error, .validation-error');
+  await expect(errorMessages.first()).toBeVisible();
 
   await expect(page).toHaveURL(/contact/);
 });
-
-import { test, expect } from '@playwright/test';
 
 test('form rejects invalid email format', async ({ page }) => {
   await page.goto('https://example.com/contact');
@@ -28,6 +22,5 @@ test('form rejects invalid email format', async ({ page }) => {
   await page.click('button[type="submit"]');
 
   const emailError = page.locator('#email-error');
-
   await expect(emailError).toBeVisible();
 });

@@ -15,8 +15,6 @@ test('API returns successful response with valid data', async ({ request }) => {
   expect(responseBody[0]).toHaveProperty('body');
 });
 
-import { test, expect } from '@playwright/test';
-
 test('API returns 404 for invalid endpoint', async ({ request }) => {
   const response = await request.get('https://jsonplaceholder.typicode.com/invalidendpoint');
 

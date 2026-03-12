@@ -12,8 +12,6 @@ test('user can login with valid credentials', async ({ page }) => {
   await expect(page.locator('h1')).toContainText('Dashboard');
 });
 
-import { test, expect } from '@playwright/test';
-
 test('login fails when password field is empty', async ({ page }) => {
   await page.goto('https://example.com/login');
 

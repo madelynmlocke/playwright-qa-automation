@@ -28,6 +28,8 @@ test.describe('Homepage Tests', () => {
       await expect(page.locator(`a:has-text("${linkText}")`).first()).toBeVisible();
     }
 
-    await expect(page.locator('text=Full-Fledged practice website for Automation Engineers')).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /Full-Fledged practice website for Automation Engineers/i }).first()
+    ).toBeVisible();
   });
 });

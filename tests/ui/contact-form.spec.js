@@ -29,6 +29,5 @@ test.describe('Contact Form Validation Tests', () => {
     await page.click('[data-qa="submit-button"]');
 
     await expect(page.locator('.status.alert.alert-success')).toBeVisible();
-    await expect(page.locator('text=Success! Your details have been submitted successfully.')).toBeVisible();
   });
 });

@@ -12,6 +12,11 @@ The repository simulates a simplified QA automation workflow, combining automate
  manual test case documentation, and defect reports to demonstrate common testing practices 
  used in real development environments.
 
+## Technologies Used
+- Playwright - UI and API test automation
+- JavaScript - test scripting
+- Node.js - runtime environment 
+
 ## Project Purpose
 
 This project demonstrates key QA engineering concepts including: 
@@ -27,12 +32,8 @@ The repository includes:
 - Defect reports
 - Test coverage tracking
 
-## Tools Used
-- Playwright - UI and API test automation
-- JavaScript - test scripting
-- Node.js - runtime environment 
-
 ## Project Structure
+```md 
 qa-automation-suite
 │
 ├── .github
@@ -40,11 +41,13 @@ qa-automation-suite
 │      ├──playwright.yml
 │
 ├── tests
-│   ├── homepage.spec.js
-│   ├── navigation.spec.js
-│   ├── login-authentication.spec.js
-│   ├── form-validation.spec.js
-│   └── api-response.spec.js
+    ├──ui
+│       ├── homepage.spec.js
+│       ├── navigation.spec.js
+│       ├── login-authentication.spec.js
+│       ├── form-validation.spec.js
+    ├── api
+│       └── api-response.spec.js
 │
 ├── test-cases
 │   ├── homepage-test.md
@@ -57,17 +60,17 @@ qa-automation-suite
 │   └── navigation-bug.md
 │
 └── README.md
-
---tests/
+```
+### tests/
 Contains automated Playwright test scripts that validate UI behavior and API responses.
 
---test-cases/
+### test-cases/
 Contains manual QA test cases describing expected application behavior and test steps.
 
---defects/
+### defects/
 Contains example bug reports documenting reproducible issues discovered during testing.
 
---github/workflows/playwright
+### .github/workflows/playwright
 This project includes a GitHub Actions workflow that automatically runs Playwright tests on every 
 push and pull request to the `main` branch.
 
@@ -81,16 +84,13 @@ CI workflow location:
 - Navigation links
 - API response validation
 
-| Test ID   | Feature Tested | Test Type | Automation | Status |
-|-----------|---------------|-----------|------------|--------|
-| HOME-001  | Homepage load verification | UI Smoke Test | Automated | Complete |
-| NAV-001   | Profile navigation link | UI Functional | Automated | Complete |
-| LOGIN-001 | Login with valid credentials | Authentication | Automated | Complete |
-| LOGIN-002 | Login with empty password | Input Validation | Automated | Complete |
-| FORM-001  | Form required fields validation | Input Validation | Automated | Complete |
-| FORM-002  | Invalid email format validation | Input Validation | Automated | Complete |
-| API-001   | API successful response | API Functional | Automated | Complete |
-| API-002   | API invalid endpoint response | API Negative Test | Automated | Complete |
+| Test Type | Test Suite | Scenario | Description |
+|-----------|------------|----------|-------------|
+| UI | homepage.spec.js | Homepage Smoke Test | Verifies homepage loads correctly, header/footer render, and navigation links are visible |
+| UI | login.spec.js | Login Validation | Verifies login page loads and displays an error when invalid credentials are submitted |
+| UI | contact-form.spec.js | Contact Form Submission | Verifies contact form fields are visible and form can be submitted successfully |
+| UI | navigation.spec.js | Navigation Links | Verifies navigation links redirect to correct pages such as Products and Contact Us |
+| API | products-api.spec.js | Products API Response | Verifies products API returns a valid response with product data |
 
 ## Test Scenarios
 

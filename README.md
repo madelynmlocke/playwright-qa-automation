@@ -1,3 +1,5 @@
+![Playwright Tests](https://github.com/madelynmlocke/playwright-qa-automation/actions/workflows/playwright.yml/badge.svg)
+
 # QA Automation Testing Project
 
 ## Project Overview
@@ -30,7 +32,7 @@ The repository includes:
 - JavaScript - test scripting
 - Node.js - runtime environment 
 
-##Project Structure
+## Project Structure
 qa-automation-suite
 │
 ├── github
@@ -90,7 +92,7 @@ CI workflow location:
 | API-001   | API successful response | API Functional | Automated | Complete |
 | API-002   | API invalid endpoint response | API Negative Test | Automated | Complete |
 
-##Test Scenarios
+## Test Scenarios
 
 The automated tests validate a variety of application behaviors.
 

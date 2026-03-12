@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: './tests',
 
   use: {
-    baseURL: 'https://example.com',
+    baseURL: 'https://automationexercise.com/',
     headless: true,
     viewport: { width: 1280, height: 720 },
     screenshot: 'only-on-failure',

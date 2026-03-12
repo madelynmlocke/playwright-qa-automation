@@ -35,7 +35,7 @@ The repository includes:
 ## Project Structure
 qa-automation-suite
 │
-├── github
+├── .github
 │   ├── workflows
 │      ├──playwright.yml
 │
@@ -113,11 +113,11 @@ Examples include:
 - Invalid endpoints return appropriate error responses (404)
 
 ## Running the Tests
-1. Install dependencies
-2. Install Playwright browsers
-3. Run all tests
-4. Run a specific test file 
-5. Document and report all tests
+```bash
+npm install
+npx playwright install
+npx playwright test
+```
 
 ## Defect Documentation
 

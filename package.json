@@ -1,0 +1,27 @@
+{
+  "name": "playwright-qa-automation",
+  "version": "1.0.0",
+  "description": "![Playwright Tests](https://github.com/madelynmlocke/playwright-qa-automation/actions/workflows/playwright.yml/badge.svg)",
+  "main": "playwright.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/madelynmlocke/playwright-qa-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/madelynmlocke/playwright-qa-automation/issues"
+  },
+  "homepage": "https://github.com/madelynmlocke/playwright-qa-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}

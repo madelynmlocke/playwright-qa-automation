@@ -37,7 +37,7 @@ The repository includes:
 qa-automation-suite
 │
 ├── .github
-│   ├── workflows
+│   └── workflows
 │      └── playwright.yml
 │
 ├── tests
@@ -46,6 +46,7 @@ qa-automation-suite
 │    │    ├── navigation.spec.js
 │    │    ├── login-authentication.spec.js
 │    │    └── form-validation.spec.js
+│    │
 │    └── api
 │         └── api-response.spec.js
 │

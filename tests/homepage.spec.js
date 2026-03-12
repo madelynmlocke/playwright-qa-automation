@@ -1,25 +1,34 @@
 import { test, expect } from '@playwright/test';
 
-test('homepage smoke test verifies key content and navigation elements', async ({ page }) => {
-  await page.goto('https://example.com');
+test.describe('Homepage Tests', () => {
 
-  await expect(page).toHaveURL(/example\.com/);
-  await expect(page).toHaveTitle(/Home|Example/i);
+  test('homepage smoke test verifies key content and navigation elements', async ({ page }) => {
 
-  await expect(page.locator('header')).toBeVisible();
-  await expect(page.locator('nav')).toBeVisible();
-  await expect(page.locator('main')).toBeVisible();
-  await expect(page.locator('footer')).toBeVisible();
+    await page.goto('https://example.com');
 
-  const heroHeading = page.locator('h1');
-  await expect(heroHeading).toBeVisible();
-  await expect(heroHeading).not.toBeEmpty();
+    await expect(page).toHaveURL(/example\.com/);
+    await expect(page).toHaveTitle(/Home|Example/i);
 
-  const navLinks = ['Home', 'About', 'Contact'];
-  for (const linkText of navLinks) {
-    await expect(page.locator(`nav >> text=${linkText}`)).toBeVisible();
-  }
+    await expect(page.locator('header')).toBeVisible();
+    await expect(page.locator('nav')).toBeVisible();
+    await expect(page.locator('main')).toBeVisible();
+    await expect(page.locator('footer')).toBeVisible();
 
-  const primaryButton = page.locator('button, a').filter({ hasText: /Get Started|Learn More|Contact/i }).first();
-  await expect(primaryButton).toBeVisible();
+    const heroHeading = page.locator('h1');
+    await expect(heroHeading).toBeVisible();
+    await expect(heroHeading).not.toBeEmpty();
+
+    const navLinks = ['Home', 'About', 'Contact'];
+    for (const linkText of navLinks) {
+      await expect(page.locator(`nav >> text=${linkText}`)).toBeVisible();
+    }
+
+    const primaryButton = page.locator('button, a')
+      .filter({ hasText: /Get Started|Learn More|Contact/i })
+      .first();
+
+    await expect(primaryButton).toBeVisible();
+
+  });
+
 });

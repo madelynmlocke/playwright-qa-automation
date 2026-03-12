@@ -38,16 +38,16 @@ qa-automation-suite
 │
 ├── .github
 │   ├── workflows
-│      ├──playwright.yml
+│      └── playwright.yml
 │
 ├── tests
-    ├──ui
-│       ├── homepage.spec.js
-│       ├── navigation.spec.js
-│       ├── login-authentication.spec.js
-│       ├── form-validation.spec.js
-    ├── api
-│       └── api-response.spec.js
+│    ├── ui
+│    │    ├── homepage.spec.js
+│    │    ├── navigation.spec.js
+│    │    ├── login-authentication.spec.js
+│    │    └── form-validation.spec.js
+│    └── api
+│         └── api-response.spec.js
 │
 ├── test-cases
 │   ├── homepage-test.md

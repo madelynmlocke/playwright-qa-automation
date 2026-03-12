@@ -1,13 +1,12 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Contact Form Validation Tests', () => {
-
   test('contact form fields are visible', async ({ page }) => {
 
     await test.step('Navigate to contact page', async () => {
       await page.goto('/contact_us');
       await expect(page).toHaveURL(/\/contact_us$/);
-      await expect(page.locator('text=Get In Touch')).toBeVisible();
+      await expect(page.getByRole('heading', { name: /Get In Touch/i }).first()).toBeVisible();
     });
 
     await test.step('Verify contact form fields are visible', async () => {
@@ -44,8 +43,10 @@ test.describe('Contact Form Validation Tests', () => {
     });
 
     await test.step('Verify successful submission message appears', async () => {
-      await expect(page.locator('.status.alert.alert-success')).toBeVisible();
-    });
+      const successMessage = page.locator('.status.alert.alert-success');
+      await expect(successMessage).toBeVisible();
+      await expect(successMessage).toContainText('Success! Your details have been submitted successfully.');
+});
 
   });
 

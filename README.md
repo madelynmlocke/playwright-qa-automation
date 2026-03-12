@@ -119,6 +119,24 @@ npx playwright install
 npx playwright test
 ```
 
+## Test Execution Report
+
+Playwright provides a built-in HTML dashboard for reviewing test results across browsers.
+
+![Playwright Report](assets/playwright-report.png)
+
+## Continuous Integration
+
+Tests run automatically on every push using GitHub Actions.
+
+![GitHub CI](assets/github-actions.png)
+
+## Debugging Failed Tests
+
+Playwright captures traces, logs, and screenshots to help diagnose failures.
+
+![Playwright Debug](assets/test-debug-view.png)
+
 ## Defect Documentation
 
 The repository includes sample defect reports demonstrating how issues are documented in a QA workflow.

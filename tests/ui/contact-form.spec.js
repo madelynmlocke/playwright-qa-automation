@@ -46,7 +46,7 @@ test.describe('Contact Form Validation Tests', () => {
       const successMessage = page.locator('.status.alert.alert-success');
       await expect(successMessage).toBeVisible();
       await expect(successMessage).toContainText('Success! Your details have been submitted successfully.');
-});
+    });
 
   });
 

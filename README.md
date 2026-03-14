@@ -165,6 +165,7 @@ Potential enhancements for this project include:
 - Implementing CI test execution using GitHub Actions
 - Expanding API test coverage
 - Adding performance or load testing scenarios
+- Implement Page Object Model
 
 ## Learning Goals
 

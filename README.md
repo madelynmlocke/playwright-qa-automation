@@ -59,6 +59,10 @@ qa-automation-suite
 │    │
 │    └── api
 │         └── api-response.spec.js
+|
+├── defects
+│    ├── login-bug.md
+│    └── navigation-bug.md
 │
 └── README.md
 ```

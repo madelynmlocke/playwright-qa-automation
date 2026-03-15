@@ -18,7 +18,8 @@ test.describe('Navigation Tests', () => {
     });
 
     await test.step('Verify products page loads', async () => {
-      await expect(page.getByRole('heading', { name: /All Products/i })).toBeVisible();
+      await expect(page).toHaveURL(/\/products$/);
+      await expect(page.getByText('All Products')).toBeVisible();
     });
   });
 

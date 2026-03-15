@@ -48,7 +48,7 @@ Correct code should be:
 
 ---
 
-## Fix Verification
+## Fix
 
 1. Update the navigation link to /profile
 2. Redeploy the application

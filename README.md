@@ -40,7 +40,7 @@ qa-automation-suite
 │   └── workflows
 │      └── playwright.yml
 │
-├── tests
+├── e2e
 │    ├── ui
 │    │    ├── homepage.spec.js
 │    │    ├── navigation.spec.js
@@ -51,18 +51,18 @@ qa-automation-suite
 │         └── api-response.spec.js
 │
 ├── test-cases
-│   ├── homepage-test.md
-│   ├── navigation-test.md
-│   ├── login-tests.md
-│   ├── form-validation-test.md
-│   └── api-response-test.md
-│
-├── defects
-│   └── navigation-bug.md
+│    ├── ui
+│    │    ├── homepage-test-cases.spec.js
+│    │    ├── navigation-test-cases.spec.js
+│    │    ├── login-authentication-test-cases.spec.js
+│    │    └── form-validation-test-cases.spec.js
+│    │
+│    └── api
+│         └── api-response.spec.js
 │
 └── README.md
 ```
-### tests/
+### e2e/
 Contains automated Playwright test scripts that validate UI behavior and API responses.
 
 ### test-cases/
@@ -150,6 +150,8 @@ Bug reports include:
 - Expected result
 - Actual result
 - Severity
+- Fix
+- Status
 
 This mirrors real bug tracking systems such as:
 

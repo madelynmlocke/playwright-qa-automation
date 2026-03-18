@@ -22,8 +22,8 @@ Response body in JSON displays a responseCode and message.
 ---
 
 ## Expected Result
-HTTP status code should be 405 Method Not Allowed
-Response body should indicate method is not supported
+HTTP status code should be 400 Bad Request
+Response body should indicate parameter is missing
 
 ---
 

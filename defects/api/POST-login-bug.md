@@ -1,0 +1,55 @@
+# Bug Report: POST /verifyLogin without parameter returns HTTP 200 instead of expected 400
+---
+
+## Summary
+Sending a POST request without a search parameter to /api/verifyLogin is returning an incorrect HTTP response of 200 instead of 400.  
+Response body in JSON displays a responseCode and message. 
+
+---
+
+## Environment
+- Browser: Chrome 123.0
+- Operating System: Windows 11
+- Test Environment: Staging
+- Application Version: v1.2.4
+
+---
+
+## Steps to Reproduce:
+1. Send a POST request without a parameter to /api/verifyLogin
+2. Observe HTTP response
+
+---
+
+## Expected Result
+HTTP status code should be 400 Bad Request
+Response body should indicate parameter is missing
+
+---
+
+## Actual Result
+HTTP status code is 200 OK
+Response body contains:
+```
+{
+  "responseCode": 400,
+  "message": "Bad request,  email or password parameter is missing in POST request"
+}
+```
+---
+
+## Severity
+Medium
+
+---
+
+## Root Cause
+The API appears to use a custom JSON responseCode field for error reporting, 
+but does not set the corresponding HTTP status code on the server response. 
+As a result, unsupported methods return 200 OK at the protocol level instead of 
+400 Bad Request.
+
+---
+
+## Status: 
+Open

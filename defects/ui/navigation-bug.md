@@ -36,7 +36,7 @@ Medium
 
 ---
 
-## Root Cause (Example)
+## Root Cause
 The navigation link points to `/dashboard` instead of `/profile`.
 
 Example code:
@@ -45,16 +45,6 @@ Example code:
 
 Correct code should be:
 <a href="/profile">Profile</a>
-
----
-
-## Fix
-
-1. Update the navigation link to /profile
-2. Redeploy the application
-3. Click the Profile link again
-
-Result: User is now redirected correctly to the Profile page.
 
 ---
 

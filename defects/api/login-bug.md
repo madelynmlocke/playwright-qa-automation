@@ -37,8 +37,8 @@ Medium
 
 ---
 
-## Fix:
-Added client-side validation
+## Root Cause (Example)
+Unknown
 
 ---
 

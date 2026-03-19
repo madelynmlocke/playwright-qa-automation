@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('AutomationExercise /productsList Tests', () => {
-  //GET /productsList API 
   test('products API returns successful response with product data', async ({ request }) => {
       const response = await request.get('/api/productsList');
       expect(response.status()).toBe(200);
@@ -21,12 +20,10 @@ test.describe('AutomationExercise /productsList Tests', () => {
       expect(firstProduct).toHaveProperty('category');
 
   });
-  //Test error handling for 4xx 
   test('invalid API endpoint returns 404 or error response', async ({ request }) => {
     const response = await request.get('/api/invalidEndpoint');
     expect(response.status()).toBeGreaterThanOrEqual(400);
   });
-  //POST method for /productsList should return error since unsupported
   test('POST to /productsList returns 405', async ({ request, page }) => {
     //await page.pause(); 
     const response = await request.post('/api/productsList');

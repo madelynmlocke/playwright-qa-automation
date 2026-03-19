@@ -61,8 +61,14 @@ qa-automation-suite
 │         └── api-response.spec.js
 |
 ├── defects
-│    ├── login-bug.md
-│    └── navigation-bug.md
+│    ├── ui
+│    │    └── navigation-bug.md
+│    │
+│    └── api
+│        ├── POST-invalid-login-bug.md
+│        ├── POST-search-bug.md
+│        ├── DELETE-login-bug.md
+│        ''(Rest of defects)''
 │
 └── README.md
 ```
@@ -172,6 +178,9 @@ Potential enhancements for this project include:
 - Expanding API test coverage
 - Adding performance or load testing scenarios
 - Implement Page Object Model
+- Create resusable functions, helpers, and fixtures
+- Remove duplicate logic and make scalable
+- add integration/end-to-end workflow tests
 
 ## Learning Goals
 

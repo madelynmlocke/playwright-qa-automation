@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('SEARCH API POST Tests', () => {
+test.describe('Endpoint tests for /searchProduct', () => {
     //TEST HTTP 200 Response when requested WITH search parameters
     test('POST to Search Product with parameter', async ({ request }) => {
         const response = await request.post('/api/searchProduct', {

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('AutomationExercise /productsList Tests', () => {
+test.describe('Endpoint tests for /productsList', () => {
   test('products API returns successful response with product data', async ({ request }) => {
       const response = await request.get('/api/productsList');
       expect(response.status()).toBe(200);

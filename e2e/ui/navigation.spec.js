@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Navigation Tests', () => {
-
   test('products navigation link redirects to products page', async ({ page }) => {
     await test.step('Navigate to homepage', async () => {
       await page.goto('/');

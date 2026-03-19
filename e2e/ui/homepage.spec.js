@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Homepage Tests', () => {
-
   test('homepage smoke test verifies key content and navigation elements', async ({ page }) => {
 
     await test.step('Navigate to homepage', async () => {

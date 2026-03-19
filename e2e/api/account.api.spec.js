@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Endpoint tests for User Accounts', () => {
+test.describe('Endpoint tests for user accounts', () => {
     test('POST createAccount creates a user', async ({ request }) => {
         const response = await request.post('/api/createAccount', {
             form: {

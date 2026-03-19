@@ -59,7 +59,7 @@ test.describe('Endpoint tests for User Accounts', () => {
         expect(responseBody.responseCode).toBe(200);
         expect(responseBody.message).toBe('User updated!');
     });
-    test.only('GET rgetUserDetailByEmail returns account details', async ({ request }) => {
+    test('GET rgetUserDetailByEmail returns account details', async ({ request }) => {
         const response = await request.get('/api/getUserDetailByEmail', {
             params: {
                 email: 'testymctester111@gmail.com'

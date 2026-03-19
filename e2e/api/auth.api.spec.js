@@ -26,12 +26,12 @@ test.describe('API tests for /api/verifyLogin', () => {
         expect(responseBody.message).toBe('Bad request, email or password parameter is missing in POST request.');
     });
     //Test HTTP POST response with invalid credentials
-    test('POST to /verifyLogin with invalid credentials', async ({ request }) => {
-    const response = await request.post('/api/verifyLogin', {
-        form: {
-            email: 'itrugamer@gmail.com', password: 'test123' //invalid email and password
-        }
-    });
+    test.only('POST to /verifyLogin with invalid credentials', async ({ request }) => {
+        const response = await request.post('/api/verifyLogin', {
+            form: {
+                email: 'itrugamer26@gmail.com', password: 'wrongpass' //invalid email and password
+            }
+        });
         //expect(response.status()).toBe(404);
 
         const responseBody = await response.json();

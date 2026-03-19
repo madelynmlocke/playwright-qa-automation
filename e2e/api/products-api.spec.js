@@ -3,23 +3,22 @@ import { test, expect } from '@playwright/test';
 test.describe('AutomationExercise /productsList Tests', () => {
   //GET /productsList API 
   test('products API returns successful response with product data', async ({ request }) => {
-    
-    const response = await request.get('/api/productsList');
-    expect(response.status()).toBe(200);
+      const response = await request.get('/api/productsList');
+      expect(response.status()).toBe(200);
 
-    const responseBody = await response.json();
-    console.log(responseBody); //Get All Products List in console
-    expect(responseBody).toHaveProperty('products');
-    expect(Array.isArray(responseBody.products)).toBeTruthy(); //Checks if 'products' is an array
-    expect(responseBody.products.length).toBeGreaterThan(0); //Checks if 'products' array is greater than 0 
-    
+      const responseBody = await response.json();
+      console.log(responseBody); //Get All Products List in console
+      expect(responseBody).toHaveProperty('products');
+      expect(Array.isArray(responseBody.products)).toBeTruthy(); //Checks if 'products' is an array
+      expect(responseBody.products.length).toBeGreaterThan(0); //Checks if 'products' array is greater than 0 
 
-    const firstProduct = responseBody.products[0];
-    expect(firstProduct).toHaveProperty('id');
-    expect(firstProduct).toHaveProperty('name');
-    expect(firstProduct).toHaveProperty('price');
-    expect(firstProduct).toHaveProperty('brand');
-    expect(firstProduct).toHaveProperty('category');
+
+      const firstProduct = responseBody.products[0];
+      expect(firstProduct).toHaveProperty('id');
+      expect(firstProduct).toHaveProperty('name');
+      expect(firstProduct).toHaveProperty('price');
+      expect(firstProduct).toHaveProperty('brand');
+      expect(firstProduct).toHaveProperty('category');
 
   });
   //Test error handling for 4xx 
@@ -34,5 +33,4 @@ test.describe('AutomationExercise /productsList Tests', () => {
     expect(response.status()).toBe(405);
     const responseBody = await response.json();
   });
-
 });

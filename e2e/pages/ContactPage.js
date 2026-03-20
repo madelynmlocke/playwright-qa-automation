@@ -13,10 +13,10 @@ export class ContactPage {
         this.formMessage = page.locator('[data-qa="message"]');
         this.formButton = page.locator('[data-qa="submit-button"]');
 
-        this.submittedText = page.getByText(/success/i);
+        this.successMessage = page.locator('.status.alert.alert-success');
     }
 
-    async gotoHomePage() {
+    async goToHomePage() {
         await this.page.goto('/');
     }
 
@@ -35,15 +35,25 @@ export class ContactPage {
     }
 
     async fillForm(name, email, subject, message) {
-        this.formName.fill(name);
-        this.formEmail.fill(email);
-        this.formSubject.fill(subject);
-        this.formMessage.fill(message);
-        this.formButton.click();
+        await this.formName.fill(name);
+        await this.formEmail.fill(email);
+        await this.formSubject.fill(subject);
+        await this.formMessage.fill(message);
+    }
+
+    async handleDialogOnce() {
+        this.page.once('dialog', async (dialog) => {
+            await dialog.accept();
+        });
+    }
+
+    async submitForm() {
+        await this.formButton.click();
     }
 
     async assertSubmission() {
-        await expect(this.submittedText).toBeVisible();
+        await expect(this.successMessage).toBeVisible();
+        await expect(this.successMessage).toContainText('Success! Your details have been submitted successfully.');
     }
 
 }

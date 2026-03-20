@@ -1,26 +1,25 @@
 import { test, expect } from '@playwright/test';
+import { ContactPage } from '../pages/ContactPage'; 
 
 test.describe('Contact Form Validation Tests', () => {
-  test('contact form fields are visible', async ({ page }) => {
+  test.only('contact form fields are visible and user submits form', async ({ page }) => {
+    const contactPage = new ContactPage(page);
+    //await page.pause();
 
-    await test.step('Navigate to contact page', async () => {
-      await page.goto('/contact_us');
-      await expect(page).toHaveURL(/\/contact_us$/);
-      await expect(page.getByRole('heading', { name: /Get In Touch/i }).first()).toBeVisible();
-    });
+    await contactPage.goToHomePage();
+    await contactPage.gotoContactPage();
+    await contactPage.assertForm();
+    await contactPage.fillForm('maddy', 'test@test.com', 'test', 'testing a message');
 
-    await test.step('Verify contact form fields are visible', async () => {
-      await expect(page.locator('[data-qa="name"]')).toBeVisible();
-      await expect(page.locator('[data-qa="email"]')).toBeVisible();
-      await expect(page.locator('[data-qa="subject"]')).toBeVisible();
-      await expect(page.locator('[data-qa="message"]')).toBeVisible();
-      await expect(page.locator('[data-qa="submit-button"]')).toBeVisible();
+    page.once('dialog', async (dialog) => {
+      await dialog.accept();
     });
+    await page.click('[data-qa="submit-button"]');
+    await contactPage.assertSubmission();
 
   });
 
   test('contact form accepts valid input and submits successfully', async ({ page }) => {
-
     await test.step('Navigate to contact page', async () => {
       await page.goto('/contact_us');
     });

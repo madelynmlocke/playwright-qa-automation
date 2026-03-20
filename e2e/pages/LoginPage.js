@@ -33,6 +33,7 @@ export class LoginPage {
     }
 
     async assertLoginForm() { // verifies login form visibility
+        await expect(this.page).toHaveURL(/\/login$/);
         await expect(this.loginHeading).toBeVisible();
         await expect(this.emailInput).toBeVisible();
         await expect(this.passwordInput).toBeVisible();

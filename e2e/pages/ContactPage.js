@@ -26,6 +26,7 @@ export class ContactPage {
     }
 
     async assertForm() {
+        await expect(this.page).toHaveURL(/\/contact_us$/);
         await expect(this.contactHeading).toBeVisible();
         await expect(this.formName).toBeVisible();
         await expect(this.formEmail).toBeVisible();

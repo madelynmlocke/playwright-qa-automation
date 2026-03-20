@@ -18,7 +18,6 @@ export class HomePage {
             'Video Tutorials',
             'Contact us'
         ];
-
     }
 
     async gotoHomePage() {

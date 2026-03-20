@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage'; 
 
 test.describe('Login Validation Tests', () => {
-  test('user can log in with valid credentials', async ({ page }) => {
+  test('Test Case 2: User can log in with valid credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage.gotoHomePage();
@@ -14,7 +14,7 @@ test.describe('Login Validation Tests', () => {
 
   });
 
-  test('login shows error for invalid credentials', async ({ page }) => {
+  test('Test Case 3: login shows error for invalid credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage.gotoHomePage();
@@ -24,7 +24,7 @@ test.describe('Login Validation Tests', () => {
     await loginPage.assertLogInError('incorrect');
   });
 
-  test('sign up shows error using existing email', async ({ page }) => {
+  test('Test Case 5: sign up shows error using existing email', async ({ page }) => {
     const loginPage = new LoginPage(page);
     
     await loginPage.gotoHomePage();

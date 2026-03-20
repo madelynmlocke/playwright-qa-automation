@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { ContactPage } from '../pages/ContactPage'; 
 
 test.describe('Contact Form Validation Tests', () => {
-  test('contact form fields are visible and user submits form', async ({ page }) => {
+  test('Test Case 6: Contact form fields are visible and user submits form', async ({ page }) => {
     const contactPage = new ContactPage(page);
     //await page.pause();
 

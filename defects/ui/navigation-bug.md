@@ -14,7 +14,7 @@ Clicking the **"Profile"** link in the main navigation menu redirects the user t
 
 ---
 
-## Steps to Reproduce:
+## Steps to Reproduce
 1. Navigate to the homepage
 2. Log in with valid credentials
 3. Click the **"Profile"** link in the top navigation bar
@@ -40,7 +40,6 @@ Medium
 The navigation link points to `/dashboard` instead of `/profile`.
 
 Example code:
-
 <a href="/dashboard">Profile</a>
 
 Correct code should be:
@@ -49,4 +48,4 @@ Correct code should be:
 ---
 
 ## Status: 
-Resolved
+Open

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ProductPage } from '../pages/ProductPage'; 
 
-test.describe.('Products page tests', () => {
+test.describe('Products page tests', () => {
     let productPage;
 
     test.beforeEach(async ({ page }) => { // goes back to homepage before each numbered test is run

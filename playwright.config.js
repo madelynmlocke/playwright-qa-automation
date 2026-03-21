@@ -1,5 +1,8 @@
 // @ts-check
+import dotenv from 'dotenv';
 import { defineConfig, devices } from '@playwright/test';
+
+dotenv.config();
 
 /**
  * Read environment variables from file.

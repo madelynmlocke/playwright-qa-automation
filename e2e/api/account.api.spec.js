@@ -76,7 +76,7 @@ test.describe('Endpoint tests for user accounts', () => {
         const response = await request.delete('/api/deleteAccount', {
             form: {
                 email: 'testymctester111@gmail.com',
-                password: 'test1233!'
+                password: 'test123!'
             }
         });
         expect(response.status()).toBe(200);

@@ -43,12 +43,20 @@ qa-automation-suite
 ├── e2e
 │    ├── ui
 │    │    ├── homepage.spec.js
-│    │    ├── navigation.spec.js
-│    │    ├── login-authentication.spec.js
-│    │    └── form-validation.spec.js
+│    │    ├── products.spec.js
+│    │    ├── login.spec.js
+│    │    └── contact-form.spec.js
 │    │
-│    └── api
-│         └── api-response.spec.js
+│    ├── api
+│    │     ├── account.api.spec.js
+│    │     ├── auth.api.spec.js
+│    │     ├── brands.api.spec.js
+│    │     ├── products.api.spec.js
+│    │     └── search.api.spec.js
+│    │ 
+│    └── workflows
+│           ├── account-workflow.spec.js
+│           └── products-workflow.spec.js
 │
 ├── test-cases
 │    ├── ui
@@ -177,10 +185,8 @@ Potential enhancements for this project include:
 - Implementing CI test execution using GitHub Actions
 - Expanding API test coverage
 - Adding performance or load testing scenarios
-- Implement Page Object Model
 - Create resusable functions, helpers, and fixtures
 - Remove duplicate logic and make scalable
-- add integration/end-to-end workflow tests
 
 ## Learning Goals
 

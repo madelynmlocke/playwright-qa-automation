@@ -8,7 +8,7 @@ test.describe('Login Validation Tests', () => {
     await loginPage.gotoHomePage();
     await loginPage.goToLoginPage();
     await loginPage.assertLoginForm();
-    await loginPage.login('itrugamer26@gmail.com', 'test123!');
+    await loginPage.login(process.env.EMAIL_VALID, process.env.PASSWORD_VALID); //process.env.EMAIL_VALID, process.env.PASSWORD_VALID
     await loginPage.assertLoggedIn();
     await loginPage.logout();
 
@@ -20,7 +20,7 @@ test.describe('Login Validation Tests', () => {
     await loginPage.gotoHomePage();
     await loginPage.goToLoginPage();
     await loginPage.assertLoginForm();
-    await loginPage.login('itrugamer26@gmail.com', 'wrongpassword');
+    await loginPage.login(process.env.EMAIL_VALID, process.env.PASSWORD_INVALID); 
     await loginPage.assertLogInError('incorrect');
   });
 
@@ -30,7 +30,7 @@ test.describe('Login Validation Tests', () => {
     await loginPage.gotoHomePage();
     await loginPage.goToLoginPage();
     await loginPage.assertSignUpForm();
-    await loginPage.signUp('maddy', 'itrugamer26@gmail.com');
+    await loginPage.signUp('Testy', process.env.EMAIL_VALID); 
     await loginPage.assertSignUpError('already exist');
 
   })

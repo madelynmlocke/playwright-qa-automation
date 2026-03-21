@@ -9,7 +9,7 @@ test.describe('Endpoint tests for /api/brandsList', () => {
         const responseBody = await response.json();
         //console.log(responseBody);
         expect(responseBody).toHaveProperty('brands');
-        expect(Array.isArray(responseBody.products)).toBeTruthy(); //Checks if 'brands' is an array
+        expect(Array.isArray(responseBody.brands)).toBeTruthy(); //Checks if 'brands' is an array
         expect(responseBody.products.length).toBeGreaterThan(0); //Checks if 'brands' array length is greater than 0 
 
         const firstBrand = responseBody.brands[0];

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ContactPage } from '../pages/ContactPage'; 
 
-test.describe('Contact Form Validation Tests', () => {
+test.describe.only('Contact Form Validation Tests', () => {
   test('Test Case 6: Contact form fields are visible and user submits form', async ({ page }) => {
     const contactPage = new ContactPage(page);
     //await page.pause();
@@ -9,7 +9,7 @@ test.describe('Contact Form Validation Tests', () => {
     await contactPage.goToHomePage();
     await contactPage.gotoContactPage();
     await contactPage.assertForm();
-    await contactPage.fillForm('maddy', 'test@test.com', 'test', 'testing a message');
+    await contactPage.fillForm('maddy', process.env.EMAIL_VALID, 'test', 'testing a message');
 
     page.once('dialog', async (dialog) => {
       await dialog.accept();
@@ -25,8 +25,8 @@ test.describe('Contact Form Validation Tests', () => {
     });
 
     await test.step('Fill out contact form with valid input', async () => {
-      await page.fill('[data-qa="name"]', 'Maddy Locke');
-      await page.fill('[data-qa="email"]', 'maddy@example.com');
+      await page.fill('[data-qa="name"]', 'Testy McTest');
+      await page.fill('[data-qa="email"]', process.env.EMAIL_VALID);
       await page.fill('[data-qa="subject"]', 'QA Automation Test');
       await page.fill('[data-qa="message"]', 'This is a Playwright test submission.');
     });

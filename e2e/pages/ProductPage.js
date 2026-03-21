@@ -27,11 +27,11 @@ export class ProductPage {
     }
 
     async gotoHomePage() {
-        await this.page.goto('https://automationexercise.com/');
+        await this.page.goto('/'); //https://automationexercise.com
     }
 
     async goToProductsPage() {
-    await this.page.goto('https://automationexercise.com/products');
+    await this.page.goto('/products'); //https://automationexercise.com
     await this.page.waitForLoadState('domcontentloaded');
         console.log('Current URL after clicking Products:', this.page.url());
 
@@ -60,7 +60,7 @@ export class ProductPage {
         await this.page.waitForLoadState('domcontentloaded');
 
         if (!this.page.url().includes('/product_details/')) {
-            await this.page.goto(`https://automationexercise.com/product_details/${productId}`);
+            await this.page.goto(`/product_details/${productId}`); //https://automationexercise.com
         }
     }
 

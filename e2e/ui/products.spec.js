@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { ProductPage } from '../pages/ProductPage'; 
 
-test.describe.only('Products page tests', () => {
+test.describe.('Products page tests', () => {
     let productPage;
 
     test.beforeEach(async ({ page }) => { // goes back to homepage before each numbered test is run
@@ -30,7 +30,7 @@ test.describe.only('Products page tests', () => {
     });
 
     test('Test Case 12/17: Add/Remove Products in Cart', async ({ page }) => {
-        await page.pause(); //can use with 'npx playwright --headed' command to step through actions 
+        //await page.pause(); //can use with 'npx playwright --headed' command to step through actions 
 
         await productPage.goToProductsPage();
         await productPage.assertAllProductsPageLoaded();

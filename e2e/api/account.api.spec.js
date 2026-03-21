@@ -34,7 +34,7 @@ test.describe('Endpoint tests for user accounts', () => {
         expect(responseBody.responseCode).toBe(200);
         expect(responseBody.message).toBe('User updated!');
     });
-    test.only('GET getUserDetailByEmail returns account details', async ({ request }) => {
+    test('GET getUserDetailByEmail returns account details', async ({ request }) => {
         const user = buildUser();
 
         await createAccount(request, user);

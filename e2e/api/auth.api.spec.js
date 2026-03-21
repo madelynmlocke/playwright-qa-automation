@@ -4,7 +4,7 @@ test.describe('Endpoint tests for user login', () => {
     test('POST to /verifyLogin WITH parameters', async ({ request }) => {
         const response = await request.post('/api/verifyLogin', {
             form: {
-                email: 'itrugamer26@gmail.com', password: 'test123!' //valid email and password
+                email: process.env.EMAIL_VALID, password: process.env.PASSWORD_VALID //valid email and password
             }
         });
         expect(response.status()).toBe(200);
@@ -26,7 +26,7 @@ test.describe('Endpoint tests for user login', () => {
     test('POST to /verifyLogin with invalid credentials', async ({ request }) => {
         const response = await request.post('/api/verifyLogin', {
             form: {
-                email: 'itrugamer26@gmail.com', password: 'wrongpass' //invalid email and password
+                email: process.env.EMAIL_INVALID, password: process.env.PASSWORD_INVALID //invalid email and password
             }
         });
         //expect(response.status()).toBe(404); --bug found in HTTP response

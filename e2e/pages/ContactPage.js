@@ -4,7 +4,7 @@ export class ContactPage {
     constructor(page) {
         this.page = page;
         
-        this.contactLink = page.getByRole('link', { name: /contact us/i }); 
+        this.contactLink = page.locator('a[href="/contact_us"]');
 
         this.contactHeading = page.getByRole('heading', { name: /Get In Touch/i }); 
         this.formName = page.locator('[data-qa="name"]');
@@ -18,6 +18,7 @@ export class ContactPage {
 
     async goToHomePage() {
         await this.page.goto('/');
+        await expect(this.page).toHaveURL('/');
     }
 
     async gotoContactPage() {

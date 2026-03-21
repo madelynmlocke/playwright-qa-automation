@@ -13,7 +13,8 @@
     "test:workflows": "playwright test e2e/workflows",
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
-    "test:smoke": "playwright test --grep @smoke"
+    "test:smoke": "playwright test --grep @smoke",
+    "test:debug": "playwright test --headed --debug"
   },
   "repository": {
     "type": "git",

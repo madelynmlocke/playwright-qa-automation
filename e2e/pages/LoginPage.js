@@ -20,7 +20,7 @@ export class LoginPage {
         this.signupName = page.locator('input[data-qa="signup-name"]');
         this.signupEmail = page.locator('input[data-qa="signup-email"]');
         this.signupButton = page.locator('button[data-qa="signup-button"]');
-        this.signUpError = page.getByRole('paragraph').filter({ hasText: 'already exist'}); //
+        this.signUpError = page.locator('p', { hasText: /already exist/i });
     }
 
     async gotoHomePage() {

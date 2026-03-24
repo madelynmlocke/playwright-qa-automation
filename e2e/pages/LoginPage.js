@@ -73,8 +73,42 @@ export class LoginPage {
         await this.signupButton.click();
     }
 
+    async assertFormHeading() {
+        await expect(this.page.getByText('Enter Account Information')).toBeVisible();
+    }
+
+    async fillForm() {
+        await this.page.getByRole('radio', { name: 'Mr.' }).check();
+        await this.page.getByRole('textbox', { name: 'Password *' }).fill(process.env.PASSWORD_VALID);
+        await this.page.locator('#days').selectOption('8');
+        await this.page.locator('#months').selectOption('7');
+        await this.page.locator('#years').selectOption('1980');
+        await this.page.getByRole('checkbox', { name: 'Sign up for our newsletter!' }).check();
+        await this.page.getByRole('checkbox', { name: 'Receive special offers from' }).check();
+        await this.page.getByRole('textbox', { name: 'First name *' }).fill('testo');
+        await this.page.getByRole('textbox', { name: 'Last name *' }).fill('mctester');
+        await this.page.getByRole('textbox', { name: 'Company', exact: true }).fill('testing corp');
+        await this.page.getByRole('textbox', { name: 'Address * (Street address, P.' }).fill('678 testing st');
+        await this.page.getByRole('textbox', { name: 'Address 2' }).fill('unit a');
+        await this.page.getByLabel('Country *').selectOption('United States');
+        await this.page.getByRole('textbox', { name: 'State *' }).fill('WA');
+        await this.page.getByRole('textbox', { name: 'City * Zipcode *' }).fill('Seattle');
+        await this.page.locator('#zipcode').fill('98109');
+        await this.page.getByRole('textbox', { name: 'Mobile Number *' }).fill('2068889944');
+        await this.page.getByRole('button', { name: 'Create Account' }).click();
+    }
+
+    async assertAccountCreated() {
+        await expect(this.page.getByText('Account Created!')).toBeVisible();
+    }
+
     async assertSignUpError(message) {
         await expect(this.signUpError).toBeVisible();
         await expect(this.signUpError).toContainText(message);
+    }
+
+    async deleteAccount() {
+            await this.page.getByRole('link', { name: ' Delete Account' }).click();
+            await expect(this.page.getByText('Account Deleted!')).toBeVisible();
     }
 }

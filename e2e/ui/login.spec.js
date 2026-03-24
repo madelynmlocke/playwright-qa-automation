@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage'; 
 import { buildUser } from '../../utils/userFactory';
 
@@ -11,7 +11,7 @@ test.describe('@ui @login Login Validation Tests', () => {
     await loginPage.goToLoginPage();
   });
 
-  test.only('Test Case 1: User can register account and delete it', async ({ page }) => {
+  test('Test Case 1: User can register account and delete it', async ({ page }) => {
     const user = buildUser();
 
     await loginPage.assertSignUpForm();

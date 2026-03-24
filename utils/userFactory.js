@@ -1,18 +1,18 @@
 export function buildUser(overrides = {}) {
-    //const randomEmail = `user_${Date.now()}@test.com`;
+    const randomEmail = `user_${Date.now()}@test.com`;
 
     return {
     name: 'Test',
-    email: process.env.EMAIL_VALID,
-    password: process.env.PASSWORD_VALID,
-    title: 'Mr',
+    email: randomEmail,
+    password: process.env.PASSWORD_CREATE,
+    title: 'Mrs',
     birth_date: '10',
     birth_month: '10',
     birth_year: '1990',
-    firstname: 'Testy',
-    lastname: 'McTester',
+    firstname: 'Testina',
+    lastname: 'McTesterson',
     company: '',
-    address1: '123 Testing St',
+    address1: '456 Testing St',
     address2: '',
     country: 'United States',
     zipcode: '98109',

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/Homepage'; 
 
 test.describe('Homepage Tests', () => {
-  test('homepage smoke test verifies key content and navigation elements', async ({ page }) => {
+  test(' @smoke test verifies key content and navigation elements', async ({ page }) => {
     const homePage = new HomePage(page);
 
     await homePage.gotoHomePage();

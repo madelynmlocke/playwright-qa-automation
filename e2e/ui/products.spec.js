@@ -6,6 +6,7 @@ test.describe('@products Products page tests', () => {
 
     test.beforeEach(async ({ page }) => { // goes back to homepage before each numbered test is run
         productPage = new ProductPage(page);
+        
         await productPage.gotoHomePage();
         await productPage.assertHomePageLoaded();
         await productPage.goToProductsPage();
@@ -29,7 +30,6 @@ test.describe('@products Products page tests', () => {
     });
 
     test('Test Case 12/17: Add/Remove Products in Cart', async ({ page }) => {
-        //await page.pause(); //can use with 'npx playwright --headed' command to step through actions 
 
         await productPage.addProductToCartById(1);
         await productPage.continueShopping();

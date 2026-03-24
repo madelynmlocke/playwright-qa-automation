@@ -18,6 +18,5 @@ test.describe('@contactform Contact Form Validation Tests', () => {
     await contactPage.handleDialogOnce();
     await contactPage.submitForm();
     await contactPage.assertSubmission();
-
   });
 });

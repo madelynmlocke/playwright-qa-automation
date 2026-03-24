@@ -21,7 +21,6 @@ test.describe('@login Login Validation Tests', () => {
     await page.getByRole('link', { name: 'Continue' }).click();
     await loginPage.assertLoggedIn();
     await loginPage.deleteAccount();
-
   });
 
   test('Test Case 2: User can log in with valid credentials', async ({ page }) => {
@@ -30,7 +29,6 @@ test.describe('@login Login Validation Tests', () => {
     await loginPage.login(process.env.EMAIL_VALID, process.env.PASSWORD_VALID); //process.env.EMAIL_VALID, process.env.PASSWORD_VALID
     await loginPage.assertLoggedIn();
     await loginPage.logout();
-
   });
 
   test('Test Case 3: login shows error for invalid credentials', async ({ page }) => {
@@ -45,7 +43,6 @@ test.describe('@login Login Validation Tests', () => {
     await loginPage.assertSignUpForm();
     await loginPage.signUp('Testy', process.env.EMAIL_VALID); 
     await loginPage.assertSignUpError('already exist');
-
-  })
+  });
 
 });

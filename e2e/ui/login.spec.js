@@ -11,7 +11,7 @@ test.describe('@ui @login Login Validation Tests', () => {
     await loginPage.goToLoginPage();
   });
 
-  test('Test Case 1: User can register account and delete it', async ({ page }) => {
+  test.only('Test Case 1: User can register account and delete it', async ({ page }) => {
     const user = buildUser();
 
     await loginPage.assertSignUpForm();

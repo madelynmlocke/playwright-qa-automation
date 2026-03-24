@@ -24,9 +24,9 @@ export class LoginPage {
 
         //SignUp Form Selectors
         this.regPasswordInput = page.getByRole('textbox', { name: 'Password *' });
-        this.birthDay = page.locator('#days').selectOption(user.birthDay);
-        this.birthMonth = page.locator('#months').selectOption(user.birthMonth);
-        this.birthYear = page.locator('#years').selectOption(user.birthYear);
+        this.birthDay = page.locator('#days');
+        this.birthMonth = page.locator('#months');
+        this.birthYear = page.locator('#years');
         this.firstName = page.getByRole('textbox', { name: 'First name *' });
         this.lastName = page.getByRole('textbox', { name: 'Last name *' });
         this.company = page.getByRole('textbox', { name: 'Company', exact: true });

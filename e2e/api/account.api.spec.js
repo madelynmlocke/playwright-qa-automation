@@ -7,7 +7,7 @@ test.describe('@api Endpoint tests for user accounts', () => {
         const user = buildUser();
         const response = await createAccount(request, user);
         
-        // expect(response.status()).toBe(201); ----BUG ID 001
+        // expect(response.status()).toBe(201); // Known bug: API returns incorrect HTTP status, validating response body instead.
         const responseBody = await response.json();
         console.log(responseBody);
 

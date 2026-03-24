@@ -1,17 +1,17 @@
 import { test, expect } from '@playwright/test';
 import { ContactPage } from '../pages/ContactPage'; 
 
-test.describe('@contactform Contact Form Validation Tests', () => {
+test.describe('@ui @contactform Contact Form Validation Tests', () => {
   test('Test Case 6: Contact form fields are visible and user submits form', async ({ page }) => {
     const contactPage = new ContactPage(page);
 
     await contactPage.goToHomePage();
     await contactPage.gotoContactPage();
 
-    await Promise.all([
-      page.waitForURL('**/contact_us'),
-      page.locator('a[href="/contact_us"]').click()
-    ]);
+    // await Promise.all([
+    //   page.waitForURL('**/contact_us'),
+    //   page.locator('a[href="/contact_us"]').click()
+    // ]);
 
     await contactPage.assertForm();
     await contactPage.fillForm('maddy', process.env.EMAIL_VALID, 'test', 'testing a message');

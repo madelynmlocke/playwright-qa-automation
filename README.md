@@ -61,16 +61,16 @@ qa-automation-suite
 ├── test-cases
 │    ├── ui
 │    │    ├── homepage-test-cases.spec.js
-│    │    ├── navigation-test-cases.spec.js
+│    │    ├── products-test-cases.spec.js
 │    │    ├── login-authentication-test-cases.spec.js
-│    │    └── form-validation-test-cases.spec.js
+│    │    └── contact-form-test-cases.spec.js
 │    │
 │    └── api
 │         └── api-response.spec.js
 |
 ├── defects
 │    ├── ui
-│    │    └── navigation-bug.md
+│    │    └── view-product-bug.md
 │    │
 │    └── api
 │        ├── POST-invalid-login-bug.md

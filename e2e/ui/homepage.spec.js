@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/Homepage'; 
 
-test.describe('@home Homepage Tests', () => {
+test.describe('@ui @home Homepage Tests', () => {
   test(' @smoke test verifies key content and navigation elements', async ({ page }) => {
     const homePage = new HomePage(page);
 
@@ -10,6 +10,5 @@ test.describe('@home Homepage Tests', () => {
     await homePage.assertLogo();
     await homePage.assertHero();
     await homePage.assertNavLinksVisible();
-
   });
 });

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('API workflow: create account -> login -> update -> delete -> verify login', () => { 
+test.describe('@api @workflow create account -> login -> update -> delete -> verify login', () => { 
     test('account data stays consistent across account and login endpoints', async ({ request }) => {
         // 1) Create account
         const email = 'testytest@example.com';

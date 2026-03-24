@@ -31,7 +31,9 @@ export class ProductPage {
     }
 
     async goToProductsPage() {
-    await this.page.goto('/products'); //https://automationexercise.com
+    //await this.page.goto('/products'); //https://automationexercise.com
+    await expect(this.productsNavLink).toBeVisible();
+    await this.productsNavLink.click();
     await this.page.waitForLoadState('domcontentloaded');
         console.log('Current URL after clicking Products:', this.page.url());
 

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('API workflow: products -> brands -> search', () => {
+test.describe('@api @workflow products -> brands -> search', () => {
     test('product data stays consistent across catalog, brands, and search endpoints', async ({ request }) => {
         // 1) Get all products
         const productsResponse = await request.get('/api/productsList');

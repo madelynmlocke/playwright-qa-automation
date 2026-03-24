@@ -108,7 +108,7 @@ export class LoginPage {
     }
 
     async deleteAccount() {
-            await this.page.getByRole('link', { name: ' Delete Account' }).click();
+            await this.page.getByRole('link', { name: ' Delete Account' }).click();
             await expect(this.page.getByText('Account Deleted!')).toBeVisible();
     }
 }

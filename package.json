@@ -1,7 +1,7 @@
 {
   "name": "playwright-qa-automation",
   "version": "1.0.0",
-  "description": "![Playwright Tests](https://github.com/madelynmlocke/playwright-qa-automation/actions/workflows/playwright.yml/badge.svg)",
+  "description": "![Playwright Tests](https://github.com/madelynmlocke/playwright-qa-automation/actions/workflows/playwright.yml/badge.svg) Playwright QA automation project covering UI, API, and end-to-end workflow testing with page objects, test data factories, defect reports, and CI.",
   "main": "playwright.config.js",
   "directories": {
     "test": "e2e"

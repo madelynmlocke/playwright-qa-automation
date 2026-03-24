@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage'; 
+import { buildUser } from '../../utils/userFactory';
 
 test.describe('@ui @login Login Validation Tests', () => {
   let loginPage;
@@ -11,12 +12,12 @@ test.describe('@ui @login Login Validation Tests', () => {
   });
 
   test('Test Case 1: User can register account and delete it', async ({ page }) => {
-    const randomEmail = `user_${Date.now()}@test.com`; 
+    const user = buildUser();
 
     await loginPage.assertSignUpForm();
-    await loginPage.signUp('Testo', randomEmail);
+    await loginPage.signUp(user.name, user.email);
     await loginPage.assertFormHeading();
-    await loginPage.fillForm();
+    await loginPage.fillForm(user);
     await loginPage.assertAccountCreated();
     await page.getByRole('link', { name: 'Continue' }).click();
     await loginPage.assertLoggedIn();

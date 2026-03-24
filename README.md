@@ -3,7 +3,6 @@
 # QA Automation Testing Project
 
 ## Project Overview
-
 This project demonstrates automated UI and API testing using Playwright and JavaScript. 
 The goal is to validate core application functionality through automated test scenarios covering
  navigation, authentication, form validation, and API response handling.
@@ -18,7 +17,6 @@ The repository simulates a simplified QA automation workflow, combining automate
 - Node.js - runtime environment 
 
 ## Project Purpose
-
 This project demonstrates key QA engineering concepts including: 
 - Automated UI testing
 - API response validation
@@ -108,15 +106,17 @@ CI workflow location:
 | UI | homepage.spec.js | Homepage Smoke Test | Verifies homepage loads correctly, header/footer render, and navigation links are visible |
 | UI | login.spec.js | Login Validation | Verifies login page loads and displays an error when invalid credentials are submitted |
 | UI | contact-form.spec.js | Contact Form Submission | Verifies contact form fields are visible and form can be submitted successfully |
-| UI | navigation.spec.js | Navigation Links | Verifies navigation links redirect to correct pages such as Products and Contact Us |
-| API | products-api.spec.js | Products API Response | Verifies products API returns a valid response with product data |
+| UI | products.spec.js | Products Validation | Verifies navigation links redirect to correct pages such as Products and Contact Us |
+| API | products.api.spec.js | Products API Response | Verifies products API returns a valid response with product data |
+| API | search.api.spec.js | Products API Response | Verifies search API returns a valid response with product data |
+| API | brands.api.spec.js | Products API Response | Verifies brands API returns a valid response with brand data |
+| API | auth.api.spec.js | Products API Response | Verifies login API returns a valid response with user data |
+| API | account.api.spec.js | Products API Response | Verifies account API returns a valid response with user data |
 
 ## Test Scenarios
-
 The automated tests validate a variety of application behaviors.
 
 ### UI Tests
-
 Examples include:
 
 - Homepage loads successfully and displays core interface elements
@@ -125,7 +125,6 @@ Examples include:
 - Form validation prevents submission of invalid input
 
 ### API Tests
-
 Examples include:
 
 - API endpoint returns HTTP 200 with valid JSON data
@@ -139,28 +138,24 @@ npx playwright test
 ```
 
 ## Test Execution Report
-
 Playwright provides a built-in HTML dashboard for reviewing test results across browsers.
 
 ![Playwright Report](assets/playwright-report.png)
 
 ## Continuous Integration
-
 Tests run automatically on every push using GitHub Actions.
 
 ![GitHub CI](assets/github-actions.png)
 
 ## Debugging Failed Tests
-
 Playwright captures traces, logs, and screenshots to help diagnose failures.
 
 ![Playwright Debug](assets/test-debug-view.png)
 
 ## Defect Documentation
-
 The repository includes sample defect reports demonstrating how issues are documented in a QA workflow.
 
-Bug reports include:
+Bug reports may include:
 
 - Summary
 - Environment
@@ -168,7 +163,8 @@ Bug reports include:
 - Expected result
 - Actual result
 - Severity
-- Fix
+- Root Cause
+- Suggested Fix
 - Status
 
 This mirrors real bug tracking systems such as:
@@ -178,18 +174,16 @@ This mirrors real bug tracking systems such as:
 - Bugzilla
 
 ## Future Improvements
-
 Potential enhancements for this project include:
 
 - Adding cross-browser testing
 - Implementing CI test execution using GitHub Actions
 - Expanding API test coverage
 - Adding performance or load testing scenarios
-- Create resusable functions, helpers, and fixtures
+- Create reusable functions, helpers, and fixtures
 - Remove duplicate logic and make scalable
 
 ## Learning Goals
-
 This project was created to practice and demonstrate:
 
 - Automated testing frameworks

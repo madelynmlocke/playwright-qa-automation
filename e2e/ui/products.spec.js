@@ -13,7 +13,7 @@ test.describe('@ui @products Products page tests', () => {
         await productPage.assertAllProductsPageLoaded();
     });
 
-    test('Test Case 8: Verify All Products and product detail page', async () => {
+    test.only('Test Case 8: Verify All Products and product detail page', async () => {
 
         await productPage.assertProductsListVisible();
         await productPage.viewProductById(1);

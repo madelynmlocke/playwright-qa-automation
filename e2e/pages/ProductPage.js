@@ -24,19 +24,36 @@ export class ProductPage {
         //Add Product to Cart
         this.continueButton = page.getByRole('button', { name: /continue shopping/i });
         this.viewCartButton = page.getByRole('link', { name: /view cart/i });
+
+        //Ad overlay close button
+        this.closeBtn = page.getByRole('button', { name: 'Close ad' });
     }
 
     async gotoHomePage() {
-        await this.page.goto('/'); //https://automationexercise.com
+        await this.page.goto('/');
     }
 
     async goToProductsPage() {
     //await this.page.goto('/products'); //https://automationexercise.com
     await expect(this.productsNavLink).toBeVisible();
     await this.productsNavLink.click();
-    await this.page.waitForLoadState('domcontentloaded');
-        console.log('Current URL after clicking Products:', this.page.url());
 
+    await this.page.waitForLoadState('domcontentloaded');
+
+    // If ad close button appears, try closing it
+    if (this.page.url().includes('google_vignette')) {
+        if (await this.closeBtn.isVisible().catch(() => false)) {
+            await this.closeBtn.click();
+            await this.page.waitForLoadState('domcontentloaded');
+        } else {
+            await this.page.goBack();
+            await expect(this.productsNavLink).toBeVisible();
+            await this.productsNavLink.click();
+        }
+    }
+    
+    await this.page.waitForURL(/\/products$/);
+    console.log('Current URL after clicking Products:', this.page.url());
     }
 
     async assertHomePageLoaded() {
@@ -45,6 +62,7 @@ export class ProductPage {
 
     async assertAllProductsPageLoaded() {
         await expect(this.allProductsHeading).toBeVisible();
+
     }
 
     async assertProductsListVisible() {
@@ -62,7 +80,7 @@ export class ProductPage {
         await this.page.waitForLoadState('domcontentloaded');
 
         if (!this.page.url().includes('/product_details/')) {
-            await this.page.goto(`/product_details/${productId}`); //https://automationexercise.com
+            await this.page.goto(`/product_details/${productId}`);
         }
     }
 

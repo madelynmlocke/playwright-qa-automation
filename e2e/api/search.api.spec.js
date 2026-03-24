@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('@api Endpoint tests for /searchProduct', () => {
+test.describe('@api @search Endpoint tests for /searchProduct', () => {
     test('Test Case 5: POST to Search Product returns searched data', async ({ request }) => {
         const response = await request.post('/api/searchProduct', {
             form: {

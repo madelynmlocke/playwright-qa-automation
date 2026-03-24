@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { createAccount, updateAccount, deleteAccount, getUserDetailByEmail } from '../../utils/apiClient';
 import { buildUser } from '../../utils/userFactory';
 
-test.describe('@api Endpoint tests for user accounts', () => {
+test.describe('@api @account Endpoint tests for user accounts', () => {
     test('Test Case 11: POST createAccount creates a user', async ({ request }) => {
         const user = buildUser();
         const response = await createAccount(request, user);

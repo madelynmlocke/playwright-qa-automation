@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('@api Endpoint tests for user login', () => {
+test.describe('@api @auth Endpoint tests for user login', () => {
     test('Test Case 7: POST /verifyLogin should return 200 and confirm user exists with valid credentials', async ({ request }) => {
         const response = await request.post('/api/verifyLogin', {
             form: {

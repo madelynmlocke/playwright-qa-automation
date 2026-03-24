@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Endpoint tests for /api/brandsList', () => { 
-    test('GET All Brands List', async ({ request }) => {
+    test('Test Case 3: GET All Brands List', async ({ request }) => {
 
         const response = await request.get('/api/brandsList');
         expect(response.status()).toBe(200);
@@ -16,7 +16,7 @@ test.describe('Endpoint tests for /api/brandsList', () => {
         expect(firstBrand).toHaveProperty('id');
         expect(firstBrand).toHaveProperty('brand');
     });
-    test('PUT to /brandsList returns 405', async ({ request }) => {
+    test('Test Case 4: PUT to /brandsList returns 405', async ({ request }) => {
         const response = await request.put('/api/brandsList'); 
         //expect(response.status()).toBe(405); //Checks HTTP Response Status ---BUG
 

@@ -1,10 +1,10 @@
 {
   "name": "playwright-qa-automation",
   "version": "1.0.0",
-  "description": "![Playwright Tests](https://github.com/madelynmlocke/playwright-qa-automation/actions/workflows/playwright.yml/badge.svg)",
+  "description": "![Playwright Tests](https://github.com/madelynmlocke/playwright-qa-automation/actions/workflows/playwright.yml/badge.svg) Playwright QA automation project covering UI, API, and end-to-end workflow testing with page objects, test data factories, defect reports, and CI.",
   "main": "playwright.config.js",
   "directories": {
-    "test": "tests"
+    "test": "e2e"
   },
   "scripts": {
     "test": "playwright test",
@@ -14,13 +14,15 @@
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
     "test:smoke": "playwright test --grep @smoke",
-    "test:debug": "playwright test --headed --debug"
+    "test:debug": "playwright test --headed --debug",
+    "test:regression": "playwright test --grep @regression",
+    "test:negative": "playwright test --grep @negative"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/madelynmlocke/playwright-qa-automation.git"
   },
-  "keywords": [],
+  "keywords": ["playwright", "qa", "test-automation", "api-testing", "e2e"],
   "author": "",
   "license": "ISC",
   "type": "module",

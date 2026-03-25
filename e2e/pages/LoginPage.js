@@ -21,6 +21,26 @@ export class LoginPage {
         this.signupEmail = page.locator('input[data-qa="signup-email"]');
         this.signupButton = page.locator('button[data-qa="signup-button"]');
         this.signUpError = page.locator('p', { hasText: /already exist/i });
+
+        //SignUp Form Selectors
+        this.regPasswordInput = page.getByRole('textbox', { name: 'Password *' });
+        this.birthDay = page.locator('#days');
+        this.birthMonth = page.locator('#months');
+        this.birthYear = page.locator('#years');
+        this.firstName = page.getByRole('textbox', { name: 'First name *' });
+        this.lastName = page.getByRole('textbox', { name: 'Last name *' });
+        this.company = page.getByRole('textbox', { name: 'Company', exact: true });
+        this.address1 = page.getByRole('textbox', { name: 'Address * (Street address, P.' });
+        this.address2 = page.getByRole('textbox', { name: 'Address 2' });
+        this.city = page.getByRole('textbox', { name: 'City * Zipcode *' });
+        this.state = page.getByRole('textbox', { name: 'State *' });
+        this.country = page.getByLabel('Country *');
+        this.zipCode = page.locator('#zipcode');
+        this.newsLetter = page.getByRole('checkbox', { name: 'Sign up for our newsletter!' });
+        this.specialOffers = page.getByRole('checkbox', { name: 'Receive special offers from' });
+        this.phoneNumber = page.getByRole('textbox', { name: 'Mobile Number *' });
+
+        this.createAccountBtn = page.getByRole('button', { name: 'Create Account' });
     }
 
     async gotoHomePage() {
@@ -73,8 +93,42 @@ export class LoginPage {
         await this.signupButton.click();
     }
 
+    async assertFormHeading() {
+        await expect(this.page.getByText('Enter Account Information')).toBeVisible();
+    }
+
+    async fillForm(user) {
+        await this.page.getByRole('radio', { name: 'Mr.' }).check();
+        await this.regPasswordInput.fill(user.password);
+        await this.birthDay.selectOption(user.birthDate);
+        await this.birthMonth.selectOption(user.birthMonth);
+        await this.birthYear.selectOption(user.birthYear);
+        await this.newsLetter.check();
+        await this.specialOffers.check();
+        await this.firstName.fill(user.firstName);
+        await this.lastName.fill(user.lastName);
+        await this.company.fill(user.company);
+        await this.address1.fill(user.address1);
+        await this.address2.fill(user.address2);
+        await this.country.selectOption(user.country);
+        await this.state.fill(user.state);
+        await this.city.fill(user.city);
+        await this.zipCode.fill(user.zipCode);
+        await this.phoneNumber.fill(user.phoneNumber);
+        await this.createAccountBtn.click();
+    }
+
+    async assertAccountCreated() {
+        await expect(this.page.getByText('Account Created!')).toBeVisible();
+    }
+
     async assertSignUpError(message) {
         await expect(this.signUpError).toBeVisible();
         await expect(this.signUpError).toContainText(message);
+    }
+
+    async deleteAccount() {
+            await this.page.getByRole('link', { name: ' Delete Account' }).click();
+            await expect(this.page.getByText('Account Deleted!')).toBeVisible();
     }
 }

@@ -45,7 +45,10 @@ test.describe.only('@ui @workflow End to end user workflow', () => {
 
         // Go to cart + remove a product
         await productPage.viewCart();
+        await productPage.assertProductInCart(2);
+        await productPage.assertProductInCart(5);
         await productPage.removeProductFromCart(2);
+        await productPage.assertProductNotInCart(2);
 
         // Delete account
         await loginPage.deleteAccount();

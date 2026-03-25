@@ -121,6 +121,15 @@ export class ProductPage {
 
     async viewCart() {
         await this.viewCartButton.click();
+
+    }
+
+    async assertProductInCart(productId) {
+        await expect(this.page.locator(`#product-${productId}`)).toBeVisible();
+    }
+
+async assertProductNotInCart(productId) {
+        await expect(this.page.locator(`#product-${productId}`)).toHaveCount(0);
     }
 
     async assertSearchedProductsVisible() {

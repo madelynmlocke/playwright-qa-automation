@@ -35,6 +35,9 @@ test.describe('@ui @products Products page tests', () => {
         await productPage.continueShopping();
         await productPage.addProductToCart(2);
         await productPage.viewCart();
+        await productPage.assertProductInCart(1);
+        await productPage.assertProductInCart(2);
         await productPage.removeProductFromCart(1);
+        await productPage.assertProductNotInCart(1);
     });
 });

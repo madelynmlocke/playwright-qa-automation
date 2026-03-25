@@ -32,11 +32,15 @@ The repository includes:
 
 ## Project Structure
 ```md 
-qa-automation-suite
+playwright-qa-automation
 │
 ├── .github
-│   └── workflows
+│    └── workflows
 │      └── playwright.yml
+│
+├── utils
+│     ├── homepage.spec.js
+│     └── playwright.yml
 │
 ├── e2e
 │    ├── ui
@@ -65,7 +69,7 @@ qa-automation-suite
 │    │
 │    └── api
 │         └── api-response.spec.js
-|
+│
 ├── defects
 │    ├── ui
 │    │    └── view-product-bug.md

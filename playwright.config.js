@@ -2,7 +2,7 @@
 import dotenv from 'dotenv';
 import { defineConfig, devices } from '@playwright/test';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 /**
  * Read environment variables from file.

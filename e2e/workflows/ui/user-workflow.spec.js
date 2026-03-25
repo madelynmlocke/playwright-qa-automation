@@ -4,7 +4,7 @@ import { ProductPage } from '../../pages/ProductPage.js';
 import { buildUser } from '../../../utils/userFactory.js';
 
 
-test.describe.only('@ui @workflow End to end user workflow', () => {
+test.describe('@ui @workflow End to end user workflow', () => {
     test('User can complete full lifecycle via UI', async({ page }) => {
         const loginPage = new LoginPage(page);
         const productPage = new ProductPage(page);

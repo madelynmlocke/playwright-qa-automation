@@ -39,8 +39,8 @@ playwright-qa-automation
 │      └── playwright.yml
 │
 ├── utils
-│     ├── homepage.spec.js
-│     └── playwright.yml
+│     ├── apiClient.js
+│     └── userFactory.js
 │
 ├── e2e
 │    ├── ui

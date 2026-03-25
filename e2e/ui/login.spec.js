@@ -11,7 +11,7 @@ test.describe('@ui @login Login Validation Tests', () => {
     await loginPage.goToLoginPage();
   });
 
-  test('Test Case 1: User can register account and delete it', async ({ page }) => {
+  test('Test Case 1: User can register account and delete it @smoke', async ({ page }) => {
     const user = buildUser();
 
     await loginPage.assertSignUpForm();
@@ -24,7 +24,7 @@ test.describe('@ui @login Login Validation Tests', () => {
     await loginPage.deleteAccount();
   });
 
-  test('Test Case 2: User can log in with valid credentials', async ({ page }) => {
+  test('Test Case 2: User can log in with valid credentials @smoke', async ({ page }) => {
 
     await loginPage.assertLoginForm();
     await loginPage.login(process.env.EMAIL_VALID, process.env.PASSWORD_VALID); //process.env.EMAIL_VALID, process.env.PASSWORD_VALID

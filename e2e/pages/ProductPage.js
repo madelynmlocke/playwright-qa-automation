@@ -34,7 +34,7 @@ export class ProductPage {
     }
 
     async goToProductsPage() {
-    //await this.page.goto('/products'); //https://automationexercise.com
+    //await this.page.goto('/products');
     await expect(this.productsNavLink).toBeVisible();
     await this.productsNavLink.click();
 
@@ -103,7 +103,7 @@ export class ProductPage {
         await this.searchButton.click();
     }
 
-    async addProductToCartById(productId) {
+    async addProductToCart(productId) {
         const button = this.page.locator(`[data-product-id="${productId}"]`).first();
         
         await button.scrollIntoViewIfNeeded();

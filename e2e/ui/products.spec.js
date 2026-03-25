@@ -13,7 +13,7 @@ test.describe('@ui @products Products page tests', () => {
         await productPage.assertAllProductsPageLoaded();
     });
 
-    test.only('Test Case 8: Verify All Products and product detail page', async () => {
+    test('Test Case 8: Verify All Products and product detail page @smoke', async () => {
 
         await productPage.assertProductsListVisible();
         await productPage.viewProductById(1);
@@ -31,9 +31,9 @@ test.describe('@ui @products Products page tests', () => {
 
     test('Test Case 12/17: Add/Remove Products in Cart', async ({ page }) => {
 
-        await productPage.addProductToCartById(1);
+        await productPage.addProductToCart(1);
         await productPage.continueShopping();
-        await productPage.addProductToCartById(2);
+        await productPage.addProductToCart(2);
         await productPage.viewCart();
         await productPage.removeProductFromCart(1);
     });

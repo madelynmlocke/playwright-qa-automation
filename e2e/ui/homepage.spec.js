@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { HomePage } from '../pages/HomePage'; 
+import { HomePage } from '../../pages/HomePage'; 
 
 test.describe('@ui @home Homepage Tests', () => {
   test(' @smoke test verifies key content and navigation elements', async ({ page }) => {

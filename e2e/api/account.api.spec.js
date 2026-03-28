@@ -5,7 +5,8 @@ import { assertAccountResponse } from '../../utils/apiAssertions.js';
 import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
 
 test.describe('@api @account Endpoint tests for user accounts', () => {
-    test.only('Test Case 11: POST createAccount creates a user', async ({ request }) => {
+
+    test('Test Case 11: POST createAccount creates a user', async ({ request }) => {
         const user = buildUser();
         const response = await createAccount(request, user);
         
@@ -21,19 +22,19 @@ test.describe('@api @account Endpoint tests for user accounts', () => {
 
         await deleteAccount(request, user);
     });
+
     test('Test Case 13: PUT updateAccount updates the user', async ({ request }) => {
         const originalUser = buildUser();
         await createAccount(request, originalUser);
-
-        // update just the birth year
+        
         const updatedUser = {
             ...originalUser,
             birth_year: '1992'
         };
-
+        
         const response = await updateAccount(request, updatedUser);
         expect(response.status()).toBe(200);
-
+        
         const responseBody = await response.json();
         console.log(responseBody);
 
@@ -42,6 +43,7 @@ test.describe('@api @account Endpoint tests for user accounts', () => {
 
         await deleteAccount(request, updatedUser);
     });
+
     test('Test Case 14: GET getUserDetailByEmail returns account details', async ({ request }) => {
         const user = buildUser();
         await createAccount(request, user);
@@ -58,6 +60,7 @@ test.describe('@api @account Endpoint tests for user accounts', () => {
 
         await deleteAccount(request, user);
     });
+    
     test('Test Case 12: DELETE deleteAccount deletes the user', async ({ request }) => {
         // create user
         const user = buildUser();

@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage'; 
+import { LoginPage } from '../pages/LoginPage.js'; 
 import { buildUser } from '../../utils/userFactory';
 
 test.describe('@ui @login Login Validation Tests', () => {
@@ -45,5 +45,4 @@ test.describe('@ui @login Login Validation Tests', () => {
     await loginPage.signUp('Testy', process.env.EMAIL_VALID); 
     await loginPage.assertSignUpError('already exist');
   });
-
 });

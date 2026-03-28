@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ProductPage } from '../../pages/ProductPage'; 
+import { ProductPage } from '../pages/ProductPage.js'; 
 
 test.describe('@ui @products Products page tests', () => {
     let productPage;

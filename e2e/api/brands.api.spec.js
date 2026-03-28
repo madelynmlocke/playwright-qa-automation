@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { assertBrand, assertBrandsResponse, assertAuthenticationResponse } from '../../utils/apiAssertions.js';
 
 test.describe('@api @brands Endpoint tests for /api/brandsList', () => { 
+    
     test('Test Case 3: GET All Brands List', async ({ request }) => {
 
         const response = await request.get('/api/brandsList');

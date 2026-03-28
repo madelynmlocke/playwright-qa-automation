@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
 
 test.describe('@api @auth Endpoint tests for user login', () => {
     test('Test Case 7: POST /verifyLogin should return 200 and confirm user exists with valid credentials', async ({ request }) => {
@@ -12,6 +13,7 @@ test.describe('@api @auth Endpoint tests for user login', () => {
 
         const responseBody = await response.json();
         console.log(responseBody);
+        assertAuthenticationResponse(responseBody);
         expect(responseBody.responseCode).toBe(200);
         expect(responseBody.message).toBe('User exists!');
     });
@@ -21,6 +23,7 @@ test.describe('@api @auth Endpoint tests for user login', () => {
 
         const responseBody = await response.json();
         console.log(responseBody);
+        assertAuthenticationResponse(responseBody);
         expect(responseBody.responseCode).toBe(400);
         expect(responseBody.message).toBe('Bad request, email or password parameter is missing in POST request.');
     });
@@ -34,6 +37,7 @@ test.describe('@api @auth Endpoint tests for user login', () => {
 
         const responseBody = await response.json();
         console.log(responseBody);
+        assertAuthenticationResponse(responseBody);
         expect(responseBody.responseCode).toBe(404);
         expect(responseBody.message).toBe('User not found!');
     });
@@ -43,6 +47,7 @@ test.describe('@api @auth Endpoint tests for user login', () => {
 
         const responseBody = await response.json();
         console.log(responseBody);
+        assertAuthenticationResponse(responseBody);
         expect(responseBody.responseCode).toBe(405);
         expect(responseBody.message).toBe('This request method is not supported.');
     });

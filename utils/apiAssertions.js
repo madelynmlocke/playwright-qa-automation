@@ -26,3 +26,38 @@ for (const product of body.products) {
         assertProduct(product);
     }
 }
+
+export function assertBrand(brand) {
+    expect(brand).toHaveProperty('id');
+    expect(brand).toHaveProperty('brand');
+}
+
+export function assertBrandsResponse(body) {
+    expect(body).toHaveProperty('brands');
+    expect(Array.isArray(body.brands)).toBe(true);
+    expect(body.brands.length).toBeGreaterThan(0);
+
+    for (const brand of body.brands) {
+        assertBrand(brand);
+    }
+}
+
+export function assertAccountResponse(body) {
+    expect(body).toHaveProperty('user');
+    expect(typeof body.user).toBe('object');
+
+    expect(body.user).toHaveProperty('name');
+    expect(body.user).toHaveProperty('email');
+    expect(typeof body.user.name).toBe('string');
+    expect(typeof body.user.email).toBe('string');
+
+    //const user = body.user;
+}
+
+export function assertAuthenticationResponse(body) {
+    expect(body).toHaveProperty('responseCode');
+    expect(body).toHaveProperty('message');
+
+    expect(typeof body.responseCode).toBe('number');
+    expect(typeof body.message).toBe('string');
+}

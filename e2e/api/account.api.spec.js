@@ -1,18 +1,23 @@
 import { test, expect } from '@playwright/test';
 import { createAccount, updateAccount, deleteAccount, getUserDetailByEmail } from '../../utils/apiClient';
 import { buildUser } from '../../utils/userFactory';
+import { assertAccountResponse } from '../../utils/apiAssertions.js';
+import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
 
 test.describe('@api @account Endpoint tests for user accounts', () => {
-    test('Test Case 11: POST createAccount creates a user', async ({ request }) => {
+    test.only('Test Case 11: POST createAccount creates a user', async ({ request }) => {
         const user = buildUser();
         const response = await createAccount(request, user);
         
         // expect(response.status()).toBe(201); // Known bug: API returns incorrect HTTP status, validating response body instead.
         const responseBody = await response.json();
         console.log(responseBody);
-
+        
+        assertAuthenticationResponse(responseBody);
         expect(responseBody.responseCode).toBe(201);
         expect(responseBody.message).toBe('User created!');
+        
+        //assertAccountResponse(response);
 
         await deleteAccount(request, user);
     });

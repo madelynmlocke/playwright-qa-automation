@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('products -> brands -> search', () => {
+test.describe('products -> brands -> search @api @workflow', () => {
     
     test('product data stays consistent across catalog, brands, and search endpoints @regression', async ({ request }) => {
         // 1) Get all products

@@ -4,7 +4,7 @@ import { verifyLogin } from '../../../utils/apiClient.js';
 import { buildUser } from '../../../utils/userFactory.js';
 import { assertAccountResponse, assertAuthenticationResponse } from '../../../utils/apiAssertions.js';
 
-test.describe.only('@api @workflow create account -> login -> update -> delete -> verify login', () => {
+test.describe('@api @workflow create account -> login -> update -> delete -> verify login', () => {
 
     test('account data stays consistent across account and login endpoints', async ({ request }) => {
         const user = buildUser();

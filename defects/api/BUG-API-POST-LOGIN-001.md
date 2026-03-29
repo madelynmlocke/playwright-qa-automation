@@ -1,11 +1,11 @@
-# Bug Report: POST /createAccount returns HTTP 200 instead of expected 201
+# Bug Report: POST /verifyLogin without parameter returns HTTP 200 instead of expected 400
 ---
 
-# BUG ID
-BUG-API-POST-CREATE-001
+## Bug ID
+BUG-API-POST-LOGIN-001
 
 ## Summary
-Sending a POST request to /api/createAccount is returning an incorrect HTTP response of 200 instead of 201. 
+Sending a POST request without a search parameter to /api/verifyLogin is returning an incorrect HTTP response of 200 instead of 400.  
 Response body in JSON displays a responseCode and message. 
 
 ---
@@ -19,14 +19,14 @@ Response body in JSON displays a responseCode and message.
 ---
 
 ## Steps to Reproduce:
-1. Send a POST request to /api/createAccount
+1. Send a POST request without a parameter to /api/verifyLogin
 2. Observe HTTP response
 
 ---
 
 ## Expected Result
-HTTP status code should be 201 User created
-Response body should indicate User has been created
+HTTP status code should be 400 Bad Request
+Response body should indicate parameter is missing
 
 ---
 
@@ -35,8 +35,8 @@ HTTP status code is 200 OK
 Response body contains:
 ```
 {
-  "responseCode": 201,
-  "message": "User created!"
+  "responseCode": 400,
+  "message": "Bad request,  email or password parameter is missing in POST request"
 }
 ```
 ---
@@ -50,7 +50,7 @@ Medium
 The API appears to use a custom JSON responseCode field for error reporting, 
 but does not set the corresponding HTTP status code on the server response. 
 As a result, unsupported methods return 200 OK at the protocol level instead of 
-201 Method Not Allowed.
+400 Bad Request.
 
 ---
 

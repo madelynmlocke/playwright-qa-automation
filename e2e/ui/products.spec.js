@@ -4,7 +4,7 @@ import { ProductPage } from '../../pages/ProductPage.js';
 test.describe('@ui @products Products page tests', () => {
     let productPage;
 
-    test.beforeEach(async ({ page }) => { // goes back to homepage before each numbered test is run
+    test.beforeEach(async ({ page }) => { 
         productPage = new ProductPage(page);
         
         await productPage.gotoHomePage();

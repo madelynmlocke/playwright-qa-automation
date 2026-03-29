@@ -2,7 +2,6 @@ import { test, expect } from '../../fixtures/index.js';
 
 test.describe('@ui @login Login Validation Tests', () => {
 
-    // registration test still needs freshUser since it goes through the full sign up flow
     test('Test Case 1: User can register account and delete it @smoke', async ({ freshUser, loginPage, page }) => {
         await loginPage.gotoHomePage();
         await loginPage.goToLoginPage();
@@ -16,7 +15,6 @@ test.describe('@ui @login Login Validation Tests', () => {
         await loginPage.deleteAccount();
     });
 
-    // tests that just need to start at the login page
     test('Test Case 2: User can log in with valid credentials @smoke', async ({ loggedOutUser }) => {
         await loggedOutUser.assertLoginForm();
         await loggedOutUser.login(process.env.EMAIL_VALID, process.env.PASSWORD_VALID);

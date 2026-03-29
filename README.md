@@ -41,6 +41,7 @@ playwright-qa-automation
 │
 ├── utils
 │     ├── apiClient.js
+│     ├── apiAssertions.js
 │     └── userFactory.js
 │
 ├── pages
@@ -80,7 +81,11 @@ playwright-qa-automation
 │     │    └── contact-form-test-cases.md
 │     │
 │     └── api
-│         └── accounts-api-test-cases.md
+│         ├── accounts-api-test-cases.md
+│         ├── auth-api-test-cases.md
+│         ├── brands-api-test-cases.md
+│         ├── products-api-test-cases.md
+│         └── search-api-test-cases.md
 │
 ├── defects
 │     ├── ui
@@ -133,7 +138,7 @@ for future automation.
 | API-PRODUCTS-005 | Product data consistent across products, brands, and search | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
 | API-SEARCH-003 | Search with generic term returns unrelated results (known bug) | e2e/api/search.api.spec.js | ✅ Automated |
 | API-SEARCH-004 | Search with partial search term returns matching results | — | ❌ Not Automated |
-| API-SEARCH-005 | Search with no matching term returns empty array | — | ❌ Not Automated |
+| API-SEARCH-005 | Search with no matching term returns empty array | — | ✅ Automated |
 | API-BRANDS-001 | GET /api/brandsList returns valid brand data | e2e/api/brands.api.spec.js | ✅ Automated |
 | API-BRANDS-002 | PUT /api/brandsList returns 405 | e2e/api/brands.api.spec.js | ✅ Automated |
 | API-BRANDS-003 | Every brand object contains required fields and correct data types | e2e/api/brands.api.spec.js | ✅ Automated |

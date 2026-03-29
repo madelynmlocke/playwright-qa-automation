@@ -1,16 +1,7 @@
-// @ts-check
 import dotenv from 'dotenv';
 import { defineConfig, devices } from '@playwright/test';
 
 dotenv.config({ quiet: true });
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -36,7 +27,7 @@ export default defineConfig({
     screenshot: 'only-on-failure', // saves screenshots when test fails
     video: 'retain-on-failure',     // saves video only if test fails
     launchOptions: {
-      slowMo: 200,
+      slowMo: process.env.CI ? 0 : 200,
     }
   },
 
@@ -77,12 +68,5 @@ export default defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });
 

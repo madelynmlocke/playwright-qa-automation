@@ -24,3 +24,10 @@ export function deleteAccount(request, { email, password }) {
         }
     });
 }
+
+export function verifyLogin(request, credentials = {}) {
+    return request.post('/api/verifyLogin', {
+            form: credentials
+        });
+}
+

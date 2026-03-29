@@ -1,8 +1,11 @@
-# Bug Report: POST /verifyLogin without parameter returns HTTP 200 instead of expected 400
+# Bug Report: POST /searchProduct without parameter returns HTTP 200 instead of expected 400
 ---
 
+## Bug ID
+BUG-API-POST-SEARCH-002
+
 ## Summary
-Sending a POST request without a search parameter to /api/verifyLogin is returning an incorrect HTTP response of 200 instead of 400.  
+Sending a POST request without a search parameter to /api/searchProduct is returning an incorrect HTTP response of 200 instead of 400.  
 Response body in JSON displays a responseCode and message. 
 
 ---
@@ -16,7 +19,7 @@ Response body in JSON displays a responseCode and message.
 ---
 
 ## Steps to Reproduce:
-1. Send a POST request without a parameter to /api/verifyLogin
+1. Send a POST request without a parameter to /api/searchProduct
 2. Observe HTTP response
 
 ---
@@ -33,7 +36,7 @@ Response body contains:
 ```
 {
   "responseCode": 400,
-  "message": "Bad request,  email or password parameter is missing in POST request"
+  "message": "Bad request, search_product parameter is missing in POST request"
 }
 ```
 ---

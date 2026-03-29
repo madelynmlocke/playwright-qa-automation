@@ -1,6 +1,9 @@
 # Bug Report: POST /verifyLogin returns HTTP 200 instead of expected 404
 ---
 
+## Bug ID
+BUG-API-POST-INVALID-LOGIN-001
+
 ## Summary
 Sending a POST request to /api/verifyLogin is returning an incorrect HTTP response of 200 instead of 404. 
 Response body in JSON displays a responseCode and message. 

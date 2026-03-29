@@ -1,8 +1,8 @@
 # Bug Report: POST /createAccount returns HTTP 200 instead of expected 201
 ---
 
-# BUG ID
-001
+## BUG ID
+BUG-API-POST-CREATE-001
 
 ## Summary
 Sending a POST request to /api/createAccount is returning an incorrect HTTP response of 200 instead of 201. 

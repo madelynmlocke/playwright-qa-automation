@@ -1,6 +1,9 @@
 # Bug Report: DELETE /verifyLogin returns HTTP 200 instead of expected 405
 ---
 
+## Bug ID
+BUG-API-DELETE-LOGIN-001
+
 ## Summary
 Sending a DELETE request to /api/verifyLogin is returning an incorrect HTTP response of 200 instead of 405. 
 Response body in JSON displays a responseCode and message. 

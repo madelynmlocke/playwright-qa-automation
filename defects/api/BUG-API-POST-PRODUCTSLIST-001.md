@@ -1,8 +1,11 @@
-# Bug Report: POST /searchProduct without parameter returns HTTP 200 instead of expected 400
+# Bug Report: POST /productsList returns HTTP 200 instead of expected 405
 ---
 
+## Bug ID
+BUG-API-POST-PRODUCTSLIST-001
+
 ## Summary
-Sending a POST request without a search parameter to /api/searchProduct is returning an incorrect HTTP response of 200 instead of 400.  
+Sending a POST request to /api/productsList is returning an incorrect HTTP response of 200 instead of 405. 
 Response body in JSON displays a responseCode and message. 
 
 ---
@@ -16,14 +19,14 @@ Response body in JSON displays a responseCode and message.
 ---
 
 ## Steps to Reproduce:
-1. Send a POST request without a parameter to /api/searchProduct
+1. Send a POST request to /api/productsList
 2. Observe HTTP response
 
 ---
 
 ## Expected Result
-HTTP status code should be 400 Bad Request
-Response body should indicate parameter is missing
+HTTP status code should be 405 Method Not Allowed
+Response body should indicate method is not supported
 
 ---
 
@@ -32,8 +35,8 @@ HTTP status code is 200 OK
 Response body contains:
 ```
 {
-  "responseCode": 400,
-  "message": "Bad request, search_product parameter is missing in POST request"
+  "responseCode": 405,
+  "message": "This request method is not supported."
 }
 ```
 ---
@@ -47,7 +50,7 @@ Medium
 The API appears to use a custom JSON responseCode field for error reporting, 
 but does not set the corresponding HTTP status code on the server response. 
 As a result, unsupported methods return 200 OK at the protocol level instead of 
-400 Bad Request.
+405 Method Not Allowed.
 
 ---
 

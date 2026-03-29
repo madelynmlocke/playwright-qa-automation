@@ -1,6 +1,9 @@
 # Bug Report: POST /productsList returns HTTP 200 instead of expected 405
 ---
 
+## Bug ID
+BUG-API-POST-PRODUCTSLIST-001
+
 ## Summary
 Sending a POST request to /api/productsList is returning an incorrect HTTP response of 200 instead of 405. 
 Response body in JSON displays a responseCode and message. 

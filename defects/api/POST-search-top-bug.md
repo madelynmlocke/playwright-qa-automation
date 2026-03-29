@@ -1,6 +1,9 @@
 # Bug Report: POST /searchProduct returns unrelated products for search term
 ---
 
+## Bug ID
+BUG-API-POST-SEARCH-001
+
 ## Summary
 Sending a POST request with `search_product: 'top'` to `/api/searchProduct` returns products
 that do not contain the search term in their name, indicating the endpoint is not filtering

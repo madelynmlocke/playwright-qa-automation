@@ -1,6 +1,9 @@
 # Bug Report: POST /searchProduct without parameter returns HTTP 200 instead of expected 400
 ---
 
+## Bug ID
+BUG-API-POST-SEARCH-002
+
 ## Summary
 Sending a POST request without a search parameter to /api/searchProduct is returning an incorrect HTTP response of 200 instead of 400.  
 Response body in JSON displays a responseCode and message. 

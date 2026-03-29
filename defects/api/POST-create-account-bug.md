@@ -2,7 +2,7 @@
 ---
 
 # BUG ID
-001
+BUG-API-POST-CREATE-001
 
 ## Summary
 Sending a POST request to /api/createAccount is returning an incorrect HTTP response of 200 instead of 201. 

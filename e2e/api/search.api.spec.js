@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
 
-test.describe.only('@api @search Endpoint tests for /searchProduct', () => {
+test.describe('@api @search Endpoint tests for /searchProduct', () => {
     
     test('Test Case 5: POST to Search Product returns searched data', async ({ request }) => {
         const response = await request.post('/api/searchProduct', {
@@ -12,7 +12,7 @@ test.describe.only('@api @search Endpoint tests for /searchProduct', () => {
         expect(response.status()).toBe(200);
 
         const responseBody = await response.json(); 
-        console.log(responseBody);
+        //console.log(responseBody);
         expect(responseBody.responseCode).toBe(200);
         expect(responseBody).toHaveProperty('products');
         

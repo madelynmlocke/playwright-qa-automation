@@ -4,9 +4,9 @@ import { verifyLogin } from '../../../utils/apiClient.js';
 import { buildUser } from '../../../utils/userFactory.js';
 import { assertAccountResponse, assertAuthenticationResponse } from '../../../utils/apiAssertions.js';
 
-test.describe('create account -> login -> update -> delete -> verify login', () => {
+test.describe('create account -> login -> update -> delete -> verify login @api @workflow', () => {
 
-    test('account data stays consistent across account and login endpoints @regression @workflow', async ({ request }) => {
+    test('account data stays consistent across account and login endpoints @regression', async ({ request }) => {
         const user = buildUser();
 
         // 1) Create account

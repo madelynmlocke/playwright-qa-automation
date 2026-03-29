@@ -21,7 +21,7 @@ test.describe('@ui @products Products page tests', () => {
         await productPage.assertProductDetailFieldsVisible();
     });
 
-    test('Test Case 9: Search Product', async () => {
+    test('Test Case 9: Search Product @regession', async () => {
         const searchTerm = 'Blue Top';
 
         await productPage.searchForProduct(searchTerm);
@@ -29,7 +29,7 @@ test.describe('@ui @products Products page tests', () => {
         await productPage.assertSearchResultsContain(searchTerm);
     });
 
-    test('Test Case 12/17: Add/Remove Products in Cart', async ({ page }) => {
+    test('Test Case 12/17: Add/Remove Products in Cart @regression', async ({ page }) => {
 
         await productPage.addProductToCart(1);
         await productPage.continueShopping();

@@ -32,14 +32,14 @@ test.describe('@ui @login Login Validation Tests', () => {
     await loginPage.logout();
   });
 
-  test('Test Case 3: login shows error for invalid credentials', async ({ page }) => {
+  test('Test Case 3: login shows error for invalid credentials @negative', async ({ page }) => {
 
     await loginPage.assertLoginForm();
     await loginPage.login(process.env.EMAIL_VALID, process.env.PASSWORD_INVALID); 
     await loginPage.assertLogInError('incorrect');
   });
 
-  test('Test Case 5: sign up shows error using existing email', async ({ page }) => {
+  test('Test Case 5: sign up shows error using existing email @negative', async ({ page }) => {
 
     await loginPage.assertSignUpForm();
     await loginPage.signUp('Testy', process.env.EMAIL_VALID); 

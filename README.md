@@ -117,23 +117,94 @@ CI workflow location:
 .github/workflows/playwright.yml
 
 ## Test Coverage
-- Page load verification
-- Login functionality
-- Form validation
-- Navigation links
-- API response validation
 
-| Test Type | Test Suite | Scenario | Description |
-|-----------|------------|----------|-------------|
-| UI | homepage.spec.js | Homepage Smoke Test | Verifies homepage loads correctly, header/footer render, and navigation links are visible |
-| UI | login.spec.js | Login Validation | Verifies login page loads and displays an error when invalid credentials are submitted |
-| UI | contact-form.spec.js | Contact Form Submission | Verifies contact form fields are visible and form can be submitted successfully |
-| UI | products.spec.js | Products Validation | Verifies navigation links redirect to correct pages such as Products and Contact Us |
-| API | products.api.spec.js | Products API Response | Verifies products API returns a valid response with product data |
-| API | search.api.spec.js | Products API Response | Verifies search API returns a valid response with product data |
-| API | brands.api.spec.js | Products API Response | Verifies brands API returns a valid response with brand data |
-| API | auth.api.spec.js | Products API Response | Verifies login API returns a valid response with user data |
-| API | account.api.spec.js | Products API Response | Verifies account API returns a valid response with user data |
+The following table maps each automated test to its corresponding test case document and spec file.
+Test cases marked as Not Automated are documented in the test-cases/ folder and are candidates
+for future automation.
+
+### API Coverage
+
+| Test ID | Description | Spec File | Status |
+|---------|-------------|-----------|--------|
+| API-PRODUCTS-001 | GET /api/productsList returns valid product data | e2e/api/products.api.spec.js | ✅ Automated |
+| API-PRODUCTS-002 | POST /api/productsList returns 405 | e2e/api/products.api.spec.js | ✅ Automated |
+| API-PRODUCTS-003 | POST /api/searchProduct returns matching results | e2e/api/search.api.spec.js | ✅ Automated |
+| API-PRODUCTS-004 | POST /api/searchProduct returns 400 when parameter is missing | e2e/api/search.api.spec.js | ✅ Automated |
+| API-PRODUCTS-005 | Product data consistent across products, brands, and search | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
+| API-SEARCH-003 | Search with generic term returns unrelated results (known bug) | e2e/api/search.api.spec.js | ✅ Automated |
+| API-SEARCH-004 | Search with partial search term returns matching results | — | ❌ Not Automated |
+| API-SEARCH-005 | Search with no matching term returns empty array | — | ❌ Not Automated |
+| API-BRANDS-001 | GET /api/brandsList returns valid brand data | e2e/api/brands.api.spec.js | ✅ Automated |
+| API-BRANDS-002 | PUT /api/brandsList returns 405 | e2e/api/brands.api.spec.js | ✅ Automated |
+| API-BRANDS-003 | Every brand object contains required fields and correct data types | e2e/api/brands.api.spec.js | ✅ Automated |
+| API-BRANDS-004 | Brands in /api/brandsList are consistent with /api/productsList | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
+| API-AUTH-001 | POST /api/verifyLogin returns 200 with valid credentials | e2e/api/auth.api.spec.js | ✅ Automated |
+| API-AUTH-002 | POST /api/verifyLogin returns 400 when credentials are missing | e2e/api/auth.api.spec.js | ✅ Automated |
+| API-AUTH-003 | POST /api/verifyLogin returns 404 with invalid credentials | e2e/api/auth.api.spec.js | ✅ Automated |
+| API-AUTH-004 | DELETE /api/verifyLogin returns 405 for unsupported method | e2e/api/auth.api.spec.js | ✅ Automated |
+| API-AUTH-005 | POST /api/verifyLogin returns 404 after account deletion | e2e/workflows/api/account-workflow.spec.js | ✅ Automated |
+| API-ACCOUNT-001 | POST /api/createAccount creates a new user account | e2e/api/account.api.spec.js | ✅ Automated |
+| API-ACCOUNT-002 | GET /api/getUserDetailByEmail returns correct account details | e2e/api/account.api.spec.js | ✅ Automated |
+| API-ACCOUNT-003 | PUT /api/updateAccount successfully updates an existing account | e2e/api/account.api.spec.js | ✅ Automated |
+| API-ACCOUNT-004 | DELETE /api/deleteAccount successfully removes a user account | e2e/api/account.api.spec.js | ✅ Automated |
+| API-ACCOUNT-005 | Account data consistent across create, login, update, and delete | e2e/workflows/api/account-workflow.spec.js | ✅ Automated |
+
+### UI Coverage
+
+| Test ID | Description | Spec File | Status |
+|---------|-------------|-----------|--------|
+| UI-HOME-001 | Homepage loads with correct title and URL | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-HOME-002 | Header and footer are visible | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-HOME-003 | Logo is visible | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-HOME-004 | Hero banner is visible | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-HOME-005 | All navigation links are visible | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-LOGIN-001 | User can register a new account and delete it | e2e/ui/login.spec.js | ✅ Automated |
+| UI-LOGIN-002 | User can log in with valid credentials | e2e/ui/login.spec.js | ✅ Automated |
+| UI-LOGIN-003 | Login shows error for invalid credentials | e2e/ui/login.spec.js | ✅ Automated |
+| UI-LOGIN-004 | Login attempt with empty password | — | ❌ Not Automated |
+| UI-LOGIN-005 | Sign up shows error when using existing email | e2e/ui/login.spec.js | ✅ Automated |
+| UI-LOGIN-006 | User can log out successfully | — | ❌ Not Automated |
+| UI-CONTACT-001 | Contact form fields are visible | e2e/ui/contact-form.spec.js | ✅ Automated |
+| UI-CONTACT-002 | Contact form can be submitted successfully | e2e/ui/contact-form.spec.js | ✅ Automated |
+| UI-CONTACT-003 | Contact form shows error when required fields are missing | — | ❌ Not Automated |
+| UI-PRODUCTS-001 | Products page loads and displays product list | e2e/ui/products.spec.js | ✅ Automated |
+| UI-PRODUCTS-002 | Product detail page loads with correct fields | e2e/ui/products.spec.js | ✅ Automated |
+| UI-PRODUCTS-003 | Search returns matching products | e2e/ui/products.spec.js | ✅ Automated |
+| UI-PRODUCTS-004 | Product can be added to cart | e2e/ui/products.spec.js | ✅ Automated |
+| UI-PRODUCTS-005 | Product can be removed from cart | e2e/ui/products.spec.js | ✅ Automated |
+| UI-PRODUCTS-006 | Search with no matching term shows empty results | — | ❌ Not Automated |
+| UI-WORKFLOW-001 | User can complete full lifecycle via UI | e2e/workflows/ui/user-workflow.spec.js | ✅ Automated |
+
+### Defect Summary
+
+| Bug ID | Endpoint / Area | Description | Severity | Status |
+|--------|----------------|-------------|----------|--------|
+| BUG-API-POST-LOGIN-001 | POST /api/verifyLogin | Returns HTTP 200 instead of 400 when credentials are missing | Medium | Open |
+| BUG-API-POST-INVALID-LOGIN-001 | POST /api/verifyLogin | Returns HTTP 200 instead of 404 for invalid credentials | Medium | Open |
+| BUG-API-DELETE-LOGIN-001 | DELETE /api/verifyLogin | Returns HTTP 200 instead of 405 for unsupported method | Medium | Open |
+| BUG-API-POST-PRODUCTSLIST-001 | POST /api/productsList | Returns HTTP 200 instead of 405 for unsupported method | Medium | Open |
+| BUG-API-POST-SEARCH-001 | POST /api/searchProduct | Returns HTTP 200 instead of 400 when parameter is missing | Medium | Open |
+| BUG-API-POST-SEARCH-TOP-001 | POST /api/searchProduct | Generic search term returns unrelated products | Medium | Open |
+| BUG-API-PUT-BRANDSLIST-001 | PUT /api/brandsList | Returns HTTP 200 instead of 405 for unsupported method | Medium | Open |
+| BUG-API-POST-CREATE-001 | POST /api/createAccount | Returns HTTP 200 instead of 201 on successful account creation | Medium | Open |
+| BUG-UI-NAV-001 | UI / Navigation | Clicking View Product intermittently redirects to #google_vignette | Medium | Open |
+| BUG-UI-VIEWPRODUCT-001 | UI / Products | View Product link unreliable due to ad overlay interference | Medium | Open |
+
+### Coverage Summary
+
+| Category | Total Test Cases | Automated | Not Automated |
+|----------|-----------------|-----------|---------------|
+| API - Products | 5 | 5 | 0 |
+| API - Search | 5 | 3 | 2 |
+| API - Brands | 4 | 4 | 0 |
+| API - Auth | 5 | 5 | 0 |
+| API - Account | 5 | 5 | 0 |
+| UI - Homepage | 5 | 5 | 0 |
+| UI - Login | 6 | 4 | 2 |
+| UI - Contact Form | 3 | 2 | 1 |
+| UI - Products | 6 | 5 | 1 |
+| UI - Workflows | 1 | 1 | 0 |
+| **Total** | **45** | **39** | **6** |
 
 ## Test Scenarios
 The automated tests validate a variety of application behaviors.
@@ -200,11 +271,11 @@ This mirrors real bug tracking systems such as:
 Potential enhancements for this project include:
 
 - Adding cross-browser testing
-- Implementing CI test execution using GitHub Actions
 - Expanding API test coverage
 - Adding performance or load testing scenarios
 - Create reusable functions, helpers, and fixtures
 - Remove duplicate logic and make scalable
+- add visual regression tests
 
 ## Learning Goals
 This project was created to practice and demonstrate:

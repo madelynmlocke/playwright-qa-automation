@@ -18,7 +18,12 @@ export function assertProduct(product) {
 }
 
 export function assertProductsResponse(body) {
+    expect(body).toHaveProperty('responseCode');
     expect(body).toHaveProperty('products');
+
+    expect(typeof body.responseCode).toBe('number');
+    expect(typeof body.products).toBe('object');
+
     expect(Array.isArray(body.products)).toBe(true);
     expect(body.products.length).toBeGreaterThan(0);
 
@@ -33,7 +38,12 @@ export function assertBrand(brand) {
 }
 
 export function assertBrandsResponse(body) {
+    expect(body).toHaveProperty('responseCode');
     expect(body).toHaveProperty('brands');
+
+    expect(typeof body.responseCode).toBe('number');
+    expect(typeof body.brands).toBe('object');
+
     expect(Array.isArray(body.brands)).toBe(true);
     expect(body.brands.length).toBeGreaterThan(0);
 
@@ -43,7 +53,10 @@ export function assertBrandsResponse(body) {
 }
 
 export function assertAccountResponse(body) {
+    expect(body).toHaveProperty('responseCode');
     expect(body).toHaveProperty('user');
+
+    expect(typeof body.responseCode).toBe('number');
     expect(typeof body.user).toBe('object');
 
     expect(body.user).toHaveProperty('name');
@@ -54,10 +67,13 @@ export function assertAccountResponse(body) {
     //const user = body.user;
 }
 
-export function assertAuthenticationResponse(body) {
+export function assertAuthenticationResponse(body, expectedCode, expectedMessage) {
     expect(body).toHaveProperty('responseCode');
     expect(body).toHaveProperty('message');
 
     expect(typeof body.responseCode).toBe('number');
     expect(typeof body.message).toBe('string');
+
+    expect(body.responseCode).toBe(expectedCode);
+    expect(body.message).toBe(expectedMessage);
 }

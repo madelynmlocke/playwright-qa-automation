@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage.js';
-import { ProductPage } from '../../pages/ProductPage.js';
+import { LoginPage } from '../../../pages/LoginPage.js';
+import { ProductPage } from '../../../pages/ProductPage.js';
 import { buildUser } from '../../../utils/userFactory.js';
 
 

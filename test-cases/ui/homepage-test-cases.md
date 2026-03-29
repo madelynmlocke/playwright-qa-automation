@@ -1,38 +1,193 @@
-# Test Case: Homepage Loads Successfully
+## Test Case: Homepage Loads with Correct Title and URL
 
-## Test ID
-HOME-001
+### Test ID
+UI-HOME-001
 
-## Test Title
-Verify that the homepage loads and displays key interface elements.
+### Test Title
+Verify that the homepage loads with the correct URL and page title
 
-## Test Type
-Smoke / UI Test
+### Test Type
+UI / Smoke Test
 
-## Preconditions
-- Application is deployed and accessible
-- User has internet access
-- Homepage URL is available
+### Preconditions
+- Application is accessible at https://automationexercise.com
 
-## Test Steps
-1. Navigate to the homepage.
-2. Observe the page layout and key interface elements.
+### Test Steps
+1. Navigate to https://automationexercise.com
+2. Observe the page URL
+3. Observe the page title
 
-## Expected Result
-- Homepage loads successfully.
-- Header, navigation bar, main content, and footer are visible.
-- Hero heading is displayed.
-- Primary call-to-action button is visible.
-- Navigation links are present.
+### Expected Result
+- URL matches https://automationexercise.com or https://automationexercise.com/
+- Page title contains "Automation Exercise"
 
-## Actual Result
+### Actual Result
 (To be filled during testing)
 
-## Pass / Fail
+### Pass / Fail
 (To be filled during testing)
 
-## Severity (if failed)
+### Severity (if failed)
 High
 
-## Notes
-If the homepage fails to load or any critical UI section is missing, a defect should be logged.
+### Automation Status
+✅ Automated — e2e/ui/homepage.spec.js (`gotoHomePage()`)
+
+---
+
+## Test Case: Header and Footer Are Visible
+
+### Test ID
+UI-HOME-002
+
+### Test Title
+Verify that the header and footer are visible on the homepage
+
+### Test Type
+UI / Functional Test
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User has navigated to the homepage
+
+### Test Steps
+1. Navigate to the homepage
+2. Observe the header element
+3. Observe the footer element
+
+### Expected Result
+- Header is visible on the page
+- Footer is visible on the page
+
+### Actual Result
+(To be filled during testing)
+
+### Pass / Fail
+(To be filled during testing)
+
+### Severity (if failed)
+Medium
+
+### Automation Status
+✅ Automated — e2e/ui/homepage.spec.js (`assertLayout()`)
+
+---
+
+## Test Case: Logo Is Visible
+
+### Test ID
+UI-HOME-003
+
+### Test Title
+Verify that the site logo is visible on the homepage
+
+### Test Type
+UI / Functional Test
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User has navigated to the homepage
+
+### Test Steps
+1. Navigate to the homepage
+2. Observe the logo image
+
+### Expected Result
+- Logo image with alt text "Website for automation practice" is visible
+
+### Actual Result
+(To be filled during testing)
+
+### Pass / Fail
+(To be filled during testing)
+
+### Severity (if failed)
+Low
+
+### Automation Status
+✅ Automated — e2e/ui/homepage.spec.js (`assertLogo()`)
+
+---
+
+## Test Case: Hero Banner Is Visible
+
+### Test ID
+UI-HOME-004
+
+### Test Title
+Verify that the hero banner heading is visible on the homepage
+
+### Test Type
+UI / Functional Test
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User has navigated to the homepage
+
+### Test Steps
+1. Navigate to the homepage
+2. Observe the hero banner section
+
+### Expected Result
+- Heading "Full-Fledged practice website for Automation Engineers" is visible
+
+### Actual Result
+(To be filled during testing)
+
+### Pass / Fail
+(To be filled during testing)
+
+### Severity (if failed)
+Medium
+
+### Automation Status
+✅ Automated — e2e/ui/homepage.spec.js (`assertHero()`)
+
+---
+
+## Test Case: All Navigation Links Are Visible
+
+### Test ID
+UI-HOME-005
+
+### Test Title
+Verify that all expected navigation links are visible on the homepage
+
+### Test Type
+UI / Functional Test
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User has navigated to the homepage
+
+### Test Steps
+1. Navigate to the homepage
+2. Observe the navigation bar
+3. Verify each expected link is visible
+
+### Expected Links
+| Link Text |
+|-----------|
+| Home |
+| Products |
+| Cart |
+| Signup / Login |
+| Test Cases |
+| API Testing |
+| Video Tutorials |
+| Contact us |
+
+### Expected Result
+- All eight navigation links listed above are visible in the navigation bar
+
+### Actual Result
+(To be filled during testing)
+
+### Pass / Fail
+(To be filled during testing)
+
+### Severity (if failed)
+High
+
+### Automation Status
+✅ Automated — e2e/ui/homepage.spec.js (`assertNavLinksVisible()`)

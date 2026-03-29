@@ -51,10 +51,10 @@ playwright-qa-automation
 │
 ├── e2e
 │     ├── ui
+│     │    ├── contact-form.spec.js
 │     │    ├── homepage.spec.js
-│     │    ├── products.spec.js
 │     │    ├── login.spec.js
-│     │    └── contact-form.spec.js
+│     │    └── products.spec.js
 │     │
 │     ├── api
 │     │     ├── account.api.spec.js
@@ -76,7 +76,7 @@ playwright-qa-automation
 │     ├── ui
 │     │    ├── homepage-test-cases.md
 │     │    ├── products-test-cases.md
-│     │    ├── login-authentication-test-cases.md
+│     │    ├── login-test-cases.md
 │     │    └── contact-form-test-cases.md
 │     │
 │     └── api
@@ -84,12 +84,12 @@ playwright-qa-automation
 │
 ├── defects
 │     ├── ui
-│     │    └── view-product-bug.md
+│     │    └── BUG-UI-PRODUCTS-URL-001.md
 │     │
 │     └── api
-│         ├── POST-invalid-login-bug.md
-│         ├── POST-search-bug.md
-│         ├── DELETE-login-bug.md
+│         ├── BUG-API-DELETE-LOGIN-001.md
+│         ├── BUG-API-POST-CREATE-001.md
+│         ├── BUG-API-POST-INVALID-LOGIN-001.md
 │         ''(Rest of defects)''
 │
 └── README.md

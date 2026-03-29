@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { assertProductsResponse } from '../../utils/apiAssertions.js';
 import { assertProduct } from '../../utils/apiAssertions.js';
-import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
+import { assertBodyResponse } from '../../utils/apiAssertions.js';
 
 test.describe('Endpoint tests for /productsList @api @products', () => {
   
@@ -23,6 +23,6 @@ test.describe('Endpoint tests for /productsList @api @products', () => {
     // expect(response.status()).toBe(405); // Known bug: API returns incorrect HTTP status, validating response body instead.
 
     const responseBody = await response.json();
-    assertAuthenticationResponse(responseBody, 405, 'This request method is not supported.')
+    assertBodyResponse(responseBody, 405, 'This request method is not supported.')
   });
 });

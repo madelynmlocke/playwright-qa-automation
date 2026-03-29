@@ -1,6 +1,6 @@
 import { test, expect } from '../../../fixtures/index.js';
 
-test.describe.only('End to end user workflow @ui @workflow', () => {
+test.describe('End to end user workflow @ui @workflow', () => {
 
     test('User can complete full lifecycle via UI @regression', async ({ authenticatedUser, productPage }) => {
         const { page, loginPage } = authenticatedUser;

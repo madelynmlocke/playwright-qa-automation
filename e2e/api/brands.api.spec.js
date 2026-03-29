@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { assertBrand, assertBrandsResponse, assertAuthenticationResponse } from '../../utils/apiAssertions.js';
+import { assertBrand, assertBrandsResponse, assertBodyResponse } from '../../utils/apiAssertions.js';
 
 test.describe('Endpoint tests for /api/brandsList @api @brands', () => { 
     
@@ -21,6 +21,6 @@ test.describe('Endpoint tests for /api/brandsList @api @brands', () => {
 
         const responseBody = await response.json();
         console.log(responseBody); 
-        assertAuthenticationResponse(responseBody, 405, 'This request method is not supported.');
+        assertBodyResponse(responseBody, 405, 'This request method is not supported.');
     });
 });

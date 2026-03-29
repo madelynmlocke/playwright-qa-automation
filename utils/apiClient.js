@@ -31,3 +31,13 @@ export function verifyLogin(request, credentials = {}) {
         });
 }
 
+export function searchProduct(request, searchTerm) {
+    if (searchTerm === undefined) {
+        return request.post('/api/searchProduct');
+    }
+    return request.post('/api/searchProduct', {
+        form: {
+            search_product: searchTerm
+        }
+    });
+}

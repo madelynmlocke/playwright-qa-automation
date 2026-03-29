@@ -63,8 +63,6 @@ export function assertAccountResponse(body) {
     expect(body.user).toHaveProperty('email');
     expect(typeof body.user.name).toBe('string');
     expect(typeof body.user.email).toBe('string');
-
-    //const user = body.user;
 }
 
 export function assertAuthenticationResponse(body, expectedCode, expectedMessage) {

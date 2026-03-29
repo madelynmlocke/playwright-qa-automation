@@ -47,8 +47,7 @@ Medium
 ---
 
 ## Root Cause
-The API appears to use a custom JSON responseCode field for error reporting, 
-but does not set the corresponding HTTP status code on the server response. 
+The API appears to use a custom JSON responseCode field for error reporting.
 As a result, unsupported methods return 200 OK at the protocol level instead of 
 400 Bad Request.
 

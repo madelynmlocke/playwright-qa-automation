@@ -1,10 +1,10 @@
 import { test } from '@playwright/test';
-import { ProductPage } from '../pages/ProductPage'; 
+import { ProductPage } from '../../pages/ProductPage.js'; 
 
 test.describe('@ui @products Products page tests', () => {
     let productPage;
 
-    test.beforeEach(async ({ page }) => { // goes back to homepage before each numbered test is run
+    test.beforeEach(async ({ page }) => { 
         productPage = new ProductPage(page);
         
         await productPage.gotoHomePage();
@@ -35,6 +35,9 @@ test.describe('@ui @products Products page tests', () => {
         await productPage.continueShopping();
         await productPage.addProductToCart(2);
         await productPage.viewCart();
+        await productPage.assertProductInCart(1);
+        await productPage.assertProductInCart(2);
         await productPage.removeProductFromCart(1);
+        await productPage.assertProductNotInCart(1);
     });
 });

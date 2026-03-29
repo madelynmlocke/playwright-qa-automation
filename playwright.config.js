@@ -2,7 +2,7 @@
 import dotenv from 'dotenv';
 import { defineConfig, devices } from '@playwright/test';
 
-dotenv.config();
+dotenv.config({ quiet: true });
 
 /**
  * Read environment variables from file.
@@ -36,7 +36,7 @@ export default defineConfig({
     screenshot: 'only-on-failure', // saves screenshots when test fails
     video: 'retain-on-failure',     // saves video only if test fails
     launchOptions: {
-      slowMo: 300,
+      slowMo: 200,
     }
   },
 

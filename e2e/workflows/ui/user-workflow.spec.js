@@ -1,10 +1,11 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../../pages/LoginPage.js';
-import { ProductPage } from '../../pages/ProductPage.js';
+import { LoginPage } from '../../../pages/LoginPage.js';
+import { ProductPage } from '../../../pages/ProductPage.js';
 import { buildUser } from '../../../utils/userFactory.js';
 
 
-test.describe.only('@ui @workflow End to end user workflow', () => {
+test.describe('@ui @workflow End to end user workflow', () => {
+    
     test('User can complete full lifecycle via UI', async({ page }) => {
         const loginPage = new LoginPage(page);
         const productPage = new ProductPage(page);
@@ -45,7 +46,10 @@ test.describe.only('@ui @workflow End to end user workflow', () => {
 
         // Go to cart + remove a product
         await productPage.viewCart();
+        await productPage.assertProductInCart(2);
+        await productPage.assertProductInCart(5);
         await productPage.removeProductFromCart(2);
+        await productPage.assertProductNotInCart(2);
 
         // Delete account
         await loginPage.deleteAccount();

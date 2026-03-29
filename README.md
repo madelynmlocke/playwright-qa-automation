@@ -5,7 +5,7 @@
 ## Project Overview
 This project demonstrates automated UI and API testing using Playwright and JavaScript. 
 The goal is to validate core application functionality through automated test scenarios covering
- navigation, authentication, form validation, and API response handling.
+ navigation, authentication, form validation, UI, and API response handling.
 
 The repository simulates a simplified QA automation workflow, combining automated test scripts,
  manual test case documentation, and defect reports to demonstrate common testing practices 
@@ -26,6 +26,7 @@ This project demonstrates key QA engineering concepts including:
 
 The repository includes:
 - Automated Playwright test scripts
+- End to End automated workflows
 - Manual test case documentation
 - Defect reports
 - Test coverage tracking
@@ -42,43 +43,50 @@ playwright-qa-automation
 │     ├── apiClient.js
 │     └── userFactory.js
 │
+├── pages
+│     ├── ContactPage.js
+│     ├── HomePage.js
+│     ├── LoginPage.js
+│     └── ProductPage.js
+│
 ├── e2e
-│    ├── ui
-│    │    ├── homepage.spec.js
-│    │    ├── products.spec.js
-│    │    ├── login.spec.js
-│    │    └── contact-form.spec.js
-│    │
-│    ├── api
-│    │     ├── account.api.spec.js
-│    │     ├── auth.api.spec.js
-│    │     ├── brands.api.spec.js
-│    │     ├── products.api.spec.js
-│    │     └── search.api.spec.js
-│    │ 
-│    └── workflows
+│     ├── ui
+│     │    ├── homepage.spec.js
+│     │    ├── products.spec.js
+│     │    ├── login.spec.js
+│     │    └── contact-form.spec.js
+│     │
+│     ├── api
+│     │     ├── account.api.spec.js
+│     │     ├── auth.api.spec.js
+│     │     ├── brands.api.spec.js
+│     │     ├── products.api.spec.js
+│     │     └── search.api.spec.js
+│     │ 
+│     └── workflows
 │           ├── account-workflow.spec.js
+│           ├── user-workflow.spec.js
 │           └── products-workflow.spec.js
 │
 ├── test-cases
-│    ├── ui
-│    │    ├── homepage-test-cases.spec.js
-│    │    ├── products-test-cases.spec.js
-│    │    ├── login-authentication-test-cases.spec.js
-│    │    └── contact-form-test-cases.spec.js
-│    │
-│    └── api
+│     ├── ui
+│     │    ├── homepage-test-cases.spec.js
+│     │    ├── products-test-cases.spec.js
+│     │    ├── login-authentication-test-cases.spec.js
+│     │    └── contact-form-test-cases.spec.js
+│     │
+│     └── api
 │         └── api-response.spec.js
 │
 ├── defects
-│    ├── ui
-│    │    └── view-product-bug.md
-│    │
-│    └── api
-│        ├── POST-invalid-login-bug.md
-│        ├── POST-search-bug.md
-│        ├── DELETE-login-bug.md
-│        ''(Rest of defects)''
+│     ├── ui
+│     │    └── view-product-bug.md
+│     │
+│     └── api
+│         ├── POST-invalid-login-bug.md
+│         ├── POST-search-bug.md
+│         ├── DELETE-login-bug.md
+│         ''(Rest of defects)''
 │
 └── README.md
 ```
@@ -90,6 +98,12 @@ Contains manual QA test cases describing expected application behavior and test 
 
 ### defects/
 Contains example bug reports documenting reproducible issues discovered during testing.
+
+### pages/
+Contains resuable locators and methods for automated UI test cases.
+
+### utils/
+Contains reusable helper assertions and functions for API test cases.
 
 ### .github/workflows/playwright
 This project includes a GitHub Actions workflow that automatically runs Playwright tests on every 
@@ -127,6 +141,7 @@ Examples include:
 - Navigation links redirect users to the correct pages
 - Login functionality authenticates valid users
 - Form validation prevents submission of invalid input
+- Products are searchable and viewable in cart
 
 ### API Tests
 Examples include:

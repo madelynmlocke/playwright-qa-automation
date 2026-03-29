@@ -4,8 +4,10 @@ export class ContactPage {
     constructor(page) {
         this.page = page;
         
+        //contact link
         this.contactLink = page.locator('a[href="/contact_us"]');
 
+        //contact form selectors
         this.contactHeading = page.getByRole('heading', { name: /Get In Touch/i }); 
         this.formName = page.locator('[data-qa="name"]');
         this.formEmail = page.locator('[data-qa="email"]');
@@ -13,6 +15,7 @@ export class ContactPage {
         this.formMessage = page.locator('[data-qa="message"]');
         this.formButton = page.locator('[data-qa="submit-button"]');
 
+        //contact submission alert
         this.successMessage = page.locator('.status.alert.alert-success');
     }
 

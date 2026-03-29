@@ -4,6 +4,7 @@ export class HomePage {
     constructor(page) {
         this.page = page;
 
+        // home page and navigation selectors
         this.header = page.locator('header');
         this.footer = page.locator('footer');
         this.logo = page.locator('img[alt="Website for automation practice"]');

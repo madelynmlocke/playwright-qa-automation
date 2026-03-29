@@ -3,7 +3,7 @@ import { ContactPage } from '../../pages/ContactPage.js';
 
 test.describe('@ui @contactform Contact Form Validation Tests', () => {
   
-  test('Test Case 6: Contact form fields are visible and user submits form', async ({ page }) => {
+  test('Test Case 6: Contact form fields are visible and user submits form @smoke', async ({ page }) => {
     const contactPage = new ContactPage(page);
 
     await contactPage.goToHomePage();

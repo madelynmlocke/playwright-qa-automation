@@ -4,9 +4,9 @@ import { buildUser } from '../../utils/userFactory';
 import { assertAccountResponse } from '../../utils/apiAssertions.js';
 import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
 
-test.describe('@api @account Endpoint / integration tests for user accounts', () => {
+test.describe('Endpoint / integration tests for user accounts @api @account', () => {
 
-    test('Test Case 11: POST createAccount creates a user', async ({ request }) => {
+    test('Test Case 11: POST createAccount creates a user @smoke', async ({ request }) => {
         const user = buildUser();
         const response = await createAccount(request, user);
         
@@ -19,7 +19,22 @@ test.describe('@api @account Endpoint / integration tests for user accounts', ()
         await deleteAccount(request, user);
     });
 
-    test('Test Case 13: PUT updateAccount updates the user', async ({ request }) => {
+    test('Test Case 12: DELETE deleteAccount deletes the user @smoke', async ({ request }) => {
+        // create user
+        const user = buildUser();
+        await createAccount(request, user);
+
+        // delete same user
+        const response = await deleteAccount(request, user);
+
+        expect(response.status()).toBe(200);
+
+        const responseBody = await response.json();
+        console.log(responseBody);
+        assertAuthenticationResponse(responseBody, 200, 'Account deleted!')
+    });
+
+    test('Test Case 13: PUT updateAccount updates the user @regression', async ({ request }) => {
         const originalUser = buildUser();
         await createAccount(request, originalUser);
         
@@ -39,7 +54,7 @@ test.describe('@api @account Endpoint / integration tests for user accounts', ()
         await deleteAccount(request, updatedUser);
     });
 
-    test('Test Case 14: GET getUserDetailByEmail returns account details', async ({ request }) => {
+    test('Test Case 14: GET getUserDetailByEmail returns account details @regression', async ({ request }) => {
         const user = buildUser();
         await createAccount(request, user);
 
@@ -57,18 +72,4 @@ test.describe('@api @account Endpoint / integration tests for user accounts', ()
         await deleteAccount(request, user);
     });
 
-    test('Test Case 12: DELETE deleteAccount deletes the user', async ({ request }) => {
-        // create user
-        const user = buildUser();
-        await createAccount(request, user);
-
-        // delete same user
-        const response = await deleteAccount(request, user);
-
-        expect(response.status()).toBe(200);
-
-        const responseBody = await response.json();
-        console.log(responseBody);
-        assertAuthenticationResponse(responseBody, 200, 'Account deleted!')
-    });
 });

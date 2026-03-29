@@ -64,19 +64,23 @@ playwright-qa-automation
 │     │     └── search.api.spec.js
 │     │ 
 │     └── workflows
-│           ├── account-workflow.spec.js
-│           ├── user-workflow.spec.js
-│           └── products-workflow.spec.js
+│           ├── api
+│           │     ├── account-workflow.spec.js
+│           │     └── user-workflow.spec.js
+│           │     
+│           │ 
+│           └── ui
+│                └── products-workflow.spec.js
 │
 ├── test-cases
 │     ├── ui
-│     │    ├── homepage-test-cases.spec.js
-│     │    ├── products-test-cases.spec.js
-│     │    ├── login-authentication-test-cases.spec.js
-│     │    └── contact-form-test-cases.spec.js
+│     │    ├── homepage-test-cases.md
+│     │    ├── products-test-cases.md
+│     │    ├── login-authentication-test-cases.md
+│     │    └── contact-form-test-cases.md
 │     │
 │     └── api
-│         └── api-response.spec.js
+│         └── api-response.md
 │
 ├── defects
 │     ├── ui

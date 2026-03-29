@@ -1,128 +1,74 @@
 import { test, expect } from '@playwright/test';
+import { createAccount, updateAccount, deleteAccount, getUserDetailByEmail } from '../../../utils/apiClient.js';
+import { verifyLogin } from '../../../utils/apiClient.js';
+import { buildUser } from '../../../utils/userFactory.js';
+import { assertAccountResponse, assertAuthenticationResponse } from '../../../utils/apiAssertions.js';
 
-test.describe('@api @workflow create account -> login -> update -> delete -> verify login', () => { 
-    
+test.describe.only('@api @workflow create account -> login -> update -> delete -> verify login', () => {
+
     test('account data stays consistent across account and login endpoints', async ({ request }) => {
-        // 1) Create account
-        const email = 'testytest@example.com';
-        const password = 'test123';
-        const createResponse = await request.post('/api/createAccount', {
-            form: {
-                name: 'tester',
-                email,
-                password,
-                title: 'Mr',
-                birth_date: '10',
-                birth_month: '10',
-                birth_year: '1992',
-                firstname: 'Testy',
-                lastname: 'Tester',
-                address1: '123 Main St',
-                country: 'United States',
-                zipcode: '98109',
-                state: 'WA',
-                city: 'Seattle',
-                mobile_number: '2065559999'
-            }
-        });
+        const user = buildUser();
 
+        // 1) Create account
+        const createResponse = await createAccount(request, user);
         const createBody = await createResponse.json();
         console.log(createBody);
-        expect(createBody.responseCode).toBe(201);
+        assertAuthenticationResponse(createBody, 201, 'User created!');
 
         // 2) Get account info
-        const initialUser = await request.get('/api/getUserDetailByEmail', {
-            params: { email }
-        });
-        
+        const initialUser = await getUserDetailByEmail(request, user.email);
         const initialResponse = await initialUser.json();
-        console.log('\n');
-        console.log('Initial Account Creation:');
+        console.log('\nInitial Account Creation:');
         console.log(initialResponse);
 
+        assertAccountResponse(initialResponse);
         expect(initialResponse.responseCode).toBe(200);
-        expect(initialResponse.user.email).toBe(email);
-        expect(initialResponse.user.first_name).toBe('Testy');
-        expect(initialResponse.user.birth_year).toBe('1992');
+        expect(initialResponse.user.email).toBe(user.email);
+        expect(initialResponse.user.first_name).toBe(user.firstname);
+        expect(initialResponse.user.birth_year).toBe(user.birth_year);
 
         // 3) Login to new account
-        const initialLogin = await request.post('/api/verifyLogin', {
-            form: {
-                email, password
-            }
-        });
+        const initialLogin = await verifyLogin(request, { email: user.email, password: user.password });
         const loginBody = await initialLogin.json();
-        console.log('\n');
-        console.log('Initial Login:');
+        console.log('\nInitial Login:');
         console.log(loginBody);
 
-        expect(loginBody.responseCode).toBe(200);
-        expect(loginBody.message).toBe('User exists!');
+        assertAuthenticationResponse(loginBody, 200, 'User exists!');
 
         // 4) Update account
-        const updateResponse = await request.put('/api/updateAccount', {
-            form: {
-                name: 'tester',
-                email,
-                password,
-                title: 'Mr',
-                birth_date: '10',
-                birth_month: '10',
-                birth_year: '1993', //updated birth year
-                firstname: 'Updated', //updated first name
-                lastname: 'Tester',
-                address1: '123 Main St',
-                country: 'United States',
-                zipcode: '98109',
-                state: 'WA',
-                city: 'Seattle',
-                mobile_number: '2065559999'
-            }
-        });
-
+        const updatedUser = { ...user, firstname: 'Testisha', birth_year: '1993' };
+        const updateResponse = await updateAccount(request, updatedUser);
         const updateBody = await updateResponse.json();
-        expect(updateBody.responseCode).toBe(200);
+        console.log('\nUpdate Response:');
+        console.log(updateBody);
+
+        assertAuthenticationResponse(updateBody, 200, 'User updated!');
 
         // 5) Get account info again
-        const updatedUser = await request.get('/api/getUserDetailByEmail', {
-        params: { email }
-        });
-        const updatedResponse = await updatedUser.json();
-        console.log('\n');
-        console.log('After update:');
+        const updatedUserResponse = await getUserDetailByEmail(request, user.email);
+        const updatedResponse = await updatedUserResponse.json();
+        console.log('\nAfter Update:');
         console.log(updatedResponse);
 
+        assertAccountResponse(updatedResponse);
         expect(updatedResponse.responseCode).toBe(200);
         expect(updatedResponse.user.first_name).toBe('Updated');
         expect(updatedResponse.user.birth_year).toBe('1993');
 
         // 6) Delete account
-        const deleteResponse = await request.delete('/api/deleteAccount', {
-            form: {
-                email, password
-            }
-        });
+        const deleteResponse = await deleteAccount(request, user);
+        const deleteBody = await deleteResponse.json();
+        console.log('\nResponse After Account Deletion:');
+        console.log(deleteBody);
 
-        const deletedBody = await deleteResponse.json();
-        console.log('\n');
-        console.log('Response after account deletion:');
-        console.log(deletedBody);
+        assertAuthenticationResponse(deleteBody, 200, 'Account deleted!');
 
-        expect(deletedBody.responseCode).toBe(200);
-
-        // 7) login again, verify failure
-            const invalidLogin = await request.post('/api/verifyLogin', {
-            form: {
-                email, password
-            }
-        });
-
+        // 7) Attempt login and verify failure
+        const invalidLogin = await verifyLogin(request, { email: user.email, password: user.password });
         const invalidLoginBody = await invalidLogin.json();
-        console.log('\n');
-        console.log('Verify invalid Login after account deletion:');
+        console.log('\nVerify Login Failure After Deletion:');
         console.log(invalidLoginBody);
 
-        expect(invalidLoginBody.responseCode).toBe(404);
-        expect(invalidLoginBody.message).toBe('User not found!');
+        assertAuthenticationResponse(invalidLoginBody, 404, 'User not found!');
     });
 });

@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test';
 import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
+import { verifyLogin } from '../../utils/apiClient.js';
 
 test.describe('@api @auth Endpoint tests for user login', () => {
 
     test('Test Case 7: POST /verifyLogin should return 200 and confirm user exists with valid credentials', async ({ request }) => {
-        const response = await request.post('/api/verifyLogin', {
-            form: {
-                email: process.env.EMAIL_VALID, 
-                password: process.env.PASSWORD_VALID 
-            }
+        const response = await verifyLogin(request, {
+            email: process.env.EMAIL_VALID,
+            password: process.env.PASSWORD_VALID
         });
+
         expect(response.status()).toBe(200);
 
         const responseBody = await response.json();
@@ -19,7 +19,7 @@ test.describe('@api @auth Endpoint tests for user login', () => {
     });
 
     test('Test Case 8: POST /verifyLogin should return 400 when email and password are missing', async ({ request }) => {
-        const response = await request.post('/api/verifyLogin');
+        const response = await verifyLogin(request);
         //expect(response.status()).toBe(400); // Known bug: API returns incorrect HTTP status, validating response body instead.
 
         const responseBody = await response.json();
@@ -28,10 +28,9 @@ test.describe('@api @auth Endpoint tests for user login', () => {
     });
 
     test('Test Case 9: POST /verifyLogin should return 404 for invalid credentials', async ({ request }) => {
-        const response = await request.post('/api/verifyLogin', {
-            form: {
-                email: process.env.EMAIL_INVALID, password: process.env.PASSWORD_INVALID 
-            }
+        const response = await verifyLogin(request, {
+            email: process.env.EMAIL_INVALID,
+            password: process.env.PASSWORD_INVALID
         });
         //expect(response.status()).toBe(404); // Known bug: API returns incorrect HTTP status, validating response body instead.
 

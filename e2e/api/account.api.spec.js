@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { createAccount, updateAccount, deleteAccount, getUserDetailByEmail } from '../../utils/apiClient';
 import { buildUser } from '../../utils/userFactory';
 import { assertAccountResponse } from '../../utils/apiAssertions.js';
-import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
+import { assertBodyResponse } from '../../utils/apiAssertions.js';
 
 test.describe('Endpoint / integration tests for user accounts @api @account', () => {
 
@@ -14,7 +14,7 @@ test.describe('Endpoint / integration tests for user accounts @api @account', ()
         const responseBody = await response.json();
         console.log(responseBody);
 
-        assertAuthenticationResponse(responseBody, 201, 'User created!');
+        assertBodyResponse(responseBody, 201, 'User created!');
         
         await deleteAccount(request, user);
     });
@@ -31,7 +31,7 @@ test.describe('Endpoint / integration tests for user accounts @api @account', ()
 
         const responseBody = await response.json();
         console.log(responseBody);
-        assertAuthenticationResponse(responseBody, 200, 'Account deleted!')
+        assertBodyResponse(responseBody, 200, 'Account deleted!')
     });
 
     test('Test Case 13: PUT updateAccount updates the user @regression', async ({ request }) => {
@@ -49,7 +49,7 @@ test.describe('Endpoint / integration tests for user accounts @api @account', ()
         const responseBody = await response.json();
         console.log(responseBody);
 
-        assertAuthenticationResponse(responseBody, 200, 'User updated!');
+        assertBodyResponse(responseBody, 200, 'User updated!');
 
         await deleteAccount(request, updatedUser);
     });

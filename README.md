@@ -80,7 +80,7 @@ playwright-qa-automation
 │     │    └── contact-form-test-cases.md
 │     │
 │     └── api
-│         └── api-response.md
+│         └── accounts-api-test-cases.md
 │
 ├── defects
 │     ├── ui

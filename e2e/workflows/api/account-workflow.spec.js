@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { createAccount, updateAccount, deleteAccount, getUserDetailByEmail } from '../../../utils/apiClient.js';
 import { verifyLogin } from '../../../utils/apiClient.js';
 import { buildUser } from '../../../utils/userFactory.js';
-import { assertAccountResponse, assertAuthenticationResponse } from '../../../utils/apiAssertions.js';
+import { assertAccountResponse, assertBodyResponse } from '../../../utils/apiAssertions.js';
 
 test.describe('create account -> login -> update -> delete -> verify login @api @workflow', () => {
 
@@ -13,7 +13,7 @@ test.describe('create account -> login -> update -> delete -> verify login @api 
         const createResponse = await createAccount(request, user);
         const createBody = await createResponse.json();
         console.log(createBody);
-        assertAuthenticationResponse(createBody, 201, 'User created!');
+        assertBodyResponse(createBody, 201, 'User created!');
 
         // 2) Get account info
         const initialUser = await getUserDetailByEmail(request, user.email);
@@ -33,7 +33,7 @@ test.describe('create account -> login -> update -> delete -> verify login @api 
         console.log('\nInitial Login:');
         console.log(loginBody);
 
-        assertAuthenticationResponse(loginBody, 200, 'User exists!');
+        assertBodyResponse(loginBody, 200, 'User exists!');
 
         // 4) Update account
         const updatedUser = { ...user, firstname: 'Testisha', birth_year: '1993' };
@@ -42,7 +42,7 @@ test.describe('create account -> login -> update -> delete -> verify login @api 
         console.log('\nUpdate Response:');
         console.log(updateBody);
 
-        assertAuthenticationResponse(updateBody, 200, 'User updated!');
+        assertBodyResponse(updateBody, 200, 'User updated!');
 
         // 5) Get account info again
         const updatedUserResponse = await getUserDetailByEmail(request, user.email);
@@ -52,7 +52,7 @@ test.describe('create account -> login -> update -> delete -> verify login @api 
 
         assertAccountResponse(updatedResponse);
         expect(updatedResponse.responseCode).toBe(200);
-        expect(updatedResponse.user.first_name).toBe('Updated');
+        expect(updatedResponse.user.first_name).toBe('Testisha');
         expect(updatedResponse.user.birth_year).toBe('1993');
 
         // 6) Delete account
@@ -61,7 +61,7 @@ test.describe('create account -> login -> update -> delete -> verify login @api 
         console.log('\nResponse After Account Deletion:');
         console.log(deleteBody);
 
-        assertAuthenticationResponse(deleteBody, 200, 'Account deleted!');
+        assertBodyResponse(deleteBody, 200, 'Account deleted!');
 
         // 7) Attempt login and verify failure
         const invalidLogin = await verifyLogin(request, { email: user.email, password: user.password });
@@ -69,6 +69,6 @@ test.describe('create account -> login -> update -> delete -> verify login @api 
         console.log('\nVerify Login Failure After Deletion:');
         console.log(invalidLoginBody);
 
-        assertAuthenticationResponse(invalidLoginBody, 404, 'User not found!');
+        assertBodyResponse(invalidLoginBody, 404, 'User not found!');
     });
 });

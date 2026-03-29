@@ -35,6 +35,9 @@ for (const product of body.products) {
 export function assertBrand(brand) {
     expect(brand).toHaveProperty('id');
     expect(brand).toHaveProperty('brand');
+
+    expect(typeof brand.id).toBe('number');
+    expect(typeof brand.brand).toBe('string');
 }
 
 export function assertBrandsResponse(body) {
@@ -65,7 +68,7 @@ export function assertAccountResponse(body) {
     expect(typeof body.user.email).toBe('string');
 }
 
-export function assertAuthenticationResponse(body, expectedCode, expectedMessage) {
+export function assertBodyResponse(body, expectedCode, expectedMessage) {
     expect(body).toHaveProperty('responseCode');
     expect(body).toHaveProperty('message');
 

@@ -1,6 +1,9 @@
 # Bug Report: Clicking "View Product" intermittently redirects to #google_vignette instead of the product detail page
 ---
 
+## Bug ID
+BUG-UI-PRODUCTS-URL-001
+
 ## Summary
 When a user clicks the View Product link from the Products page, the site intermittently redirects to a URL containing #google_vignette instead of navigating to the intended product detail page. This prevents the product details page from loading normally and interrupts the user flow.
 

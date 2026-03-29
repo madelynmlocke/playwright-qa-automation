@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { assertAuthenticationResponse } from '../../utils/apiAssertions.js';
+import { assertBodyResponse } from '../../utils/apiAssertions.js';
 import { verifyLogin } from '../../utils/apiClient.js';
 
 test.describe('Endpoint tests for user login @api @auth', () => {
@@ -14,7 +14,7 @@ test.describe('Endpoint tests for user login @api @auth', () => {
 
         const responseBody = await response.json();
         console.log(responseBody);
-        assertAuthenticationResponse(responseBody, 200, 'User exists!');
+        assertBodyResponse(responseBody, 200, 'User exists!');
 
     });
 
@@ -24,7 +24,7 @@ test.describe('Endpoint tests for user login @api @auth', () => {
 
         const responseBody = await response.json();
         console.log(responseBody);
-        assertAuthenticationResponse(responseBody, 400, 'Bad request, email or password parameter is missing in POST request.');
+        assertBodyResponse(responseBody, 400, 'Bad request, email or password parameter is missing in POST request.');
     });
 
     test('Test Case 9: POST /verifyLogin should return 404 for invalid credentials @negative', async ({ request }) => {
@@ -36,7 +36,7 @@ test.describe('Endpoint tests for user login @api @auth', () => {
 
         const responseBody = await response.json();
         console.log(responseBody);
-        assertAuthenticationResponse(responseBody, 404, 'User not found!');
+        assertBodyResponse(responseBody, 404, 'User not found!');
     });
     
     test('Test Case 10: DELETE /verifyLogin should return 405 for unsupported request method @negative', async ({ request }) => {
@@ -45,6 +45,6 @@ test.describe('Endpoint tests for user login @api @auth', () => {
 
         const responseBody = await response.json();
         console.log(responseBody);
-        assertAuthenticationResponse(responseBody, 405, 'This request method is not supported.');
+        assertBodyResponse(responseBody, 405, 'This request method is not supported.');
     });
 });

@@ -19,6 +19,20 @@ export class HomePage {
             'Video Tutorials',
             'Contact us'
         ];
+
+        //slideshow slides and images
+        this.firstSlide = page.getByText('AutomationExercise Full-').first();
+        this.secondSlide = page.getByText('AutomationExercise Full-').nth(1);
+        this.thirdSlide = page.getByText('AutomationExercise Full-').nth(2);
+
+        this.firstImg = page.getByAltText('demo website for practice').nth(0);
+        this.secondImg = page.getByAltText('demo website for practice').nth(1);
+        this.thirdImg = page.getByAltText('demo website for practice').nth(2);
+
+        this.nextArrow = page.locator('[data-slide="next"][href="#slider-carousel"]');
+
+        this.popUpAd = page.locator('iframe[name="aswift_3"]');
+        this.adButton = page.getByRole('button', { name: 'Close ad' });
     }
 
     async gotoHomePage() {
@@ -46,5 +60,29 @@ export class HomePage {
 
     async assertHero() {
         await expect(this.hero).toBeVisible();
+    }
+
+    async assertFirstSlide() {
+        await expect(this.firstSlide).toBeVisible();
+        await expect(this.firstImg).toBeVisible();
+    }
+
+        async assertSecondSlide() {
+        await expect(this.secondSlide).toBeVisible();
+        await expect(this.secondImg).toBeVisible();
+    }
+
+        async assertThirdSlide() {
+        await expect(this.thirdSlide).toBeVisible();
+        await expect(this.thirdImg).toBeVisible();
+    }
+
+    async nextSlide() {
+        await this.nextArrow.click();
+        if (await this.popUpAd.isVisible()) {
+            await this.adButton.click();
+        } else {
+            await this.nextArrow.click();
+        }
     }
 }

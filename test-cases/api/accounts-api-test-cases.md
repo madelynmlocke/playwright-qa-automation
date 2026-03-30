@@ -11,7 +11,7 @@ API-ACCOUNT-001
 Verify that POST /api/createAccount successfully creates a new user account
 
 ### Test Type
-API / Functional Test
+API / Functional / Acceptance / Smoke Test
 
 ### Preconditions
 - API service is running and accessible
@@ -46,7 +46,7 @@ POST https://automationexercise.com/api/createAccount
 4. Verify the responseCode and message fields
 
 ### Expected Result
-- HTTP status code is 200
+- HTTP status code is 201
 - Response body contains:
 ```json
 {
@@ -61,10 +61,12 @@ Response body responseCode correctly reflects 201.
 See defect report: BUG-API-POST-CREATE-001
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200 - not expected
+- Response body contains what is expected 
+
 
 ### Pass / Fail
-(To be filled during testing)
+Fail
 
 ### Severity (if failed)
 Critical
@@ -83,7 +85,7 @@ API-ACCOUNT-002
 Verify that GET /api/getUserDetailByEmail returns correct account details for a registered user
 
 ### Test Type
-API / Functional Test
+API / Functional / Acceptance / Smoke Test
 
 ### Preconditions
 - API service is running and accessible
@@ -130,10 +132,11 @@ GET https://automationexercise.com/api/getUserDetailByEmail?email=user_[timestam
 - user.first_name matches the firstname submitted during registration
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200 - Expected
+- Response body contains what is expected 
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
@@ -188,10 +191,11 @@ Same fields as createAccount, with one or more values changed. Example:
 - Subsequent GET /api/getUserDetailByEmail returns the updated field values
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200 - Expected
+- Response body contains what is expected 
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
@@ -245,10 +249,11 @@ DELETE https://automationexercise.com/api/deleteAccount
 - Subsequent POST /api/verifyLogin returns responseCode 404 and message "User not found!"
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200 - Expected
+- Response body contains what is expected 
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Critical
@@ -285,10 +290,12 @@ API / Integration Test
 - Login correctly succeeds before deletion and fails after deletion
 
 ### Actual Result
-(To be filled during testing)
+- All seven steps return the expected response codes and messages
+- GET responses reflect the correct state of the account at each point in the workflow
+- Login correctly succeeds before deletion and fails after deletion
 
 ### Pass / Fail
-(To be filled during testing)
+Passed
 
 ### Severity (if failed)
 Critical

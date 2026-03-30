@@ -1,19 +1,17 @@
 import { test, expect } from '@playwright/test';
 import { createAccount, updateAccount, deleteAccount, getUserDetailByEmail } from '../../utils/apiClient';
 import { buildUser } from '../../utils/userFactory';
-import { assertAccountResponse } from '../../utils/apiAssertions.js';
-import { assertBodyResponse } from '../../utils/apiAssertions.js';
+import { assertAccountResponse, assertBodyResponse } from '../../utils/apiAssertions.js';
 
-test.describe('Endpoint / integration tests for user accounts @api @account', () => {
+test.describe('Account API - Acceptance @api @account', () => {
 
     test('Test Case 11: POST createAccount creates a user @smoke', async ({ request }) => {
         const user = buildUser();
         const response = await createAccount(request, user);
         
-        // expect(response.status()).toBe(201); // Known bug: API returns incorrect HTTP status, validating response body instead.
+        // expect(response.status()).toBe(201); // Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-POST-CREATE-001
         const responseBody = await response.json();
         console.log(responseBody);
-
         assertBodyResponse(responseBody, 201, 'User created!');
         
         await deleteAccount(request, user);
@@ -45,10 +43,10 @@ test.describe('Endpoint / integration tests for user accounts @api @account', ()
         
         const response = await updateAccount(request, updatedUser);
         expect(response.status()).toBe(200);
-        
+        console.log('Updated user payload:', updatedUser); //stores updated info in updatedUser variable
+
         const responseBody = await response.json();
         console.log(responseBody);
-
         assertBodyResponse(responseBody, 200, 'User updated!');
 
         await deleteAccount(request, updatedUser);
@@ -70,6 +68,50 @@ test.describe('Endpoint / integration tests for user accounts @api @account', ()
         expect(responseBody.user.name).toBe(user.name);
 
         await deleteAccount(request, user);
+    });
+});
+
+test.describe('Account API - Negative / Boundary @api @account @negative', () => {
+
+    test('POST returns error for duplicate email', async ({ request }) => {
+        const user = buildUser({ email: process.env.EMAIL_VALID});
+        const response = await createAccount(request, user);
+        // expect(response.status()).toBe(400); // Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-POST-CREATE-001
+
+        const responseBody = await response.json();
+        console.log(responseBody);
+        assertBodyResponse(responseBody, 400, 'Email already exists!');
+    });
+
+    test('POST returns error when email is missing', async ({ request }) => {
+        const user = buildUser({ email: ''});
+        console.log('User payload:', user); //shows email was correctly overriden with empty values
+        const response = await createAccount(request, user);
+        // expect(response.status()).toBe(400); // Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-POST-CREATE-001
+
+        const responseBody = await response.json();
+        console.log(responseBody);
+
+        // Known bug: empty email returns 'Email already exists!' instead of a bad request error. ID: BUG-API-POST-CREATE-002
+        assertBodyResponse(responseBody, 400, 'Email already exists!');
+    });
+
+    test('GET returns error for invalid credentials', async ({ request }) => {
+        const response = await getUserDetailByEmail(request, process.env.EMAIL_INVALID);
+        //expect(response.status()).toBe(404); // Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-POST-CREATE-001
+
+        const responseBody = await response.json();
+        console.log(responseBody);
+        assertBodyResponse(responseBody, 404, 'Account not found with this email, try another email!');
+    });
+
+    test('DELETE returns error for invalid credentials', async ({ request }) => {
+        const response = await deleteAccount(request, process.env.EMAIL_INVALID);
+        //expect(response.status()).toBe(400); Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-GLOBAL-001
+
+        const responseBody = await response.json();
+        console.log(responseBody);
+        assertBodyResponse(responseBody, 400, 'Bad request, email parameter is missing in DELETE request.')
     });
 
 });

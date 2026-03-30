@@ -133,12 +133,10 @@ for future automation.
 |---------|-------------|-----------|--------|
 | API-PRODUCTS-001 | GET /api/productsList returns valid product data | e2e/api/products.api.spec.js | ✅ Automated |
 | API-PRODUCTS-002 | POST /api/productsList returns 405 | e2e/api/products.api.spec.js | ✅ Automated |
-| API-PRODUCTS-003 | POST /api/searchProduct returns matching results | e2e/api/search.api.spec.js | ✅ Automated |
-| API-PRODUCTS-004 | POST /api/searchProduct returns 400 when parameter is missing | e2e/api/search.api.spec.js | ✅ Automated |
-| API-PRODUCTS-005 | Product data consistent across products, brands, and search | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
-| API-SEARCH-003 | Search with generic term returns unrelated results (known bug) | e2e/api/search.api.spec.js | ✅ Automated |
-| API-SEARCH-004 | Search with partial search term returns matching results | — | ❌ Not Automated |
-| API-SEARCH-005 | Search with no matching term returns empty array | — | ✅ Automated |
+| API-PRODUCTS-003 | Product data consistent across products, brands, and search | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
+| API-SEARCH-001 | Search with generic term returns unrelated results (known bug) | e2e/api/search.api.spec.js | ✅ Automated |
+| API-SEARCH-002 | Search with partial search term returns matching results | — | ❌ Not Automated |
+| API-SEARCH-003 | Search with no matching term returns empty array | — | ✅ Automated |
 | API-BRANDS-001 | GET /api/brandsList returns valid brand data | e2e/api/brands.api.spec.js | ✅ Automated |
 | API-BRANDS-002 | PUT /api/brandsList returns 405 | e2e/api/brands.api.spec.js | ✅ Automated |
 | API-BRANDS-003 | Every brand object contains required fields and correct data types | e2e/api/brands.api.spec.js | ✅ Automated |
@@ -159,10 +157,8 @@ for future automation.
 | Test ID | Description | Spec File | Status |
 |---------|-------------|-----------|--------|
 | UI-HOME-001 | Homepage loads with correct title and URL | e2e/ui/homepage.spec.js | ✅ Automated |
-| UI-HOME-002 | Header and footer are visible | e2e/ui/homepage.spec.js | ✅ Automated |
-| UI-HOME-003 | Logo is visible | e2e/ui/homepage.spec.js | ✅ Automated |
-| UI-HOME-004 | Hero banner is visible | e2e/ui/homepage.spec.js | ✅ Automated |
-| UI-HOME-005 | All navigation links are visible | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-HOME-002 | Header, footer, hero, and logo are visible | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-HOME-003 | All navigation links are visible | e2e/ui/homepage.spec.js | ✅ Automated |
 | UI-LOGIN-001 | User can register a new account and delete it | e2e/ui/login.spec.js | ✅ Automated |
 | UI-LOGIN-002 | User can log in with valid credentials | e2e/ui/login.spec.js | ✅ Automated |
 | UI-LOGIN-003 | Login shows error for invalid credentials | e2e/ui/login.spec.js | ✅ Automated |
@@ -192,8 +188,7 @@ for future automation.
 | BUG-API-POST-SEARCH-TOP-001 | POST /api/searchProduct | Generic search term returns unrelated products | Medium | Open |
 | BUG-API-PUT-BRANDSLIST-001 | PUT /api/brandsList | Returns HTTP 200 instead of 405 for unsupported method | Medium | Open |
 | BUG-API-POST-CREATE-001 | POST /api/createAccount | Returns HTTP 200 instead of 201 on successful account creation | Medium | Open |
-| BUG-UI-NAV-001 | UI / Navigation | Clicking View Product intermittently redirects to #google_vignette | Medium | Open |
-| BUG-UI-VIEWPRODUCT-001 | UI / Products | View Product link unreliable due to ad overlay interference | Medium | Open |
+| BUG-UI-PRODUCTS-URL-001 | UI / Products | View Product link unreliable due to ad overlay interference | Medium | Open |
 
 ### Coverage Summary
 

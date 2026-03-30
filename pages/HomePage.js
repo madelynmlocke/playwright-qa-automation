@@ -29,7 +29,10 @@ export class HomePage {
         this.secondImg = page.getByAltText('demo website for practice').nth(1);
         this.thirdImg = page.getByAltText('demo website for practice').nth(2);
 
-        this.nextArrow = page.locator('[data-slide="next"]');
+        this.nextArrow = page.locator('[data-slide="next"][href="#slider-carousel"]');
+
+        this.popUpAd = page.locator('iframe[name="aswift_3"]');
+        this.adButton = page.getByRole('button', { name: 'Close ad' });
     }
 
     async gotoHomePage() {
@@ -61,17 +64,25 @@ export class HomePage {
 
     async assertFirstSlide() {
         await expect(this.firstSlide).toBeVisible();
+        await expect(this.firstImg).toBeVisible();
     }
 
         async assertSecondSlide() {
         await expect(this.secondSlide).toBeVisible();
+        await expect(this.secondImg).toBeVisible();
     }
 
         async assertThirdSlide() {
         await expect(this.thirdSlide).toBeVisible();
+        await expect(this.thirdImg).toBeVisible();
     }
 
     async nextSlide() {
         await this.nextArrow.click();
+        if (await this.popUpAd.isVisible()) {
+            await this.adButton.click();
+        } else {
+            await this.nextArrow.click();
+        }
     }
 }

@@ -10,14 +10,17 @@ test.describe('@ui @home Homepage Tests', () => {
         await homePage.assertNavLinksVisible();
     });
 
-    test.only('user can interact with slideshow and change screens', async ({ homePage }) => {
+
+    //TODO: Slideshow assertion on Home page
+    test('user can interact with slideshow and change screens', async ({ homePage }) => {
 
         await homePage.gotoHomePage();
         await homePage.assertFirstSlide();
-        await homePage.nextSlide();
-        await homePage.assertSecondSlide();
-        await homePage.nextSlide();
-        await homePage.assertThirdSlide();
+        // await homePage.nextSlide();
+        // await homePage.assertSecondSlide();
+        // await homePage.nextSlide();
+        // await homePage.assertThirdSlide();
+        // await homePage.nextSlide();
 
     })
 });

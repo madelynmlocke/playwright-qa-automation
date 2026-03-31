@@ -158,3 +158,119 @@ endpoints. A failure may indicate a product was assigned a brand that was not re
 in the brands list, or that the brands list is incomplete. Investigate each endpoint
 individually using API-BRANDS-001 and API-PRODUCTS-001 before assuming the integration
 itself is broken.
+
+---
+
+## Test Case: POST to /brandsList returns 405 Method Not Allowed
+
+### Test ID
+API-BRANDS-005
+
+### Test Title
+Verify that POST /api/brandsList returns 405 Method Not Allowed
+
+### Test Type
+API / Negative Test
+
+### Preconditions
+- API service is running and accessible
+
+### Request
+POST https://automationexercise.com/api/brandsList
+
+### Request Body
+None
+
+### Test Steps
+1. Send a POST request to /api/brandsList
+2. Observe the HTTP status code
+3. Parse the JSON response body
+4. Verify the responseCode field is 405
+5. Verify the message field indicates the method is not supported
+
+### Expected Result
+- HTTP status code is 405
+- Response body contains:
+```json
+{
+  "responseCode": 405,
+  "message": "This request method is not supported."
+}
+```
+
+### Actual Result
+- HTTP status code is 200 (Known bug: API returns incorrect HTTP status. See BUG-API-GLOBAL-001)
+- Response body returned:
+```json
+{
+  "responseCode": 405,
+  "message": "This request method is not supported."
+}
+```
+
+### Pass / Fail
+Pass
+
+### Severity (if failed)
+Medium
+
+### Automation Status
+Automated — API-BRANDS-005 in brands.api.spec.js
+
+---
+
+## Test Case: DELETE to /brandsList returns 405 Method Not Allowed
+
+### Test ID
+API-BRANDS-006
+
+### Test Title
+Verify that DELETE /api/brandsList returns 405 Method Not Allowed
+
+### Test Type
+API / Negative Test
+
+### Preconditions
+- API service is running and accessible
+
+### Request
+DELETE https://automationexercise.com/api/brandsList
+
+### Request Body
+None
+
+### Test Steps
+1. Send a DELETE request to /api/brandsList
+2. Observe the HTTP status code
+3. Parse the JSON response body
+4. Verify the responseCode field is 405
+5. Verify the message field indicates the method is not supported
+
+### Expected Result
+- HTTP status code is 405
+- Response body contains:
+```json
+{
+  "responseCode": 405,
+  "message": "This request method is not supported."
+}
+```
+
+### Actual Result
+- HTTP status code is 200 (Known bug: API returns incorrect HTTP status. See BUG-API-GLOBAL-001)
+- Response body returned:
+```json
+{
+  "responseCode": 405,
+  "message": "This request method is not supported."
+}
+```
+
+### Pass / Fail
+Pass
+
+### Severity (if failed)
+Medium
+
+### Automation Status
+Automated — API-BRANDS-006 in brands.api.spec.js

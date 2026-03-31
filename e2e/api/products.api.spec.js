@@ -24,5 +24,6 @@ test.describe('Endpoint tests for /productsList @api @products', () => {
 
     const responseBody = await response.json();
     assertBodyResponse(responseBody, 405, 'This request method is not supported.')
+    console.log(responseBody);
   });
 });

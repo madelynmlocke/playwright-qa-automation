@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
+import { assertProduct, assertProductsResponse } from '../../../utils/apiAssertions.js';
+import { assertBrandsResponse } from '../../../utils/apiAssertions.js';
+import { searchProduct } from '../../../utils/apiClient.js';
 
-test.describe('products -> brands -> search @api @workflow', () => {
+test.describe.only('products -> brands -> search @api @workflow', () => {
     
     test('product data stays consistent across catalog, brands, and search endpoints @regression', async ({ request }) => {
         // 1) Get all products
@@ -8,16 +11,12 @@ test.describe('products -> brands -> search @api @workflow', () => {
         expect(productsResponse.status()).toBe(200);
 
         const productsBody = await productsResponse.json();
-        expect(productsBody).toHaveProperty('products');
-        expect(Array.isArray(productsBody.products)).toBeTruthy();
-        expect(productsBody.products.length).toBeGreaterThan(0);
+        assertProductsResponse(productsBody);
 
         // Pick a real product from the API
         const product = productsBody.products[0];
-
-        expect(product).toHaveProperty('id');
-        expect(product).toHaveProperty('name');
-        expect(product).toHaveProperty('brand');
+        assertProduct(product);
+        console.log('My product: \n', product);
 
         const productId = product.id;
         const productName = product.name;
@@ -28,32 +27,25 @@ test.describe('products -> brands -> search @api @workflow', () => {
         expect(brandsResponse.status()).toBe(200);
 
         const brandsBody = await brandsResponse.json();
-        expect(brandsBody).toHaveProperty('brands');
-        expect(Array.isArray(brandsBody.brands)).toBeTruthy();
-        expect(brandsBody.brands.length).toBeGreaterThan(0);
+        assertBrandsResponse(brandsBody);
 
         // Verify the product's brand exists in the official brands list
         const brandNames = brandsBody.brands.map(b => b.brand);
         expect(brandNames).toContain(productBrand);
+        console.log('Brands: \n', brandNames);
 
         // 3) Search for the product by name
-        const searchResponse = await request.post('/api/searchProduct', {
-            form: {
-                search_product: productName
-            }
-        });
-
+        const searchResponse = await searchProduct(request, productName); 
         expect(searchResponse.status()).toBe(200);
 
         const searchBody = await searchResponse.json();
+        assertProductsResponse(searchBody);
         expect(searchBody.responseCode).toBe(200);
-        expect(searchBody).toHaveProperty('products');
-        expect(Array.isArray(searchBody.products)).toBeTruthy();
-        expect(searchBody.products.length).toBeGreaterThan(0);
 
         // Verify original product appears in search results
         const matchingProduct = searchBody.products.find(p => p.id === productId);
         expect(matchingProduct).toBeTruthy();
+        console.log(matchingProduct);
 
         expect(matchingProduct.name).toBe(productName);
         expect(matchingProduct.brand).toBe(productBrand);

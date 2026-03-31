@@ -24,7 +24,9 @@ GET https://automationexercise.com/api/brandsList
 2. Observe the HTTP status code
 3. Parse the JSON response body
 4. Verify the responseCode and brands fields
-5. Verify the first brand in the list contains all expected fields with correct data types
+5. For every brand object in the array verify:
+   - id field is present and is a number
+   - brand field is present and is a non-empty string
 
 ### Expected Result
 - HTTP status code is 200
@@ -44,13 +46,19 @@ GET https://automationexercise.com/api/brandsList
 - Each brand contains: id (number), brand (string)
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200
+- Response body contains what is expected
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Critical
+
+### Notes
+This test validates the schema of every item in the brands array, not just the first.
+If any brand object is missing a required field or contains an unexpected data type,
+a defect should be logged.
 
 ---
 
@@ -97,74 +105,21 @@ Response body responseCode correctly reflects 405.
 See defect report: BUG-API-PUT-BRANDSLIST-001
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200 - Unexpected
+- Response body contains what is expected
 
 ### Pass / Fail
-(To be filled during testing)
+Fail
 
 ### Severity (if failed)
 Medium
 
 ---
 
-## Test Case: Brand Data Contains Required Fields
-
-### Test ID
-API-BRANDS-003
-
-### Test Title
-Verify that every brand object in the response contains all required fields with correct data types
-
-### Test Type
-API / Schema Validation Test
-
-### Preconditions
-- API service is running and accessible
-
-### Request
-GET https://automationexercise.com/api/brandsList
-
-### Test Steps
-1. Send a GET request to /api/brandsList
-2. Observe the HTTP status code
-3. Parse the JSON response body
-4. Verify the responseCode is 200 and brands is a non-empty array
-5. For every brand object in the array verify:
-   - id field is present and is a number
-   - brand field is present and is a non-empty string
-
-### Expected Result
-- HTTP status code is 200
-- Every brand object in the array contains:
-
-| Field | Type | Example |
-|-------|------|---------|
-| id | number | 1 |
-| brand | string | "Polo" |
-
-- No brand object is missing either field
-- No brand object contains null or empty values for either field
-
-### Actual Result
-(To be filled during testing)
-
-### Pass / Fail
-(To be filled during testing)
-
-### Severity (if failed)
-High
-
-### Notes
-This test validates the schema of every item in the brands array, not just the first.
-If any brand object is missing a required field or contains an unexpected data type,
-a defect should be logged.
-
----
-
 ## Test Case: Brand Exists in Products List
 
 ### Test ID
-API-BRANDS-004
+API-BRANDS-003
 
 ### Test Title
 Verify that brands returned by /api/brandsList are consistent with brands referenced in /api/productsList
@@ -187,10 +142,12 @@ API / Integration Test
 - No product references a brand that is absent from the official brands list
 
 ### Actual Result
-(To be filled during testing)
+- Both endpoints return responseCode 200 with non-empty arrays
+- Every brand referenced in /api/productsList exists as an entry in /api/brandsList
+- No product references a brand that is absent from the official brands list
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High

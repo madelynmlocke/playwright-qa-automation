@@ -68,7 +68,7 @@ See defect report: BUG-API-POST-CREATE-001
 ### Pass / Fail
 Fail
 
-### Severity (if failed)
+### Severity 
 Critical
 
 ### Cleanup
@@ -138,7 +138,7 @@ GET https://automationexercise.com/api/getUserDetailByEmail?email=user_[timestam
 ### Pass / Fail
 Pass
 
-### Severity (if failed)
+### Severity
 High
 
 ### Cleanup
@@ -197,7 +197,7 @@ Same fields as createAccount, with one or more values changed. Example:
 ### Pass / Fail
 Pass
 
-### Severity (if failed)
+### Severity 
 High
 
 ### Cleanup
@@ -255,7 +255,7 @@ DELETE https://automationexercise.com/api/deleteAccount
 ### Pass / Fail
 Pass
 
-### Severity (if failed)
+### Severity 
 Critical
 
 ---
@@ -297,10 +297,267 @@ API / Integration Test
 ### Pass / Fail
 Passed
 
-### Severity (if failed)
+### Severity
 Critical
 
 ### Notes
 This is an integration test covering the full account lifecycle. A failure in any step should be
 investigated in isolation using the individual test cases API-ACCOUNT-001 through API-ACCOUNT-004
 before assuming the integration itself is broken.
+
+---
+
+## Test Case: Create Account with Duplicate Email
+
+### Test ID
+API-ACCOUNT-006
+
+### Test Title
+Verify that POST /api/createAccount returns an error when the email already exists
+
+### Test Type
+API / Negative Test
+
+### Preconditions
+- API service is running and accessible
+- The email being used already exists in the system
+
+### Request
+POST https://automationexercise.com/api/createAccount
+
+### Request Body (form data)
+| Field | Value |
+|-------|-------|
+| name | Test |
+| email | (existing registered email from environment) |
+| password | testpassword |
+| title | Mrs |
+| birth_date | 10 |
+| birth_month | 10 |
+| birth_year | 1990 |
+| firstname | Testina |
+| lastname | McTesterson |
+| address1 | 456 Testing St |
+| country | United States |
+| zipcode | 98109 |
+| state | WA |
+| city | Seattle |
+| mobile_number | 2065559999 |
+
+### Test Steps
+1. Send a POST request to /api/createAccount using an email address that already exists in the system
+2. Observe the HTTP status code
+3. Parse the JSON response body
+4. Verify the responseCode is 400
+5. Verify the message indicates the email already exists
+
+### Expected Result
+- HTTP status code is 400
+- Response body contains:
+```json
+{
+  "responseCode": 400,
+  "message": "Email already exists!"
+}
+```
+
+### Known Bug
+HTTP status code should be 400 but the API returns 200.
+Response body responseCode correctly reflects 400.
+See defect report: BUG-API-POST-CREATE-001
+
+### Actual Result
+- HTTP status code is 200 — not expected
+- Response body contains expected responseCode and message
+
+### Pass / Fail
+Fail
+
+### Severity
+Medium
+
+---
+
+## Test Case: Create Account with Missing Email
+
+### Test ID
+API-ACCOUNT-007
+
+### Test Title
+Verify that POST /api/createAccount returns an error when the email field is empty
+
+### Test Type
+API / Negative Test
+
+### Preconditions
+- API service is running and accessible
+
+### Request
+POST https://automationexercise.com/api/createAccount
+
+### Request Body (form data)
+| Field | Value |
+|-------|-------|
+| name | Test |
+| email | (empty string) |
+| password | testpassword |
+| title | Mrs |
+| birth_date | 10 |
+| birth_month | 10 |
+| birth_year | 1990 |
+| firstname | Testina |
+| lastname | McTesterson |
+| address1 | 456 Testing St |
+| country | United States |
+| zipcode | 98109 |
+| state | WA |
+| city | Seattle |
+| mobile_number | 2065559999 |
+
+### Test Steps
+1. Send a POST request to /api/createAccount with the email field set to an empty string
+2. Observe the HTTP status code
+3. Parse the JSON response body
+4. Verify the responseCode and message fields
+
+### Expected Result
+- HTTP status code is 400
+- Response body contains:
+```json
+{
+  "responseCode": 400,
+  "message": "Bad request, email parameter is missing in POST request."
+}
+```
+
+### Known Bug
+API returns responseCode 400 with message "Email already exists!" instead of a
+missing parameter error when email is empty. This is incorrect behavior —
+an empty email should be treated as a missing required field, not matched
+against existing accounts.
+See defect report: BUG-API-POST-CREATE-002
+
+### Actual Result
+- HTTP status code is 200 — not expected
+- Response body responseCode is 400 but message is "Email already exists!"
+  instead of a missing field error
+
+### Pass / Fail
+Fail
+
+### Severity
+Medium
+
+---
+
+## Test Case: Get User Detail with Non-Existent Email
+
+### Test ID
+API-ACCOUNT-008
+
+### Test Title
+Verify that GET /api/getUserDetailByEmail returns an error for an email that does not exist
+
+### Test Type
+API / Negative Test
+
+### Preconditions
+- API service is running and accessible
+- The email used does not exist in the system
+
+### Request
+GET https://automationexercise.com/api/getUserDetailByEmail
+
+### Request Parameters
+| Field | Value |
+|-------|-------|
+| email | (invalid / non-existent email from environment) |
+
+### Test Steps
+1. Send a GET request to /api/getUserDetailByEmail with an email that does not exist in the system
+2. Observe the HTTP status code
+3. Parse the JSON response body
+4. Verify the responseCode is 404
+5. Verify the message indicates the account was not found
+
+### Expected Result
+- HTTP status code is 404
+- Response body contains:
+```json
+{
+  "responseCode": 404,
+  "message": "Account not found with this email, try another email!"
+}
+```
+
+### Known Bug
+HTTP status code should be 404 but the API returns 200.
+Response body responseCode correctly reflects 404.
+See defect report: BUG-API-POST-CREATE-001
+
+### Actual Result
+- HTTP status code is 200 — not expected
+- Response body contains expected responseCode and message
+
+### Pass / Fail
+Fail
+
+### Severity
+Medium
+
+---
+
+## Test Case: Delete Account with Missing Email
+
+### Test ID
+API-ACCOUNT-009
+
+### Test Title
+Verify that DELETE /api/deleteAccount returns an error when the credentials are invalid
+
+### Test Type
+API / Negative Test
+
+### Preconditions
+- API service is running and accessible
+
+### Request
+DELETE https://automationexercise.com/api/deleteAccount
+
+### Request Body (form data)
+| Field | Value |
+|-------|-------|
+| email | (invalid email) |
+| password | (invalid password from environment) |
+
+### Test Steps
+1. Send a DELETE request to /api/deleteAccount without a valid email or password parameter
+2. Observe the HTTP status code
+3. Parse the JSON response body
+4. Verify the responseCode is 400
+5. Verify the message indicates the account is not found
+
+### Expected Result
+- HTTP status code is 400
+- Response body contains:
+```json
+{
+  "responseCode": 404,
+  "message": "Account not found!"
+}
+```
+
+### Known Bug
+HTTP status code should be 400 but the API returns 200.
+Response body responseCode correctly reflects 400.
+See defect report: BUG-API-GLOBAL-001
+
+### Actual Result
+- HTTP status code is 200 — not expected
+- Response body contains expected responseCode and message
+
+### Pass / Fail
+Fail
+
+### Severity 
+Medium

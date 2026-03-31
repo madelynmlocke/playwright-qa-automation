@@ -23,4 +23,22 @@ test.describe('Endpoint tests for /api/brandsList @api @brands', () => {
         console.log(responseBody); 
         assertBodyResponse(responseBody, 405, 'This request method is not supported.');
     });
+
+    test('Test Case 5: POST to /brandsList returns 405 @negative', async ({ request }) => { //TODO: WRITE TEST CASE !!!!!!!!!!!!
+        const response = await request.post('/api/brandsList'); 
+        //expect(response.status()).toBe(405); // Known bug: API returns incorrect HTTP status, validating response body instead.
+
+        const responseBody = await response.json();
+        console.log(responseBody); 
+        assertBodyResponse(responseBody, 405, 'This request method is not supported.');
+    });
+
+        test('Test Case 6: DELETE to /brandsList returns 405 @negative', async ({ request }) => { //TODO: WRITE TEST CASE !!!!!!!!!!!!
+        const response = await request.delete('/api/brandsList'); 
+        //expect(response.status()).toBe(405); // Known bug: API returns incorrect HTTP status, validating response body instead.
+
+        const responseBody = await response.json();
+        console.log(responseBody); 
+        assertBodyResponse(responseBody, 405, 'This request method is not supported.');
+    });
 });

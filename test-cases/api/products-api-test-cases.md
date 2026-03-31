@@ -147,7 +147,7 @@ API / Integration Test
 (To be filled during testing)
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High

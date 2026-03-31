@@ -139,18 +139,22 @@ for future automation.
 | API-SEARCH-003 | Search with no matching term returns empty array | — | ✅ Automated |
 | API-BRANDS-001 | GET /api/brandsList returns valid brand data | e2e/api/brands.api.spec.js | ✅ Automated |
 | API-BRANDS-002 | PUT /api/brandsList returns 405 | e2e/api/brands.api.spec.js | ✅ Automated |
-| API-BRANDS-003 | Every brand object contains required fields and correct data types | e2e/api/brands.api.spec.js | ✅ Automated |
-| API-BRANDS-004 | Brands in /api/brandsList are consistent with /api/productsList | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
+| API-BRANDS-003 | Brands in /api/brandsList are consistent with /api/productsList | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
 | API-AUTH-001 | POST /api/verifyLogin returns 200 with valid credentials | e2e/api/auth.api.spec.js | ✅ Automated |
 | API-AUTH-002 | POST /api/verifyLogin returns 400 when credentials are missing | e2e/api/auth.api.spec.js | ✅ Automated |
 | API-AUTH-003 | POST /api/verifyLogin returns 404 with invalid credentials | e2e/api/auth.api.spec.js | ✅ Automated |
 | API-AUTH-004 | DELETE /api/verifyLogin returns 405 for unsupported method | e2e/api/auth.api.spec.js | ✅ Automated |
+| API-AUTH-006 | GET /api/verifyLogin returns 405 for unsupported method | e2e/api/auth.api.spec.js | ✅ Automated |
 | API-AUTH-005 | POST /api/verifyLogin returns 404 after account deletion | e2e/workflows/api/account-workflow.spec.js | ✅ Automated |
 | API-ACCOUNT-001 | POST /api/createAccount creates a new user account | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-002 | GET /api/getUserDetailByEmail returns correct account details | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-003 | PUT /api/updateAccount successfully updates an existing account | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-004 | DELETE /api/deleteAccount successfully removes a user account | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-005 | Account data consistent across create, login, update, and delete | e2e/workflows/api/account-workflow.spec.js | ✅ Automated |
+| API-ACCOUNT-006 | POST /api/createAccount returns error for duplicate email | e2e/api/account.api.spec.js | ✅ Automated |
+| API-ACCOUNT-007 | POST /api/createAccount returns error when email is missing | e2e/api/account.api.spec.js | ✅ Automated |
+| API-ACCOUNT-008 | GET /api/getUserDetailByEmail returns error for invalid credentials | e2e/api/account.api.spec.js | ✅ Automated |
+| API-ACCOUNT-009 | DELETE /api/deleteAccount returns error for invalid credentials | e2e/api/account.api.spec.js | ✅ Automated |
 
 ### UI Coverage
 

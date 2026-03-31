@@ -2,7 +2,7 @@
 ---
 
 ## Bug ID
-BUG-API-POST-INVALID-LOGIN-001
+BUG-API-POST-LOGIN-002
 
 ## Summary
 Sending a POST request to /api/verifyLogin is returning an incorrect HTTP response of 200 instead of 404. 

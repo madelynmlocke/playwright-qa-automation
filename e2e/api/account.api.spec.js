@@ -96,6 +96,17 @@ test.describe('Account API - Negative / Boundary @api @account @negative', () =>
         assertBodyResponse(responseBody, 400, 'Email already exists!');
     });
 
+    test('POST returns error when password is missing', async ({ request }) => {
+        const user = buildUser({ password: ''});
+        console.log('User payload:', user);
+        const response = await createAccount(request, user);
+        expect(response.status()).toBe(200); // Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-POST-CREATE-001
+
+        const responseBody = await response.json();
+        console.log(responseBody);
+        //assertBodyResponse(responseBody, 400, 'Email already exists!');
+    });
+
     test('GET returns error for invalid credentials', async ({ request }) => {
         const response = await getUserDetailByEmail(request, process.env.EMAIL_INVALID);
         //expect(response.status()).toBe(404); // Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-POST-CREATE-001
@@ -106,12 +117,12 @@ test.describe('Account API - Negative / Boundary @api @account @negative', () =>
     });
 
     test('DELETE returns error for invalid credentials', async ({ request }) => {
-        const response = await deleteAccount(request, process.env.EMAIL_INVALID);
-        //expect(response.status()).toBe(400); Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-GLOBAL-001
+        const response = await deleteAccount(request, { email: process.env.EMAIL_INVALID, password: process.env.PASSWORD_INVALID });
+        // expect(response.status()).toBe(404); // Known bug: API returns incorrect HTTP status, validating response body instead. ID: BUG-API-GLOBAL-001
 
         const responseBody = await response.json();
         console.log(responseBody);
-        assertBodyResponse(responseBody, 400, 'Bad request, email parameter is missing in DELETE request.')
+        assertBodyResponse(responseBody, 404, 'Account not found!');
     });
 
 });

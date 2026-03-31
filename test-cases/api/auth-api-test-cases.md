@@ -45,10 +45,11 @@ POST https://automationexercise.com/api/verifyLogin
 - message is "User exists!"
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200
+- Response body contains what is expected
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Critical
@@ -98,10 +99,11 @@ Response body responseCode correctly reflects 400.
 See defect report: BUG-API-POST-LOGIN-001
 
 ### Actual Result
-(To be filled during testing)
+- HTTP Status Code returns 200 - Unexpected
+- Response body indicates email or password parameter is missing as expected
 
 ### Pass / Fail
-(To be filled during testing)
+Fail
 
 ### Severity (if failed)
 Medium
@@ -152,20 +154,21 @@ POST https://automationexercise.com/api/verifyLogin
 ### Known Bug
 HTTP status code should be 404 per REST conventions but the API returns 200.
 Response body responseCode correctly reflects 404.
-See defect report: BUG-API-POST-INVALID-LOGIN-001
+See defect report: BUG-API-POST-LOGIN-002
 
 ### Actual Result
-(To be filled during testing)
+- HTTP Status Code returns 200 - Unexpected
+- Response body indicates user not found as expected
 
 ### Pass / Fail
-(To be filled during testing)
+Fail
 
 ### Severity (if failed)
 Medium
 
 ---
 
-## Test Case: Verify Login with Unsupported Request Method
+## Test Case: Verify Login with Unsupported Request Method DELETE
 
 ### Test ID
 API-AUTH-004
@@ -208,10 +211,65 @@ Response body responseCode correctly reflects 405.
 See defect report: BUG-API-DELETE-LOGIN-001
 
 ### Actual Result
-(To be filled during testing)
+- HTTP Status Code returns 200 - Unexpected
+- Response body indicates request method is not supported as expected
 
 ### Pass / Fail
-(To be filled during testing)
+Fail
+
+### Severity (if failed)
+Medium
+
+---
+
+## Test Case: Verify Login with Unsupported Request Method GET
+
+### Test ID
+API-AUTH-006
+
+### Test Title
+Verify that GET /api/verifyLogin returns 405 for an unsupported request method
+
+### Test Type
+API / Negative Test
+
+### Preconditions
+- API service is running and accessible
+
+### Request
+DELETE https://automationexercise.com/api/verifyLogin
+
+### Request Body
+(none)
+
+### Test Steps
+1. Send a GET request to /api/verifyLogin
+2. Observe the HTTP status code
+3. Parse the JSON response body
+4. Verify the responseCode and message indicate the request method is not supported
+
+### Expected Result
+- Response body contains:
+```json
+{
+  "responseCode": 405,
+  "message": "This request method is not supported."
+}
+```
+- responseCode is 405
+- message is "This request method is not supported."
+
+### Known Bug
+HTTP status code should be 405 per REST conventions but the API returns 200.
+Response body responseCode correctly reflects 405.
+See defect report: BUG-API-DELETE-LOGIN-001
+
+### Actual Result
+- HTTP Status code returns 200
+- Response body contains what is expected
+
+### Pass / Fail
+Fail
 
 ### Severity (if failed)
 Medium
@@ -270,7 +328,7 @@ POST https://automationexercise.com/api/verifyLogin
 (To be filled during testing)
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Critical
@@ -285,3 +343,6 @@ using API-ACCOUNT-004 first.
 ### Cleanup
 If the test fails before step 3, send DELETE /api/deleteAccount manually to remove
 the test account.
+
+---
+

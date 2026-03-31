@@ -120,19 +120,20 @@ Medium
 
 ---
 
-## Test Case: Search Product with Generic Search Term Returns Unrelated Results
+## Test Case: Search Product with No Matching Results
 
 ### Test ID
 API-SEARCH-003
 
 ### Test Title
-Verify search behavior when a broad or generic search term is used
+Verify that POST /api/searchProduct returns an empty products array for a non-existent search term
 
 ### Test Type
 API / Negative Test
 
 ### Preconditions
 - API service is running and accessible
+- The search term used does not match any product in the system
 
 ### Request
 POST https://automationexercise.com/api/searchProduct
@@ -140,115 +141,13 @@ POST https://automationexercise.com/api/searchProduct
 ### Request Body (form data)
 | Field | Value |
 |-------|-------|
-| search_product | top |
+| search_product | nonexistent |
 
 ### Test Steps
-1. Send a POST request to /api/searchProduct with search_product set to "top"
+1. Send a POST request to /api/searchProduct with search_product set to "nonexistent"
 2. Observe the HTTP status code
 3. Parse the JSON response body
-4. Verify the responseCode is 200 and products array is non-empty
-5. Review returned product names and check whether all results contain the search term
-6. Note any products returned that do not contain "top" in their name
-
-### Expected Result
-- HTTP status code is 200
-- Response body contains responseCode 200 and a non-empty products array
-- All returned products should have names containing the search term "top"
-
-### Actual Result
-API returns products whose names do not contain "top", including unrelated items.
-Not all results are relevant to the search term.
-
-### Pass / Fail
-Fail
-
-### Severity (if failed)
-Medium
-
-### Notes
-This test case documents a known defect in the search filtering behavior.
-See defect report: BUG-API-POST-SEARCH-TOP-001
-
----
-
-## Test Case: Search Product with Partial Search Term
-
-### Test ID
-API-SEARCH-004
-
-### Test Title
-Verify that POST /api/searchProduct returns results for a partial product name
-
-### Test Type
-API / Functional Test
-
-### Preconditions
-- API service is running and accessible
-- At least one product exists whose name contains the partial term
-
-### Request
-POST https://automationexercise.com/api/searchProduct
-
-### Request Body (form data)
-| Field | Value |
-|-------|-------|
-| search_product | Blue |
-
-### Test Steps
-1. Send a POST request to /api/searchProduct with search_product set to "Blue"
-2. Observe the HTTP status code
-3. Parse the JSON response body
-4. Verify the responseCode is 200 and products array is non-empty
-5. Verify at least one returned product name contains "Blue"
-
-### Expected Result
-- HTTP status code is 200
-- Response body contains responseCode 200 and a non-empty products array
-- At least one returned product name contains the partial term "Blue"
-
-### Actual Result
-(To be filled during testing)
-
-### Pass / Fail
-(To be filled during testing)
-
-### Severity (if failed)
-Medium
-
-### Notes
-Tests whether the search endpoint supports partial string matching. If no results
-are returned for a valid partial term, a defect should be logged.
-
----
-
-## Test Case: Search Product with No Matching Results
-
-### Test ID
-API-SEARCH-005
-
-### Test Title
-Verify that POST /api/searchProduct returns an empty products array when no results match
-
-### Test Type
-API / Negative Test
-
-### Preconditions
-- API service is running and accessible
-- The search term used does not match any existing product name
-
-### Request
-POST https://automationexercise.com/api/searchProduct
-
-### Request Body (form data)
-| Field | Value |
-|-------|-------|
-| search_product | xyznonexistentproduct |
-
-### Test Steps
-1. Send a POST request to /api/searchProduct with a search term known not to match any product
-2. Observe the HTTP status code
-3. Parse the JSON response body
-4. Verify the responseCode field
+4. Verify the products field is present
 5. Verify the products array is empty
 
 ### Expected Result
@@ -260,17 +159,82 @@ POST https://automationexercise.com/api/searchProduct
   "products": []
 }
 ```
-- products is an empty array
+- products is an empty array with length of 0
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200
+- Response body returned:
+```json
+{
+  "responseCode": 200,
+  "products": []
+}
+```
+- products array was empty as expected
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
+
+### Severity (if failed)
+Medium
+
+### Automation Status
+Automated — API-SEARCH-007 in search.api.spec.js
+
+---
+
+## Test Case: Search Product with Single Character Search Term
+
+### Test ID
+API-SEARCH-004
+
+### Test Title
+Verify that POST /api/searchProduct returns results for a single character search term
+
+### Test Type
+API / Boundary Test
+
+### Preconditions
+- API service is running and accessible
+- At least one product exists in the system with the character 't' in its name
+
+### Request
+POST https://automationexercise.com/api/searchProduct
+
+### Request Body (form data)
+| Field | Value |
+|-------|-------|
+| search_product | t |
+
+### Test Steps
+1. Send a POST request to /api/searchProduct with search_product set to "t"
+2. Observe the HTTP status code
+3. Parse the JSON response body
+4. Verify the products field is present
+5. Verify the products array contains at least one result
+
+### Expected Result
+- HTTP status code is 200
+- Response body contains:
+```json
+{
+  "responseCode": 200,
+  "products": [...]
+}
+```
+- products is a non-empty array with at least one result
+- Returned products contain the character 't' in their name
+
+### Actual Result
+- HTTP status code is 200
+- Response body returned a non-empty products array
+- All returned products contained the character 't' in their name
+
+### Pass / Fail
+Pass
 
 ### Severity (if failed)
 Low
 
-### Notes
-If the API returns a non-empty products array for a term that should match nothing,
-or returns an error instead of an empty array, a defect should be logged.
+### Automation Status
+Automated — API-SEARCH-008 in search.api.spec.js

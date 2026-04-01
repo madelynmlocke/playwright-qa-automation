@@ -151,7 +151,7 @@ High
 ## Test Case: Scroll Up and Scroll Down Functionality
 
 ### Test ID
-UI-HOME-006
+UI-HOME-004
 
 ### Test Title
 Verify scroll down and scroll up functionality using mouse wheel, PageDown key, and scroll-up arrow button

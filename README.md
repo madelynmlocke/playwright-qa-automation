@@ -44,6 +44,9 @@ playwright-qa-automation
 │     ├── apiAssertions.js
 │     └── userFactory.js
 │
+├── fixtures
+│     └── index.js
+│
 ├── pages
 │     ├── ContactPage.js
 │     ├── HomePage.js
@@ -89,7 +92,8 @@ playwright-qa-automation
 │
 ├── defects
 │     ├── ui
-│     │    └── BUG-UI-PRODUCTS-URL-001.md
+│     │    ├── BUG-UI-PRODUCTS-URL-001.md
+│     │    └── BUG-UI-CONTACT-001.md
 │     │
 │     └── api
 │         ├── BUG-API-DELETE-LOGIN-001.md
@@ -164,6 +168,7 @@ for future automation.
 | UI-HOME-001 | Homepage loads with correct title and URL | e2e/ui/homepage.spec.js | ✅ Automated |
 | UI-HOME-002 | Header, footer, hero, and logo are visible | e2e/ui/homepage.spec.js | ✅ Automated |
 | UI-HOME-003 | All navigation links are visible and redirect correctly | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-HOME-004 | Verify Scroll Up and Scroll Down functionality | e2e/ui/homepage.spec.js | ✅ Automated |
 | UI-LOGIN-001 | User can register a new account and delete it | e2e/ui/login.spec.js | ✅ Automated |
 | UI-LOGIN-002 | User can log in with valid credentials | e2e/ui/login.spec.js | ✅ Automated |
 | UI-LOGIN-003 | Login shows error for invalid credentials | e2e/ui/login.spec.js | ✅ Automated |
@@ -172,7 +177,8 @@ for future automation.
 | UI-LOGIN-006 | User can log out successfully | — | ❌ Not Automated |
 | UI-CONTACT-001 | Contact form fields are visible | e2e/ui/contact-form.spec.js | ✅ Automated |
 | UI-CONTACT-002 | Contact form can be submitted successfully | e2e/ui/contact-form.spec.js | ✅ Automated |
-| UI-CONTACT-003 | Contact form shows error when required fields are missing | — | ❌ Not Automated |
+| UI-CONTACT-003 | Contact form shows error when email is missing | — | ✅ Automated |
+| UI-CONTACT-004 | Contact form shows error when multiple fields are missing | — | ✅ Automated |
 | UI-PRODUCTS-001 | Products page loads and displays product list | e2e/ui/products.spec.js | ✅ Automated |
 | UI-PRODUCTS-002 | Product detail page loads with correct fields | e2e/ui/products.spec.js | ✅ Automated |
 | UI-PRODUCTS-003 | Search returns matching products | e2e/ui/products.spec.js | ✅ Automated |
@@ -197,6 +203,7 @@ for future automation.
 | BUG-API-POST-CREATE-002 | POST /api/createAccount | Body returns 'Email Already exists' instead of bad request | Medium | Open |
 | BUG-API-POST-CREATE-003 | POST /api/createAccount | Sending missing password POST request does not return error | Medium | Open |
 | BUG-UI-PRODUCTS-URL-001 | UI / Products | View Product link unreliable due to ad overlay interference | Medium | Open |
+| BUG-UI-CONTACT-001 | UI / Contact | Contact Form accepts submission with only email filled | Medium | Open |
 
 ### Coverage Summary
 

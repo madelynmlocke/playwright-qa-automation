@@ -33,16 +33,16 @@ UI / Functional Test
 - Submit button is visible
 
 ### Actual Result
-(To be filled during testing)
+- Page URL contains /contact_us
+- "Get In Touch" heading is visible
+- All four form fields (Name, Email, Subject, Message) are visible
+- Submit button is visible
 
 ### Pass / Fail
 Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/contact-form.spec.js (`assertForm()`)
 
 ---
 
@@ -86,27 +86,24 @@ UI / Functional Test
 - Success message is visible: "Success! Your details have been submitted successfully."
 
 ### Actual Result
-(To be filled during testing)
+- Form submits without errors
+- Success message is visible: "Success! Your details have been submitted successfully."
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
 
-### Automation Status
-✅ Automated — e2e/ui/contact-form.spec.js (`fillForm()`, `submitForm()`, `assertSubmission()`)
-
 ---
 
-## Test Case: Contact Form Shows Error When Required Fields Are Missing
+## Test Case: Contact Form Shows Error When Email is Missing
 
 ### Test ID
 UI-CONTACT-003
 
 ### Test Title
-Verify that the contact form does not submit when required fields are left empty
-
+Verify that the contact form does not submit when email is left empty
 ### Test Type
 UI / Negative Test
 
@@ -128,13 +125,53 @@ UI / Negative Test
 - User remains on the /contact_us page
 
 ### Actual Result
-(To be filled during testing)
+- Form does not submit
+- Validation error 'Please fill out this field' is displayed indicating required fields must be completed
+- User remains on the /contact_us page
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Medium
 
-### Automation Status
-❌ Not Automated
+---
+
+## Test Case: Contact Form Shows Error when multiple fields are empty
+
+### Test ID
+UI-CONTACT-004
+
+### Test Title
+Verify that the contact form does not submit when required fields are left empty
+
+### Test Type
+UI / Negative Test
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User is on the Contact Us page
+- All form fields are visible
+
+### Test Steps
+1. Navigate to the homepage
+2. Click the Contact Us navigation link
+3. Leave all form fields except email empty
+4. Click the Submit button
+5. Observe the result
+
+### Expected Result
+- Form does not submit
+- Validation error is displayed indicating required fields must be completed
+- User remains on the /contact_us page
+
+### Actual Result
+- Form submits
+- Confirm prompt is displayed and interactable
+- Success alert displayed after submission
+
+### Pass / Fail
+Fail
+
+### Severity (if failed)
+Medium

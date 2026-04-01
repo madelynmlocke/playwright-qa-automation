@@ -16,11 +16,19 @@ test.describe('@ui @home Homepage Tests', () => {
 
         await homePage.gotoHomePage();
         await homePage.assertFirstSlide();
-        // await homePage.nextSlide();
-        // await homePage.assertSecondSlide();
-        // await homePage.nextSlide();
-        // await homePage.assertThirdSlide();
-        // await homePage.nextSlide();
+        await homePage.nextSlide();
+        await homePage.assertSecondSlide();
+        await homePage.nextSlide();
+        await homePage.assertThirdSlide();
+        await homePage.nextSlide();
 
-    })
+    });
+
+    test('user can redirect to pages with navigation', async ({ homePage }) => {
+
+        await homePage.gotoHomePage();
+        await homePage.assertNavLinksNavigate();
+
+    });
+
 });

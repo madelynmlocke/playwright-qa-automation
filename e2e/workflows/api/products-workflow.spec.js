@@ -3,7 +3,7 @@ import { assertProduct, assertProductsResponse } from '../../../utils/apiAsserti
 import { assertBrandsResponse } from '../../../utils/apiAssertions.js';
 import { searchProduct } from '../../../utils/apiClient.js';
 
-test.describe.only('products -> brands -> search @api @workflow', () => {
+test.describe('products -> brands -> search @api @workflow', () => {
     
     test('product data stays consistent across catalog, brands, and search endpoints @regression', async ({ request }) => {
         // 1) Get all products

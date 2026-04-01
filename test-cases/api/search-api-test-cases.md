@@ -59,10 +59,11 @@ POST https://automationexercise.com/api/searchProduct
 - At least one product name matches or contains "Blue Top"
 
 ### Actual Result
-(To be filled during testing)
+- HTTP status code is 200
+- Response body contains what is expected
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High

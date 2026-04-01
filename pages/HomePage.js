@@ -20,15 +20,7 @@ export class HomePage {
             'Contact us'
         ];
 
-        this.productsLink = page.getByRole('link', { name: ' Products' });
-        this.cartsLink = page.getByRole('link', { name: ' Cart' });
-        this.loginLink = page.getByRole('link', { name: ' Signup / Login' });
-        this.testsLink = page.getByRole('link', { name: ' Test Cases' });
-        this.apiTestsLink = page.getByRole('link', { name: ' API Testing' });
-        this.contactLink = page.getByRole('link', { name: ' Contact us' });
-
-
-        //slideshow slides and images
+        // slideshow slides and images
         this.firstSlide = page.getByText('AutomationExercise Full-').first();
         this.secondSlide = page.getByText('AutomationExercise Full-').nth(1);
         this.thirdSlide = page.getByText('AutomationExercise Full-').nth(2);
@@ -41,6 +33,11 @@ export class HomePage {
 
         this.popUpAd = page.locator('iframe[name="aswift_3"]');
         this.adButton = page.locator('iframe[name="aswift_3"]').contentFrame().getByRole('button', { name: 'Close ad' });
+
+        this.subHeading = page.getByRole('heading', { name: 'Subscription' });
+        this.subInput = page.getByRole('heading', { name: 'Subscription' });
+        this.subButton = page.locator('#subscribe');
+        this.scrollButton = page.locator('#scrollUp');
     }
 
     async gotoHomePage() {
@@ -125,11 +122,33 @@ export class HomePage {
 
     async dismissAdOverlay() {
         try {
-            // Wait briefly to see if an ad close button appears
             await this.adButton.waitFor({ state: 'visible', timeout: 2000 });
             await this.adButton.click();
         } catch {
             // No ad present, continue
         }
+    }
+
+    async scrollDown(page, times = 10, pixelsPerScroll = 500) {
+        for( let i = 0; i < times; i++) {
+             await page.mouse.wheel(0, pixelsPerScroll);
+        }
+    }
+
+    async scrollWithPageDown(page, times = 5) {
+        for(let i = 0; i< times; i++) {
+            await page.keyboard.press('PageDown');
+        }
+    }
+
+    async assertSub() {
+        await expect(this.subHeading).toBeVisible();
+        await expect(this.subInput).toBeVisible();
+        await expect(this.subButton).toBeVisible();
+        await expect(this.scrollButton).toBeVisible();
+    }
+
+    async scrollWithButton() {
+        await this.scrollButton.click();
     }
 }

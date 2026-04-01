@@ -31,5 +31,6 @@ test.describe('@ui @home Homepage Tests', () => {
         await homePage.scrollWithPageDown(page);
         await homePage.assertSub();
         await homePage.scrollWithButton();
+        await homePage.assertHero();
     });
 });

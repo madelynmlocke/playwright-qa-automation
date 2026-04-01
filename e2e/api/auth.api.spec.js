@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { assertBodyResponse } from '../../utils/apiAssertions.js';
-import { verifyLogin } from '../../utils/apiClient.js';
+import { verifyLogin, verifyUnsupportedLogin } from '../../utils/apiClient.js';
 
 test.describe('Endpoint tests for user login @api @auth', () => {
 
@@ -40,7 +40,7 @@ test.describe('Endpoint tests for user login @api @auth', () => {
     });
     
     test('Test Case 10: DELETE /verifyLogin should return 405 for unsupported request method @negative', async ({ request }) => {
-        const response = await request.delete('/api/verifyLogin');
+        const response = await verifyUnsupportedLogin(request);
         // expect(response.status()).toBe(405); // Known bug: API returns incorrect HTTP status, validating response body instead. Bug ID: BUG-API-POST-LOGIN-001
 
         const responseBody = await response.json();

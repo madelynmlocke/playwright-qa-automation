@@ -31,6 +31,10 @@ export function verifyLogin(request, credentials = {}) {
         });
 }
 
+export function verifyUnsupportedLogin(request) {
+    return request.delete('/api/verifyLogin');
+}
+
 export function searchProduct(request, searchTerm) {
     if (searchTerm === undefined) {
         return request.post('/api/searchProduct');

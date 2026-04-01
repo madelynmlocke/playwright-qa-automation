@@ -163,7 +163,7 @@ for future automation.
 |---------|-------------|-----------|--------|
 | UI-HOME-001 | Homepage loads with correct title and URL | e2e/ui/homepage.spec.js | ✅ Automated |
 | UI-HOME-002 | Header, footer, hero, and logo are visible | e2e/ui/homepage.spec.js | ✅ Automated |
-| UI-HOME-003 | All navigation links are visible | e2e/ui/homepage.spec.js | ✅ Automated |
+| UI-HOME-003 | All navigation links are visible and redirect correctly | e2e/ui/homepage.spec.js | ✅ Automated |
 | UI-LOGIN-001 | User can register a new account and delete it | e2e/ui/login.spec.js | ✅ Automated |
 | UI-LOGIN-002 | User can log in with valid credentials | e2e/ui/login.spec.js | ✅ Automated |
 | UI-LOGIN-003 | Login shows error for invalid credentials | e2e/ui/login.spec.js | ✅ Automated |

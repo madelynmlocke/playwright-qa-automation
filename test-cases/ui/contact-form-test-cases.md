@@ -1,3 +1,5 @@
+# UI Test Cases: Contact Form Endpoints
+
 ## Test Case: Contact Form Fields Are Visible
 
 ### Test ID
@@ -34,7 +36,7 @@ UI / Functional Test
 (To be filled during testing)
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High

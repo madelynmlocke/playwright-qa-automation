@@ -1,3 +1,5 @@
+# UI Test Cases: Homepage Endpoints
+
 ## Test Case: Homepage Loads with Correct Title and URL
 
 ### Test ID
@@ -22,16 +24,14 @@ UI / Smoke Test
 - Page title contains "Automation Exercise"
 
 ### Actual Result
-(To be filled during testing)
+- URL matches https://automationexercise.com or https://automationexercise.com/
+- Page title contains "Automation Exercise"
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/homepage.spec.js (`gotoHomePage()`)
 
 ---
 
@@ -54,65 +54,25 @@ UI / Functional Test
 1. Navigate to the homepage
 2. Observe the header element
 3. Observe the footer element
+4. Observe the logo element
+5. Observe the hero element
 
 ### Expected Result
-- Header is visible on the page
-- Footer is visible on the page
+- Header, footer, hero, and logo are visible on the page
 
 ### Actual Result
-(To be filled during testing)
+- Header, footer, hero, and logo are visible on the page
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Medium
 
-### Automation Status
-✅ Automated — e2e/ui/homepage.spec.js (`assertLayout()`)
-
 ---
-
-## Test Case: Logo Is Visible
 
 ### Test ID
 UI-HOME-003
-
-### Test Title
-Verify that the site logo is visible on the homepage
-
-### Test Type
-UI / Functional Test
-
-### Preconditions
-- Application is accessible at https://automationexercise.com
-- User has navigated to the homepage
-
-### Test Steps
-1. Navigate to the homepage
-2. Observe the logo image
-
-### Expected Result
-- Logo image with alt text "Website for automation practice" is visible
-
-### Actual Result
-(To be filled during testing)
-
-### Pass / Fail
-(To be filled during testing)
-
-### Severity (if failed)
-Low
-
-### Automation Status
-✅ Automated — e2e/ui/homepage.spec.js (`assertLogo()`)
-
----
-
-## Test Case: Hero Banner Is Visible
-
-### Test ID
-UI-HOME-004
 
 ### Test Title
 Verify that the hero banner heading is visible on the homepage
@@ -132,26 +92,23 @@ UI / Functional Test
 - Heading "Full-Fledged practice website for Automation Engineers" is visible
 
 ### Actual Result
-(To be filled during testing)
+- Heading is visible
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Medium
 
-### Automation Status
-✅ Automated — e2e/ui/homepage.spec.js (`assertHero()`)
-
 ---
 
-## Test Case: All Navigation Links Are Visible
+## Test Case: All Navigation Links Are Visible and Redirect to correct pages
 
 ### Test ID
 UI-HOME-005
 
 ### Test Title
-Verify that all expected navigation links are visible on the homepage
+Verify that all expected navigation links are visible and redirect correctly on the homepage
 
 ### Test Type
 UI / Functional Test
@@ -181,13 +138,10 @@ UI / Functional Test
 - All eight navigation links listed above are visible in the navigation bar
 
 ### Actual Result
-(To be filled during testing)
+- All eight navigation links listed above are visible in the navigation bar, and each link redirects to their respective URL.
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/homepage.spec.js (`assertNavLinksVisible()`)

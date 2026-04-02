@@ -17,6 +17,7 @@ export class LoginPage {
         // logged in assertion
         this.loggedInText = page.getByText(/logged in as/i); // displays which account logged in as
         this.logOutLink = page.locator('a[href="/logout"]'); // link to logout 
+        this.logInError = page.locator('input[data-qa="password"]');
 
         // initial sign up selectors
         this.signupHeading = page.getByRole('heading', { name: /new user signup!/i });
@@ -74,8 +75,14 @@ export class LoginPage {
         await expect(this.logOutLink).toBeVisible();
     }
 
+    async assertLoginError() {
+        await expect(this.page).toHaveURL(/\/login$/);
+        await expect(this.passwordInput).toHaveAttribute('required', '');
+    }
+
     async logout() {
         await this.logOutLink.click();
+        //await expect(this.page).toHaveURL('/');
     }
     
     async assertLogInError(message) {

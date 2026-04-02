@@ -1,4 +1,4 @@
-import { test, expect } from '../../fixtures/index.js';
+import { test } from '../../fixtures/index.js';
 
 test.describe('@ui @login Login Validation Tests', () => {
 
@@ -28,9 +28,22 @@ test.describe('@ui @login Login Validation Tests', () => {
         await loggedOutUser.assertLogInError('incorrect');
     });
 
-    test('Test Case 5: sign up shows error using existing email @negative', async ({ loggedOutUser }) => {
+    test('Test Case 5: login shows error for missing password @negative', async ({ loggedOutUser }) => {
+        await loggedOutUser.assertLoginForm();
+        await loggedOutUser.login(process.env.EMAIL_VALID, '');
+        await loggedOutUser.assertLoginError();
+    });
+
+    test('Test Case 6: sign up shows error using existing email @negative', async ({ loggedOutUser }) => {
         await loggedOutUser.assertSignUpForm();
         await loggedOutUser.signUp('Testy', process.env.EMAIL_VALID);
         await loggedOutUser.assertSignUpError('already exist');
+    });
+
+    test('Test Case 4: User is redirected to login page after logout @smoke', async ({ loggedOutUser }) => {
+        await loggedOutUser.login(process.env.EMAIL_VALID, process.env.PASSWORD_VALID);
+        await loggedOutUser.assertLoggedIn();
+        await loggedOutUser.logout();
+        await loggedOutUser.assertLoginForm();
     });
 });

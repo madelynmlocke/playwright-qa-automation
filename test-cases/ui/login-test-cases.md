@@ -60,16 +60,17 @@ UI / Functional Test
 - "Account Deleted!" confirmation is displayed after deletion
 
 ### Actual Result
-(To be filled during testing)
+- Signup form is visible on the login page
+- Account information form loads after initial signup step
+- "Account Created!" confirmation is displayed
+- User is logged in after clicking Continue
+- "Account Deleted!" confirmation is displayed after deletion
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/login.spec.js (`assertSignUpForm()`, `signUp()`, `assertFormHeading()`, `fillForm()`, `assertAccountCreated()`, `assertLoggedIn()`, `deleteAccount()`)
 
 ---
 
@@ -115,16 +116,16 @@ UI / Smoke Test
 - Clicking logout returns the user to the logged out state
 
 ### Actual Result
-(To be filled during testing)
+- Login form is visible at /login
+- After submitting valid credentials, "Logged in as" text is visible
+- Logout link is visible confirming the user is authenticated
+- Clicking logout returns the user to the logged out state
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Critical
-
-### Automation Status
-✅ Automated — e2e/ui/login.spec.js (`assertLoginForm()`, `login()`, `assertLoggedIn()`, `logout()`)
 
 ---
 
@@ -164,16 +165,15 @@ UI / Negative Test
 - User remains on the login page
 
 ### Actual Result
-(To be filled during testing)
+- Login does not succeed
+- Error message containing "incorrect" is visible on the page
+- User remains on the login page
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/login.spec.js (`assertLoginForm()`, `login()`, `assertLogInError()`)
 
 ---
 
@@ -213,16 +213,15 @@ UI / Negative Test
 - User remains on the login page
 
 ### Actual Result
-(To be filled during testing)
+- Login does not succeed
+- Validation feedback is displayed indicating the password field is required
+- User remains on the login page
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-❌ Not Automated
 
 ---
 
@@ -263,16 +262,15 @@ UI / Negative Test
 - User remains on the login page
 
 ### Actual Result
-(To be filled during testing)
+- Signup does not proceed to the account information form
+- Error message containing "already exist" is visible on the page
+- User remains on the login page
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Medium
-
-### Automation Status
-✅ Automated — e2e/ui/login.spec.js (`assertSignUpForm()`, `signUp()`, `assertSignUpError()`)
 
 ---
 
@@ -304,13 +302,13 @@ UI / Functional Test
 - Logout link is no longer visible
 
 ### Actual Result
-(To be filled during testing)
+- User is logged out successfully
+- User is redirected to the login page
+- "Logged in as" text is no longer visible
+- Logout link is no longer visible
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-❌ Not Automated

@@ -25,6 +25,7 @@ export class LoginPage {
         this.signupEmail = page.locator('input[data-qa="signup-email"]');
         this.signupButton = page.locator('button[data-qa="signup-button"]');
         this.signUpError = page.locator('p', { hasText: /already exist/i });
+        this.continueLink = page.getByRole('link', { name: 'Continue' });
 
         // Sign Up Form Selectors
         this.regPasswordInput = page.getByRole('textbox', { name: 'Password *' });

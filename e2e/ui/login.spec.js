@@ -2,7 +2,7 @@ import { test } from '../../fixtures/index.js';
 
 test.describe('@ui @login Login Validation Tests', () => {
 
-    test('Test Case 1: User can register account and delete it @smoke', async ({ freshUser, loginPage, page }) => {
+    test('Test Case 1: User can register account and delete it @smoke', async ({ freshUser, loginPage }) => {
         await loginPage.gotoHomePage();
         await loginPage.goToLoginPage();
         await loginPage.assertSignUpForm();
@@ -10,7 +10,7 @@ test.describe('@ui @login Login Validation Tests', () => {
         await loginPage.assertFormHeading();
         await loginPage.fillForm(freshUser);
         await loginPage.assertAccountCreated();
-        await page.getByRole('link', { name: 'Continue' }).click();
+        await loginPage.continueLink.click();
         await loginPage.assertLoggedIn();
         await loginPage.deleteAccount();
     });

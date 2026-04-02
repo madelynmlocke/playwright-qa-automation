@@ -104,7 +104,7 @@ test.describe('Account API - Negative / Boundary @api @account @negative', () =>
 
         const responseBody = await response.json();
         console.log(responseBody);
-        //assertBodyResponse(responseBody, 400, 'Email already exists!');
+        //assertBodyResponse(responseBody, 400, 'Missing password!'); // Known Bug: API does not return a validation error. Bug ID: BUG-API-POST-CREATE-003
     });
 
     test('GET returns error for invalid credentials', async ({ request }) => {

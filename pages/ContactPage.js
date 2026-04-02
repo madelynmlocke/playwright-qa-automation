@@ -39,6 +39,11 @@ export class ContactPage {
         await expect(this.formButton).toBeVisible();
     }
 
+    async assertFormError() {
+        await expect(this.page).toHaveURL(/\/contact_us$/);
+        await expect(this.formEmail).toHaveJSProperty('validity.valueMissing', true);
+    }
+
     async fillForm(name, email, subject, message) {
         await this.formName.fill(name);
         await this.formEmail.fill(email);

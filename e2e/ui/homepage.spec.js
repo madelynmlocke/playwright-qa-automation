@@ -1,4 +1,4 @@
-import { test, expect } from '../../fixtures/index.js';
+import { test } from '../../fixtures/index.js';
 
 test.describe('@ui @home Homepage Tests', () => {
     

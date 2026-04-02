@@ -1,6 +1,7 @@
-import { test, expect } from '../../fixtures/index.js';
+import { test } from '../../fixtures/index.js';
 
 test.describe('@ui @contactform Contact Form Validation Tests', () => {
+    
     test('Test Case 6: Contact form fields are visible and user submits form @smoke', async ({ contactPage }) => {  
         await contactPage.goToHomePage();
         await contactPage.gotoContactPage();
@@ -18,10 +19,10 @@ test.describe('@ui @contactform Contact Form Validation Tests', () => {
         await contactPage.fillForm('maddy', '', 'test', 'testing a message');
         await contactPage.handleDialogOnce();
         await contactPage.submitForm();
-        await expect(page.locator('input[data-qa="email"]')).toHaveJSProperty('validity.valueMissing', true); 
+        await contactPage.assertFormError();
     });
 
-    test.only('Test Case 8: Contact Form Shows Error When Required Fields Are Missing @negative', async ({ contactPage }) => {  
+    test('Test Case 8: Contact Form Shows Error When Required Fields Are Missing @negative', async ({ contactPage }) => {  
         await contactPage.goToHomePage();
         await contactPage.gotoContactPage();
         await contactPage.assertForm();
@@ -30,8 +31,8 @@ test.describe('@ui @contactform Contact Form Validation Tests', () => {
         await contactPage.submitForm();
 
         // Known BUG: Contact form validates and submits with missing fields. Bug ID: BUG-UI-CONTACT-001
-        // await expect(contactPage.formName).toHaveJSProperty('validity.valueMissing', true); 
-        // await expect(contactPage.formSubject).toHaveJSProperty('validity.valueMissing', true); 
-        // await expect(contactPage.formMessage).toHaveJSProperty('validity.valueMissing', true); 
+            // await expect(contactPage.formName).toHaveJSProperty('validity.valueMissing', true); 
+            // await expect(contactPage.formSubject).toHaveJSProperty('validity.valueMissing', true); 
+            // await expect(contactPage.formMessage).toHaveJSProperty('validity.valueMissing', true); 
     });
 });

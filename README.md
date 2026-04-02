@@ -172,9 +172,9 @@ for future automation.
 | UI-LOGIN-001 | User can register a new account and delete it | e2e/ui/login.spec.js | ✅ Automated |
 | UI-LOGIN-002 | User can log in with valid credentials | e2e/ui/login.spec.js | ✅ Automated |
 | UI-LOGIN-003 | Login shows error for invalid credentials | e2e/ui/login.spec.js | ✅ Automated |
-| UI-LOGIN-004 | Login attempt with empty password | — | ❌ Not Automated |
+| UI-LOGIN-004 | Login attempt with empty password shows error | — | ✅ Automated |
 | UI-LOGIN-005 | Sign up shows error when using existing email | e2e/ui/login.spec.js | ✅ Automated |
-| UI-LOGIN-006 | User can log out successfully | — | ❌ Not Automated |
+| UI-LOGIN-006 | User can log out successfully | — | ✅ Automated |
 | UI-CONTACT-001 | Contact form fields are visible | e2e/ui/contact-form.spec.js | ✅ Automated |
 | UI-CONTACT-002 | Contact form can be submitted successfully | e2e/ui/contact-form.spec.js | ✅ Automated |
 | UI-CONTACT-003 | Contact form shows error when email is missing | — | ✅ Automated |

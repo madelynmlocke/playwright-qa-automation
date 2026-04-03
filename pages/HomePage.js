@@ -35,29 +35,29 @@ export class HomePage {
         this.adButton = page.locator('iframe[name="aswift_3"]').contentFrame().getByRole('button', { name: 'Close ad' });
 
         this.subHeading = page.getByRole('heading', { name: 'Subscription' });
-        this.subInput = page.getByRole('heading', { name: 'Subscription' });
+        this.subInput = page.locator('#susbscribe_email');
         this.subButton = page.locator('#subscribe');
         this.scrollButton = page.locator('#scrollUp');
     }
 
     async gotoHomePage() {
     // Block ad requests before navigating
-    await this.page.route('**/*', (route) => {
-        const url = route.request().url();
-        if (url.includes('googlesyndication') || 
-            url.includes('doubleclick') || 
-            url.includes('adservice') ||
-            url.includes('googletagmanager')) {
-            route.abort();
-        } else {
-            route.continue();
-        }
-    });
+        await this.page.route('**/*', (route) => {
+            const url = route.request().url();
+            if (url.includes('googlesyndication') || 
+                url.includes('doubleclick') || 
+                url.includes('adservice') ||
+                url.includes('googletagmanager')) {
+                route.abort();
+            } else {
+                route.continue();
+            }
+        });
 
-    await this.page.goto('/');
-    await expect(this.page).toHaveURL(/automationexercise\.com\/?$/);
-    await expect(this.page).toHaveTitle(/Automation Exercise/i);
-}
+        await this.page.goto('/');
+        await expect(this.page).toHaveURL(/automationexercise\.com\/?$/);
+        await expect(this.page).toHaveTitle(/Automation Exercise/i);
+    }
 
     async assertNavLinksNavigate() {
         const expectedUrls = {
@@ -97,19 +97,17 @@ export class HomePage {
         await expect(this.hero).toBeVisible();
     }
 
-    async 
-
     async assertFirstSlide() {
         await expect(this.firstSlide).toBeVisible();
         await expect(this.firstImg).toBeVisible();
     }
 
-        async assertSecondSlide() {
+    async assertSecondSlide() {
         await expect(this.secondSlide).toBeVisible();
         await expect(this.secondImg).toBeVisible();
     }
 
-        async assertThirdSlide() {
+    async assertThirdSlide() {
         await expect(this.thirdSlide).toBeVisible();
         await expect(this.thirdImg).toBeVisible();
     }

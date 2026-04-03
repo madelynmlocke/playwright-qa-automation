@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { assertProduct, assertProductsResponse } from '../../../utils/apiAssertions.js';
-import { assertBrandsResponse } from '../../../utils/apiAssertions.js';
+import { assertProduct, assertProductsResponse, assertBrandsResponse } from '../../../utils/apiAssertions.js';
 import { searchProduct } from '../../../utils/apiClient.js';
 
 test.describe('products -> brands -> search @api @workflow', () => {

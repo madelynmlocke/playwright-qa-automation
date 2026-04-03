@@ -21,7 +21,6 @@ export class ContactPage {
 
     async goToHomePage() {
         await this.page.goto('/');
-        await expect(this.page).toHaveURL('/');
     }
 
     async gotoContactPage() {

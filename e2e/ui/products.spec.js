@@ -12,8 +12,9 @@ test.describe('@ui @products Products page tests', () => {
     test('Test Case 9: Search Product @regression', async ({ productsPage }) => {
         const searchTerm = 'Blue Top';
         await productsPage.searchForProduct(searchTerm);
-        await productsPage.assertSearchedProductsVisible();
+        await productsPage.assertSearchedProductsVisible();   
         await productsPage.assertSearchResultsContain(searchTerm);
+        await productsPage.clickFirstViewProduct(); // ad pops up on clicking view product
     });
 
     test('Test Case 12/17: Add/Remove Products in Cart @regression', async ({ productsPage }) => {

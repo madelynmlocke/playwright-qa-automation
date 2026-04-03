@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { createAccount, updateAccount, deleteAccount, getUserDetailByEmail } from '../../../utils/apiClient.js';
-import { verifyLogin } from '../../../utils/apiClient.js';
+import { createAccount, verifyLogin, updateAccount, deleteAccount, getUserDetailByEmail } from '../../../utils/apiClient.js';
 import { buildUser } from '../../../utils/userFactory.js';
 import { assertAccountResponse, assertBodyResponse } from '../../../utils/apiAssertions.js';
 

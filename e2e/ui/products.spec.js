@@ -43,6 +43,8 @@ test.describe('@ui @products Products page tests', () => {
 
 	test('Test Case 18: View category products and verify sub category @smoke', async ({ productsPage }) => {
         await productsPage.assertCategories();
+        await productsPage.assertWomenCategory();
+        await productsPage.assertSubCategoryDress();
         await productsPage.assertSubCategoryPage(/women/i);
 	});
 

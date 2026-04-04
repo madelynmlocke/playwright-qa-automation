@@ -21,10 +21,10 @@ export class ProductPage {
         this.productInfo = page.locator('.product-information');
         this.productName = this.productInfo.locator('h2');
 
-        //Cart page
+        // Cart page
         this.cartLink = page.getByRole('link', { name: /Cart/i }).first();
 
-        //Add Product to Cart
+        // Add Product to Cart
         this.continueButton = page.getByRole('button', { name: /continue shopping/i });
         this.viewCartButton = page.getByRole('link', { name: /view cart/i });
         this.quantityButton = page.locator('button.disabled');
@@ -35,20 +35,30 @@ export class ProductPage {
         this.womenCategory = page.getByRole('link', { name: /Women/i });
         this.subCategoryDress = page.getByRole('link', { name: 'Dress' });
 
+        // Filtered Heading
         this.subHeading = page.locator('h2.title.text-center');
 
         // Brands 
         this.brandHeading = page.getByRole('heading', { name: 'Brands' });
         this.brandPolo = page.getByRole('link', { name: /Polo/i });
 
-        //Ad overlay close button
+        // Ad overlay close button
         this.closeBtn = page.getByRole('button', { name: 'Close ad' });
     }
 
     async assertCategories() {
+        await this.categoryHeading.scrollIntoViewIfNeeded();
         await expect(this.categoryHeading).toBeVisible();
+    }
+
+    async assertWomenCategory() {
+        await this.womenCategory.scrollIntoViewIfNeeded();
         await expect(this.womenCategory).toBeVisible();
         await this.womenCategory.click();
+    }
+
+    async assertSubCategoryDress() {
+        await this.subCategoryDress.scrollIntoViewIfNeeded();
         await expect(this.subCategoryDress).toBeVisible();
         await this.subCategoryDress.click();
     }
@@ -75,10 +85,10 @@ export class ProductPage {
 
     async gotoHomePage() {
         await this.page.goto('/');
+        await expect(this.page).toHaveURL(/automationexercise\.com\/?$/);
     }
 
     async goToProductsPage() {
-    //await this.page.goto('/products');
     await expect(this.productsNavLink).toBeVisible();
     await this.productsNavLink.click();
 
@@ -98,10 +108,6 @@ export class ProductPage {
     
     await this.page.waitForURL(/\/products$/);
     console.log('Current URL after clicking Products:', this.page.url());
-    }
-
-    async assertHomePageLoaded() {
-        await expect(this.page).toHaveURL(/automationexercise\.com\/?$/);
     }
 
     async assertAllProductsPageLoaded() {

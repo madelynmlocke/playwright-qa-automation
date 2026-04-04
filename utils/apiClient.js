@@ -39,6 +39,9 @@ export function getProducts(request) {
     return request.get('/api/productsList');
 }
 
+export function postProducts(request) {
+    return request.post('/api/productsList');
+}
 
 export function searchProduct(request, searchTerm) {
     if (searchTerm === undefined) {

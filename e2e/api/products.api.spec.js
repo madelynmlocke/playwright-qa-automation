@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { assertProductsResponse, assertProduct, assertBodyResponse } from '../../utils/apiAssertions.js';
-import { getProducts } from '../../utils/apiClient.js';
+import { getProducts, postProducts } from '../../utils/apiClient.js';
 
 test.describe('Endpoint tests for /productsList @api @products', () => {
 
@@ -18,7 +18,7 @@ test.describe('Endpoint tests for /productsList @api @products', () => {
 	});
 
 	test('Test Case 2: POST to /productsList returns 405 @negative', async ({ request }) => {
-		const response = await getProducts(request);
+		const response = await postProducts(request);
 
 		// expect(response.status()).toBe(405); // Known bug: API returns incorrect HTTP status, validating response body instead. Bug ID: BUG-API-GLOBAL-001
 

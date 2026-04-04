@@ -41,7 +41,7 @@ test.describe('@ui @products Products page tests', () => {
         await productsPage.assertQuantity('2');
 	});
 
-	test.only('Test Case 18: View category products and verify sub category @smoke', async ({ productsPage }) => {
+	test('Test Case 18: View category products and verify sub category @smoke', async ({ productsPage }) => {
         await productsPage.assertCategories();
         await productsPage.assertSubCategoryPage(/women/i);
 	});

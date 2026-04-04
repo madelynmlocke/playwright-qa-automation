@@ -29,16 +29,16 @@ UI / Smoke Test
 - First product card is visible on the page
 
 ### Actual Result
-(To be filled during testing)
+- Page URL contains /products
+- "All Products" heading is visible
+- At least one product card is visible
+- First product card is visible on the page
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/products.spec.js (`assertAllProductsPageLoaded()`, `assertProductsListVisible()`)
 
 ---
 
@@ -78,16 +78,15 @@ UI / Functional Test
 - All of the following fields are present: product name, Category, price (Rs.), Availability, Condition, Brand
 
 ### Actual Result
-(To be filled during testing)
+- Page URL matches /product_details/1
+- Product information section is visible
+- All of the following fields are present: product name, Category, price (Rs.), Availability, Condition, Brand
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/products.spec.js (`viewProductById()`, `assertProductDetailPageLoaded()`, `assertProductDetailFieldsVisible()`)
 
 ---
 
@@ -128,16 +127,15 @@ UI / Functional Test
 - Every product card in the results contains "Blue Top"
 
 ### Actual Result
-(To be filled during testing)
+- "Searched Products" heading is visible after search
+- At least one product card is returned
+- Every product card in the results contains "Blue Top"
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 Medium
-
-### Automation Status
-✅ Automated — e2e/ui/products.spec.js (`searchForProduct()`, `assertSearchedProductsVisible()`, `assertSearchResultsContain()`)
 
 ---
 
@@ -179,16 +177,15 @@ UI / Functional Test
 - Cart row with id "product-2" is visible
 
 ### Actual Result
-(To be filled during testing)
+- Both products are visible in the cart after being added
+- Cart row with id "product-1" is visible
+- Cart row with id "product-2" is visible
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/products.spec.js (`addProductToCart()`, `continueShopping()`, `viewCart()`, `assertProductInCart()`)
 
 ---
 
@@ -231,16 +228,14 @@ UI / Functional Test
 - Product ID 2 remains visible in the cart
 
 ### Actual Result
-(To be filled during testing)
+- After removal, the cart row for product ID 1 has a count of 0
+- Product ID 2 remains visible in the cart
 
 ### Pass / Fail
-(To be filled during testing)
+Pass
 
 ### Severity (if failed)
 High
-
-### Automation Status
-✅ Automated — e2e/ui/products.spec.js (`removeProductFromCart()`, `assertProductNotInCart()`, `assertProductInCart()`)
 
 ---
 
@@ -289,3 +284,183 @@ Low
 
 ### Automation Status
 ❌ Not Automated
+
+---
+
+## Test Case: Verify Product Quantity in Cart
+
+### Test ID
+UI-PRODUCTS-007
+
+### Test Title
+Verify that adding the same product twice results in a quantity of 2 in the cart
+
+### Test Type
+UI / Regression
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User is on the Products page
+- Cart is empty
+
+### Test Steps
+1. Navigate to the Products page
+2. Add product with ID 5 to the cart
+3. Click "Continue Shopping" to dismiss the modal
+4. Add product with ID 5 to the cart again
+5. Click "View Cart"
+6. Verify the quantity displayed for the product
+
+### Expected Result
+- The quantity button displays "2" for the product in the cart
+
+### Actual Result
+- The quantity button displays "2" for the product in the cart
+
+### Pass / Fail
+Pass
+
+### Severity (if failed)
+High
+
+---
+
+## Test Case: View Category Products and Verify Sub Category
+
+### Test ID
+UI-PRODUCTS-008
+
+### Test Title
+Verify that navigating through a category and sub category loads the correct products page
+
+### Test Type
+UI / Smoke
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User is on the Products page
+- The left sidebar is visible
+
+### Test Steps
+1. Navigate to the Products page
+2. Verify the "Category" heading is visible in the sidebar
+3. Verify the "Women" category link is visible
+4. Click the "Women" category link to expand it
+5. Verify the "Dress" sub category link is visible
+6. Click the "Dress" sub category link
+7. Verify the page URL contains /category_products/ followed by a numeric ID
+8. Verify the page sub heading contains "Women"
+
+### Expected Result
+- "Category" heading is visible
+- "Women" category is visible and expandable
+- "Dress" sub category is visible after expanding Women
+- Page URL matches /category_products/\d+
+- Sub heading on the page contains "Women"
+
+### Actual Result
+- "Category" heading is visible
+- "Women" category is visible and expandable
+- "Dress" sub category is visible after expanding Women
+- Page URL matches /category_products/\d+
+- Sub heading on the page contains "Women"
+
+### Pass / Fail
+Pass
+
+### Severity (if failed)
+Medium
+
+---
+
+## Test Case: View and Cart Brand Products
+
+### Test ID
+UI-PRODUCTS-009
+
+### Test Title
+Verify that navigating to a brand from the sidebar loads the correct brand products page
+
+### Test Type
+UI / Smoke
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User is on the Products page
+- The left sidebar is visible
+
+### Test Steps
+1. Navigate to the Products page
+2. Verify the "Brands" heading is visible in the sidebar
+3. Verify the "Polo" brand link is visible
+4. Click the "Polo" brand link
+5. Verify the page URL contains /brand_products/Polo (case-insensitive)
+6. Verify the page sub heading contains "Polo"
+
+### Expected Result
+- "Brands" heading is visible in the sidebar
+- "Polo" brand link is visible
+- Page URL matches /brand_products\/Polo/i after clicking
+- Sub heading on the page contains "Polo"
+
+### Actual Result
+- "Brands" heading is visible in the sidebar
+- "Polo" brand link is visible
+- Page URL matches /brand_products\/Polo/i after clicking
+- Sub heading on the page contains "Polo"
+
+### Pass / Fail
+Pass
+
+### Severity (if failed)
+Medium
+
+---
+
+## Test Case: Search Products and Verify Cart After Login
+
+### Test ID
+UI-PRODUCTS-010
+
+### Test Title
+Verify that products found via search can be added to the cart and persist after login
+
+### Test Type
+UI / Regression / Integration
+
+### Preconditions
+- Application is accessible at https://automationexercise.com
+- User is on the Products page
+- User has valid credentials available
+- Cart is empty before the test runs
+
+### Test Steps
+1. Navigate to the Products page
+2. Verify the "All Products" sub heading is visible
+3. Search for "jeans"
+4. Verify the "Searched Products" heading is visible
+5. Verify all displayed product cards contain the word "jeans" (case-insensitive)
+6. Add all visible search result products to the cart, clicking "Continue Shopping" between each and "View Cart" on the last
+7. Navigate to the Login page
+8. Log in with valid credentials
+9. Verify the user is logged in
+10. Navigate to the Cart page
+11. Verify all products in the cart were add and contain the word "jeans"
+
+### Expected Result
+- Search returns only products matching "jeans"
+- All matching products are added to the cart successfully
+- After logging in, the cart still contains the previously added products
+- All cart items contain "jeans" in their product name
+
+### Actual Result
+- Search returns only products matching "jeans"
+- All matching products are added to the cart successfully
+- After logging in, the cart still contains the previously added products
+- All cart items contain "jeans" in their product name
+
+### Pass / Fail
+Pass
+
+### Severity (if failed)
+High

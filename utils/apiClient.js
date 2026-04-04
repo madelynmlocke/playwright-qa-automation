@@ -35,6 +35,11 @@ export function verifyUnsupportedLogin(request) {
     return request.delete('/api/verifyLogin');
 }
 
+export function getProducts(request) {
+    return request.get('/api/productsList');
+}
+
+
 export function searchProduct(request, searchTerm) {
     if (searchTerm === undefined) {
         return request.post('/api/searchProduct');

@@ -21,12 +21,56 @@ export class ProductPage {
         this.productInfo = page.locator('.product-information');
         this.productName = this.productInfo.locator('h2');
 
+        //Cart page
+        this.cartLink = page.getByRole('link', { name: /Cart/i }).first();
+
         //Add Product to Cart
         this.continueButton = page.getByRole('button', { name: /continue shopping/i });
         this.viewCartButton = page.getByRole('link', { name: /view cart/i });
+        this.quantityButton = page.locator('button.disabled');
+        this.deleteButton = page.locator('a.cart_quantity_delete');
+
+        // Categories
+        this.categoryHeading = page.getByRole('heading', { name: 'Category' });
+        this.womenCategory = page.getByRole('link', { name: /Women/i });
+        this.subCategoryDress = page.getByRole('link', { name: 'Dress' });
+
+        this.subHeading = page.locator('h2.title.text-center');
+
+        // Brands 
+        this.brandHeading = page.getByRole('heading', { name: 'Brands' });
+        this.brandPolo = page.getByRole('link', { name: /Polo/i });
 
         //Ad overlay close button
         this.closeBtn = page.getByRole('button', { name: 'Close ad' });
+    }
+
+    async assertCategories() {
+        await expect(this.categoryHeading).toBeVisible();
+        await expect(this.womenCategory).toBeVisible();
+        await this.womenCategory.click();
+        await expect(this.subCategoryDress).toBeVisible();
+        await this.subCategoryDress.click();
+    }
+
+    async assertSubCategoryPage(sub) {
+        await expect(this.page).toHaveURL(/category_products\/\d+/);
+        await expect(this.subHeading).toContainText(sub);
+    }
+
+    async assertBrand() {
+        await expect(this.brandHeading).toBeVisible();
+        await expect(this.brandPolo).toBeVisible();
+        await this.brandPolo.click();
+    }
+
+    async assertBrandPage(sub) {
+        await expect(this.page).toHaveURL(/brand_products\/Polo/i);
+        await expect(this.subHeading).toContainText(sub);
+    }
+
+    async assertSubHeading(sub) {
+        await expect(this.subHeading).toContainText(sub);
     }
 
     async gotoHomePage() {
@@ -62,7 +106,6 @@ export class ProductPage {
 
     async assertAllProductsPageLoaded() {
         await expect(this.allProductsHeading).toBeVisible();
-
     }
 
     async assertProductsListVisible() {
@@ -98,9 +141,9 @@ export class ProductPage {
         await expect(this.productInfo).toContainText(/brand:/i);
     }
 
-    async searchForProduct(productName) {
-        await this.searchInput.fill(productName);
-        await this.searchButton.click();
+    async goToCart() {
+        await expect(this.cartLink).toBeVisible();
+        await this.cartLink.click();
     }
 
     async addProductToCart(productId) {
@@ -108,6 +151,23 @@ export class ProductPage {
         
         await button.scrollIntoViewIfNeeded();
         await button.click();
+    }
+
+    async addVisibleProductsToCart() {
+        const count = await this.productCards.count();
+
+        for(let i = 0; i < count; i++) {
+            const addButton = this.productCards.nth(i).locator('[data-product-id]').first();
+            await addButton.scrollIntoViewIfNeeded();
+            await addButton.click();
+            await expect(this.continueButton).toBeVisible();
+
+             if (i === count - 1) {
+                await this.viewCartButton.click();
+            } else {
+                await this.continueButton.click();
+            }
+        }
     }
 
     async removeProductFromCart(productId) {
@@ -121,15 +181,40 @@ export class ProductPage {
 
     async viewCart() {
         await this.viewCartButton.click();
+    }
 
+    async clearCart() {
+        const count = await this.deleteButton.count();
+        for(let i = 0; i < count; i++) {
+            await this.deleteButton.first().click();
+        }
+    }
+
+    async assertQuantity(qty) {
+        await expect(this.quantityButton).toHaveText(qty);
     }
 
     async assertProductInCart(productId) {
         await expect(this.page.locator(`#product-${productId}`)).toBeVisible();
     }
 
-async assertProductNotInCart(productId) {
+    async assertProductsInCart(searchTerm) {
+        const cartItems = this.page.locator('td.cart_description');
+        const count = await cartItems.count();
+        expect(count).toBeGreaterThan(0);
+
+        for(let i = 0; i < count; i++) {
+            await expect(cartItems.nth(i)).toContainText(new RegExp(searchTerm, 'i'));
+        }
+    }
+
+    async assertProductNotInCart(productId) {
         await expect(this.page.locator(`#product-${productId}`)).toHaveCount(0);
+    }
+
+    async searchForProduct(productName) {
+        await this.searchInput.fill(productName);
+        await this.searchButton.click();
     }
 
     async assertSearchedProductsVisible() {

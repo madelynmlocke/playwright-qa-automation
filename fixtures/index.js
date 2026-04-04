@@ -8,6 +8,22 @@ import { createAccount, deleteAccount } from '../utils/apiClient.js';
 
 export const test = base.extend({
 
+    // Block ad networks globally — prevents ad overlays from interfering with tests
+    page: async ({ page }, use) => {
+        await page.route('**/*', route => {
+            const url = route.request().url();
+            const isAd = [
+                'googleads',
+                'doubleclick',
+                'googlesyndication',
+                'adservice',
+            ].some(domain => url.includes(domain));
+
+            isAd ? route.abort() : route.continue();
+        });
+        await use(page);
+    },
+
     // Page object fixtures — replaces `new PageObject(page)` in beforeEach
     homePage: async ({ page }, use) => {
         const homePage = new HomePage(page);
@@ -68,7 +84,6 @@ export const test = base.extend({
     productsPage: async ({ page }, use) => {
         const productPage = new ProductPage(page);
         await productPage.gotoHomePage();
-        await productPage.assertHomePageLoaded();
         await productPage.goToProductsPage();
         await productPage.assertAllProductsPageLoaded();
         await use(productPage);

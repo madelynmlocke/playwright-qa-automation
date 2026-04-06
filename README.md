@@ -70,18 +70,17 @@ playwright-qa-automation
 │     └── workflows
 │           ├── api
 │           │     ├── account-workflow.spec.js
-│           │     └── user-workflow.spec.js
+│           │     └── products-workflow.spec.js
 │           │     
-│           │ 
 │           └── ui
-│                └── products-workflow.spec.js
+│                └── user-workflow.spec.js
 │
 ├── test-cases
 │     ├── ui
+│     │    ├── contact-form-test-cases.md
 │     │    ├── homepage-test-cases.md
-│     │    ├── products-test-cases.md
 │     │    ├── login-test-cases.md
-│     │    └── contact-form-test-cases.md
+│     │    └── products-test-cases.md
 │     │
 │     └── api
 │         ├── accounts-api-test-cases.md
@@ -92,14 +91,16 @@ playwright-qa-automation
 │
 ├── defects
 │     ├── ui
-│     │    ├── BUG-UI-PRODUCTS-URL-001.md
-│     │    └── BUG-UI-CONTACT-001.md
+│     │    ├── BUG-UI-CONTACT-001.md
+│     │    └── BUG-UI-PRODUCTS-URL-001.md
 │     │
 │     └── api
-│         ├── BUG-API-DELETE-LOGIN-001.md
-│         ├── BUG-API-POST-CREATE-001.md
-│         ├── BUG-API-POST-INVALID-LOGIN-001.md
-│         ''(Rest of defects)''
+│          ├── BUG-API-GLOBAL-001.md
+│          ├── BUG-API-POST-CREATE-002.md
+│          ├── BUG-API-POST-CREATE-003.md
+│          ├── BUG-API-POST-SEARCH-001.md
+│          └── API-GLOBAL-001-BUGS/
+│               └── BUG-API-DELETE-LOGIN-001.md
 │
 └── README.md
 ```
@@ -137,29 +138,29 @@ for future automation.
 |---------|-------------|-----------|--------|
 | API-PRODUCTS-001 | GET /api/productsList returns valid product data | e2e/api/products.api.spec.js | ✅ Automated |
 | API-PRODUCTS-002 | POST /api/productsList returns 405 | e2e/api/products.api.spec.js | ✅ Automated |
-| API-PRODUCTS-003 | Product data consistent across products, brands, and search | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
 | API-SEARCH-001 | Search with valid term successfully returns related results | e2e/api/search.api.spec.js | ✅ Automated |
 | API-SEARCH-002 | Search Product with Missing Parameter throws error | e2e/api/search.api.spec.js | ✅ Automated |
 | API-SEARCH-003 | Search with no matching term returns empty array | e2e/api/search.api.spec.js | ✅ Automated |
 | API-SEARCH-004 | Search with with single character returns results | e2e/api/search.api.spec.js | ✅ Automated |
 | API-BRANDS-001 | GET /api/brandsList returns valid brand data | e2e/api/brands.api.spec.js | ✅ Automated |
 | API-BRANDS-002 | PUT /api/brandsList returns 405 | e2e/api/brands.api.spec.js | ✅ Automated |
-| API-BRANDS-003 | Brands in /api/brandsList are consistent with /api/productsList | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
 | API-AUTH-001 | POST /api/verifyLogin returns 200 with valid credentials | e2e/api/auth.api.spec.js | ✅ Automated |
 | API-AUTH-002 | POST /api/verifyLogin returns 400 when credentials are missing | e2e/api/auth.api.spec.js | ✅ Automated |
 | API-AUTH-003 | POST /api/verifyLogin returns 404 with invalid credentials | e2e/api/auth.api.spec.js | ✅ Automated |
 | API-AUTH-004 | DELETE /api/verifyLogin returns 405 for unsupported method | e2e/api/auth.api.spec.js | ✅ Automated |
 | API-AUTH-006 | GET /api/verifyLogin returns 405 for unsupported method | e2e/api/auth.api.spec.js | ✅ Automated |
-| API-AUTH-005 | POST /api/verifyLogin returns 404 after account deletion | e2e/workflows/api/account-workflow.spec.js | ✅ Automated |
 | API-ACCOUNT-001 | POST /api/createAccount creates a new user account | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-002 | GET /api/getUserDetailByEmail returns correct account details | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-003 | PUT /api/updateAccount successfully updates an existing account | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-004 | DELETE /api/deleteAccount successfully removes a user account | e2e/api/account.api.spec.js | ✅ Automated |
-| API-ACCOUNT-005 | Account data consistent across create, login, update, and delete | e2e/workflows/api/account-workflow.spec.js | ✅ Automated |
 | API-ACCOUNT-006 | POST /api/createAccount returns error for duplicate email | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-007 | POST /api/createAccount returns error when email is missing | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-008 | GET /api/getUserDetailByEmail returns error for invalid credentials | e2e/api/account.api.spec.js | ✅ Automated |
 | API-ACCOUNT-009 | DELETE /api/deleteAccount returns error for invalid credentials | e2e/api/account.api.spec.js | ✅ Automated |
+| API-WORKFLOW-001 | POST /api/verifyLogin returns 404 after account deletion | e2e/workflows/api/account-workflow.spec.js | ✅ Automated |
+| API-WORKFLOW-002 | Brands in /api/brandsList are consistent with /api/productsList | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
+| API-WORKFLOW-003 | Product data consistent across products, brands, and search | e2e/workflows/api/products-workflow.spec.js | ✅ Automated |
+| API-WORKFLOW-004 | Account data consistent across create, login, update, and delete | e2e/workflows/api/account-workflow.spec.js | ✅ Automated |
 
 ### UI Coverage
 
@@ -202,24 +203,25 @@ for future automation.
 | BUG-API-POST-CREATE-001 | POST /api/createAccount | Returns HTTP 200 instead of 201 on successful account creation | Medium | Open |
 | BUG-API-POST-CREATE-002 | POST /api/createAccount | Body returns 'Email Already exists' instead of bad request | Medium | Open |
 | BUG-API-POST-CREATE-003 | POST /api/createAccount | Sending missing password POST request does not return error | Medium | Open |
-| BUG-UI-PRODUCTS-URL-001 | UI / Products | View Product link unreliable due to ad overlay interference | Medium | Open |
-| BUG-UI-CONTACT-001 | UI / Contact | Contact Form accepts submission with only email filled | Medium | Open |
+| BUG-UI-PRODUCTS-URL-001 | UI / ui/products | View Product link unreliable due to ad overlay interference | Medium | Open |
+| BUG-UI-CONTACT-001 | UI / /ui/contact-form | Contact Form accepts submission with only email filled | Medium | Open |
 
 ### Coverage Summary
 
 | Category | Total Test Cases | Automated | Not Automated |
 |----------|-----------------|-----------|---------------|
-| API - Products | 5 | 5 | 0 |
-| API - Search | 5 | 3 | 2 |
-| API - Brands | 4 | 4 | 0 |
+| API - Products | 2 | 2 | 0 |
+| API - Search | 4 | 4 | 0 |
+| API - Brands | 2 | 2 | 0 |
 | API - Auth | 5 | 5 | 0 |
-| API - Account | 5 | 5 | 0 |
-| UI - Homepage | 5 | 5 | 0 |
-| UI - Login | 6 | 4 | 2 |
-| UI - Contact Form | 3 | 2 | 1 |
+| API - Account | 9 | 9 | 0 |
+| API - Workflows | 2 | 2 | 0 |
+| UI - Homepage | 4 | 4 | 0 |
+| UI - Login | 6 | 5 | 1 |
+| UI - Contact Form | 4 | 4 | 0 |
 | UI - Products | 6 | 5 | 1 |
 | UI - Workflows | 1 | 1 | 0 |
-| **Total** | **45** | **39** | **6** |
+| **Total** | **45** | **44** | **1** |
 
 ## Test Scenarios
 The automated tests validate a variety of application behaviors.
@@ -266,15 +268,16 @@ The repository includes sample defect reports demonstrating how issues are docum
 
 Bug reports may include:
 
+- Bug ID
 - Summary
 - Environment
 - Steps to reproduce
 - Expected result
 - Actual result
 - Severity
-- Root Cause
+- Notes
 - Suggested Fix
-- Status
+- Attachments / Evidence
 
 This mirrors real bug tracking systems such as:
 
@@ -290,7 +293,7 @@ Potential enhancements for this project include:
 - Adding performance or load testing scenarios
 - Create reusable functions, helpers, and fixtures
 - Remove duplicate logic and make scalable
-- add visual regression tests
+- Add visual regression tests
 
 ## Learning Goals
 This project was created to practice and demonstrate:

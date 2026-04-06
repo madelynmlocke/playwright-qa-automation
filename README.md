@@ -126,11 +126,26 @@ push and pull request to the `main` branch.
 CI workflow location:
 .github/workflows/playwright.yml
 
+### Design Approach
+
+- Page Object Model for UI abstraction
+- API + UI hybrid testing for consistency validation
+- Seperate E2E workflows for both API and UI
+- Reusable fixtures for authentication flows
+- Factory pattern for dynamic test user data
+
 ## Test Coverage
 
 The following table maps each automated test to its corresponding test case document and spec file.
 Test cases marked as Not Automated are documented in the test-cases/ folder and are candidates
 for future automation.
+
+### Limitations
+
+- Public demo site has inconsistent API status codes
+- Some UI validations cannot be asserted due to site behavior
+- Ad overlays require workarounds
+- Schema validation is basic (not full contract validation yet)
 
 ### API Coverage
 

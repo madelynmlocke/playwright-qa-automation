@@ -22,7 +22,7 @@ test.describe('@ui @contactform Contact Form Validation Tests', () => {
         await contactPage.assertFormError();
     });
 
-    test('Test Case 8: Contact Form Shows Error When Required Fields Are Missing @negative', async ({ contactPage }) => {  
+    test.fixme('Test Case 8: Contact Form Shows Error When Required Fields Are Missing @negative', async ({ contactPage }) => {  
         await contactPage.goToHomePage();
         await contactPage.gotoContactPage();
         await contactPage.assertForm();
@@ -31,8 +31,8 @@ test.describe('@ui @contactform Contact Form Validation Tests', () => {
         await contactPage.submitForm();
 
         // Known BUG: Contact form validates and submits with missing fields. Bug ID: BUG-UI-CONTACT-001
-            // await expect(contactPage.formName).toHaveJSProperty('validity.valueMissing', true); 
-            // await expect(contactPage.formSubject).toHaveJSProperty('validity.valueMissing', true); 
-            // await expect(contactPage.formMessage).toHaveJSProperty('validity.valueMissing', true); 
+        await expect(contactPage.formName).toHaveJSProperty('validity.valueMissing', true); 
+        await expect(contactPage.formSubject).toHaveJSProperty('validity.valueMissing', true); 
+        await expect(contactPage.formMessage).toHaveJSProperty('validity.valueMissing', true); 
     });
 });
